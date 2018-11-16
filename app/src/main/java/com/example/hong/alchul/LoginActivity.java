@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -37,6 +38,7 @@ public class LoginActivity extends Activity {
         passwordText = (EditText) findViewById(R.id.passwordText);
         loginButton = (Button) findViewById(R.id.LoginButton);
         registerButton = (Button) findViewById(R.id.registerButton);
+        Toast.makeText(this,"dfs",Toast.LENGTH_SHORT).show();
 
     }
 
