@@ -25,4 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
+
+    public void clickenter(View view) {
+        Intent enterIntent = new Intent(MainActivity.this, home_part.class);
+        MainActivity.this.startActivity(enterIntent);
+
+    }
 }

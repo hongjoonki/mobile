@@ -103,4 +103,15 @@
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toEndOf="@+id/findText"
         app:layout_constraintTop_toBottomOf="@+id/NameView" />
+
+    <Button
+        android:id="@+id/logoutBt"
+        android:layout_width="79dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="logout"
+        android:onClick="btn_logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>
