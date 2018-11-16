@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -108,6 +109,7 @@ public class RegisterActivity extends Activity{
     public void checkButton(View view) {
 
         String id = idText.getText().toString();
+
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             public void onResponse(String response) {
                 try {
@@ -116,6 +118,7 @@ public class RegisterActivity extends Activity{
                     if (success.equals("OK")) {
                         checkId = "OK";
                         AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+
                         builder.setMessage("아이디 사용 가능.")
                                 .setPositiveButton("확인", null)
                                 .create()
@@ -129,6 +132,7 @@ public class RegisterActivity extends Activity{
                                 .show();
                     }
                 } catch (JSONException e) {
+
                     e.printStackTrace();
                 }
             }

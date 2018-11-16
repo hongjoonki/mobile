@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickenter(View view) {
-        Intent enterIntent = new Intent(MainActivity.this, home_part.class);
+        Intent enterIntent = new Intent(MainActivity.this, partime_home.class);
         MainActivity.this.startActivity(enterIntent);
 
     }

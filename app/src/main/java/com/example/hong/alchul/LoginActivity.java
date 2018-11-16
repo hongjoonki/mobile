@@ -53,19 +53,22 @@ public class LoginActivity extends Activity {
         String id = idText.getText().toString();
         String password = passwordText.getText().toString();
 
+
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
+
                     if (success) {
                         String userId = jsonResponse.getString("userId");
                         String userPassword = jsonResponse.getString("userPassword");
                         String userPhoneNum = jsonResponse.getString("userPhoneNum");
                         String userName = jsonResponse.getString("userName");
                         String userStat = jsonResponse.getString("userStat");
-
+                        Log.d("test", "debug4");
                         if(userStat.equals("manager")) {
                             Intent intent = new Intent(LoginActivity.this, MainActivity_manager.class);
                             intent.putExtra("UserId", userId);
@@ -85,6 +88,7 @@ public class LoginActivity extends Activity {
                         }
                     }
                     else {
+                        Log.d("test", "debug5");
                         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                         builder.setMessage("Login에 실패하였습니다.")
                                 .setNegativeButton("다시 시도", null)
@@ -92,6 +96,7 @@ public class LoginActivity extends Activity {
                                 .show();
                     }
                 } catch (JSONException e) {
+                    Log.d("test", "debug6");
                     e.printStackTrace();
                 }
             }
