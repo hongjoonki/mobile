@@ -99,10 +99,10 @@ public class MyFragment1 extends Fragment {
                                 Toast.makeText(context, "success", Toast.LENGTH_SHORT).show();
                             }
                             else {
-                                Log.d("test", "debug5");
+
                             }
                         } catch (JSONException e) {
-                            Log.d("test", "debug6");
+
                             e.printStackTrace();
                         }
                     }
@@ -110,6 +110,7 @@ public class MyFragment1 extends Fragment {
                 MyFragment1_request m = new MyFragment1_request("sim3329", startwork,endwork, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(context);
                 queue.add(m);
+
 
 
                 Toast.makeText(context, endwork+"퇴근하였습니다.", Toast.LENGTH_SHORT).show();      //퇴근버튼눌렀을때 디비저장.변수 startwork랑 endwork에 시간 저장.
