@@ -23,17 +23,18 @@
         android:id="@+id/findButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="264dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="264dp"
         android:text="Find Store"
+        android:onClick="clickfind"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/enterBt"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/findText"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/findText"
@@ -54,13 +55,13 @@
         android:id="@+id/enterBt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="160dp"
         android:layout_marginBottom="8dp"
-        android:text="enter"
+        android:layout_marginEnd="164dp"
+        android:layout_marginTop="8dp"
         android:onClick="clickenter"
+        android:text="enter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/findText"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintVertical_bias="0.197" />
 </android.support.constraint.ConstraintLayout>
