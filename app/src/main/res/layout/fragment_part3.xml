@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:textSize="30dp"
         android:textStyle="bold"
-        android:text="thrd_Page" />
+        android:text="공지사항" />
 
 </LinearLayout>
 
