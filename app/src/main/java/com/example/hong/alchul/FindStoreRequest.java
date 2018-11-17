@@ -8,17 +8,16 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class IdCheckRequest extends StringRequest {
+public class FindStoreRequest extends StringRequest {
 
-    final static private String URL = "http://10.0.2.2:8080/teamproject/LoginCheck.php";
-    final static private String URL = "http://10.0.2.2/teamproject/LoginCheck.php";
+    final static private String URL = "http://10.0.2.2/teamproject/FindStore.php";
     private Map<String, String> parameters;
 
 
-    public IdCheckRequest(String userId, Response.Listener<String> listener) {
+    public FindStoreRequest(String storeCode, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
         parameters = new HashMap<>();
-        parameters.put("userId", userId);
+        parameters.put("storeCode", storeCode);
     }
 
     public Map<String, String> getParams() {
