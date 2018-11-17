@@ -31,18 +31,37 @@ public class MyFragment1 extends Fragment {
     long mNow, mEnd;
     Date mDate, mEndDate;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    TextView mTextView;
-    String aaa, bbb;
+    String startwork, endwork;
+    Button btn_start, btn_end;
+
+
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState){
-        view = inflater.inflate(R.layout.fragment_part1, container,false );
+        view = inflater.inflate(R.layout.fragment_part1, container,false );                     //fragment화면 설정
         context = container.getContext();
-        final Button btn_start = (Button)view.findViewById(R.id.start);
-        final Button btn_end = (Button)view.findViewById(R.id.end);
+        btn_start = (Button)view.findViewById(R.id.start);
+        btn_end = (Button)view.findViewById(R.id.end);
 
-        mTextView = (TextView)view.findViewById(R.id.textView);
+
+        String userId = getArguments().getString("UserId");
+        String userName = getArguments().getString("UserName");
+        String userPhoneNum = getArguments().getString("UserPhoneNum");
+        String userStat = getArguments().getString("UserStat");
+        String storeCode = getArguments().getString("StoreCode");
+        TextView textView1, textView2, textView3, textView4;
+
+        textView1 = (TextView)view.findViewById(R.id.textView1);
+        textView2 = (TextView)view.findViewById(R.id.textView2);
+        textView3 = (TextView)view.findViewById(R.id.textView3);
+        textView4 = (TextView)view.findViewById(R.id.textView4);
+
+        textView1.setText("이름:   "+ userName);
+        textView2.setText("직종:   "+ userStat);
+        textView3.setText("전화번호:   "+ userPhoneNum);
+        textView4.setText("지점:   "+ storeCode);
 
 
         btn_start.setOnClickListener(new View.OnClickListener() {
@@ -50,12 +69,12 @@ public class MyFragment1 extends Fragment {
             public void onClick(View v) {
                 mNow=System.currentTimeMillis();
                 mDate=new Date(mNow);
-                aaa = mFormat.format(mDate);
+                startwork = mFormat.format(mDate);
                 btn_end.setEnabled(true);
                 btn_start.setEnabled(false);
-                Toast.makeText(context, aaa+"에"+"출근하였습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, startwork+"에"+"출근하였습니다.", Toast.LENGTH_SHORT).show();
 
-            }
+            }           //출근 버튼눌렀을 때.
         });
 
         btn_end.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +82,7 @@ public class MyFragment1 extends Fragment {
             public void onClick(View v) {
                 mEnd=System.currentTimeMillis();
                 mEndDate=new Date(mNow);
-                bbb = mFormat.format(mDate);
+                endwork = mFormat.format(mDate);
                 btn_end.setEnabled(false);
                 btn_start.setEnabled(true);
 
@@ -88,12 +107,12 @@ public class MyFragment1 extends Fragment {
                         }
                     }
                 };
-                MyFragment1_request m = new MyFragment1_request("sim3329", aaa,bbb, responseListener);
+                MyFragment1_request m = new MyFragment1_request("sim3329", startwork,endwork, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(context);
                 queue.add(m);
 
 
-                Toast.makeText(context, bbb+"퇴근하였습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, endwork+"퇴근하였습니다.", Toast.LENGTH_SHORT).show();      //퇴근버튼눌렀을때 디비저장.변수 startwork랑 endwork에 시간 저장.
 
             }
         });

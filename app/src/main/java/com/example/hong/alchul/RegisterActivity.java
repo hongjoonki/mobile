@@ -61,7 +61,7 @@ public class RegisterActivity extends Activity{
         String job = null;
 
         if(partButton.isChecked()) {
-            job = "part";
+            job = "part-time";
         }
         else if(managerButton.isChecked()) {
             job = "manager";

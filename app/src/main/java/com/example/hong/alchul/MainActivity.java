@@ -38,20 +38,18 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String userId = intent.getStringExtra("UserId");
-        String userPassword = intent.getStringExtra("UserPassword");
         String userName = intent.getStringExtra("UserName");
         String userPhoneNum = intent.getStringExtra("UserPhoneNum");
         String userStat = intent.getStringExtra("UserStat");
         userId = intent.getStringExtra("UserId");
-        userPassword = intent.getStringExtra("UserPassword");
         userName = intent.getStringExtra("UserName");
         userPhoneNum = intent.getStringExtra("UserPhoneNum");
         userStat = intent.getStringExtra("UserStat");
 
         findText = (EditText) findViewById(R.id.findText);
 
-        String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
-        // 화면 오른쪽 위에 user 이름 표시
+        String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";   // 화면 오른쪽 위에 user 이름 표시
+
         TextView textView;
         textView = (TextView) findViewById(R.id.NameView);
         textView.setText(userName);
@@ -65,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (find.equals("OK")) {
             enterIntent.putExtra("UserId", userId);
-            enterIntent.putExtra("UserPassword", userPassword);
             enterIntent.putExtra("UserName", userName);
             enterIntent.putExtra("UserPhoneNum", userPhoneNum);
             enterIntent.putExtra("UserStat", userStat);

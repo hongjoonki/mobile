@@ -64,7 +64,6 @@ public class LoginActivity extends Activity {
 
                     if (success) {
                         String userId = jsonResponse.getString("userId");
-                        String userPassword = jsonResponse.getString("userPassword");
                         String userPhoneNum = jsonResponse.getString("userPhoneNum");
                         String userName = jsonResponse.getString("userName");
                         String userStat = jsonResponse.getString("userStat");
@@ -75,7 +74,6 @@ public class LoginActivity extends Activity {
                             if (storeCode == null||storeCode.length()==0) {
                                 Intent intent1 = new Intent(LoginActivity.this, manager_home.class);
                                 intent1.putExtra("UserId", userId);
-                                intent1.putExtra("UserPassword", userPassword);
                                 intent1.putExtra("UserName", userName);
                                 intent1.putExtra("UserPhoneNum", userPhoneNum);
                                 intent1.putExtra("UserStat", userStat);
@@ -83,7 +81,6 @@ public class LoginActivity extends Activity {
                             } else{
                                 Intent intent = new Intent(LoginActivity.this, MainActivity_manager.class);
                                 intent.putExtra("UserId", userId);
-                                intent.putExtra("UserPassword", userPassword);
                                 intent.putExtra("UserName", userName);
                                 intent.putExtra("UserPhoneNum", userPhoneNum);
                                 intent.putExtra("UserStat", userStat);
@@ -95,7 +92,6 @@ public class LoginActivity extends Activity {
                             if (storeCode.equals("123")) {
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra("UserId", userId);
-                                intent.putExtra("UserPassword", userPassword);
                                 intent.putExtra("UserName", userName);
                                 intent.putExtra("UserPhoneNum", userPhoneNum);
                                 intent.putExtra("UserStat", userStat);
@@ -103,7 +99,6 @@ public class LoginActivity extends Activity {
                             } else{
                                 Intent intent = new Intent(LoginActivity.this, partime_home.class);
                                 intent.putExtra("UserId", userId);
-                                intent.putExtra("UserPassword", userPassword);
                                 intent.putExtra("UserName", userName);
                                 intent.putExtra("UserPhoneNum", userPhoneNum);
                                 intent.putExtra("UserStat", userStat);
