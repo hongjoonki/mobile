@@ -61,11 +61,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickenter(View view) {
         Intent enterIntent = new Intent(MainActivity.this, partime_home.class);
-        MainActivity.this.startActivity(enterIntent);
         storeCode = findText.getText().toString();
 
         if (find.equals("OK")) {
-            Intent enterIntent = new Intent(MainActivity.this, partime_home.class);
             enterIntent.putExtra("UserId", userId);
             enterIntent.putExtra("UserPassword", userPassword);
             enterIntent.putExtra("UserName", userName);
@@ -93,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     if (success.equals("SORRY")) {
                         find = "OK";
                         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                        builder.setMessage("OKOK")
+                        builder.setMessage("OK")
                                 .setPositiveButton("확인", null)
                                 .create()
                                 .show();

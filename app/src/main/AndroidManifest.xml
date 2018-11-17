@@ -21,7 +21,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".MainActivity_manager" />
-        <activity android:name=".partime_home"></activity>
+        <activity android:name=".partime_home" />
+        <activity android:name=".manager_home"></activity>
     </application>
 
 </manifest>

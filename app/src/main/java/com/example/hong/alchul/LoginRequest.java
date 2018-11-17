@@ -11,7 +11,6 @@ import java.util.Map;
 public class LoginRequest extends StringRequest {
 
     final static private String URL = "http://10.0.2.2:8080/teamproject/Login.php";
-    final static private String URL = "http://10.0.2.2/teamproject/Login.php";
     private Map<String, String> parameters;
 
 

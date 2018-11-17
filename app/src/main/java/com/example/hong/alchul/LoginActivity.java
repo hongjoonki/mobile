@@ -38,7 +38,7 @@ public class LoginActivity extends Activity {
         passwordText = (EditText) findViewById(R.id.passwordText);
         loginButton = (Button) findViewById(R.id.LoginButton);
         registerButton = (Button) findViewById(R.id.registerButton);
-        Toast.makeText(this,"dfs",Toast.LENGTH_SHORT).show();
+
 
     }
 
@@ -71,23 +71,17 @@ public class LoginActivity extends Activity {
                         String storeCode = jsonResponse.getString("storeCode");
                         Log.d("test", "debug4");
                         if(userStat.equals("manager")) {
-                            Intent intent = new Intent(LoginActivity.this, MainActivity_manager.class);
-                            intent.putExtra("UserId", userId);
-                            intent.putExtra("UserPassword", userPassword);
-                            intent.putExtra("UserName", userName);
-                            intent.putExtra("UserPhoneNum", userPhoneNum);
-                            intent.putExtra("UserStat", userStat);
-                            LoginActivity.this.startActivity(intent);
+
                             if (storeCode == null||storeCode.length()==0) {
-                                Intent intent = new Intent(LoginActivity.this, MainActivity_manager.class);
-                                intent.putExtra("UserId", userId);
-                                intent.putExtra("UserPassword", userPassword);
-                                intent.putExtra("UserName", userName);
-                                intent.putExtra("UserPhoneNum", userPhoneNum);
-                                intent.putExtra("UserStat", userStat);
-                                LoginActivity.this.startActivity(intent);
+                                Intent intent1 = new Intent(LoginActivity.this, manager_home.class);
+                                intent1.putExtra("UserId", userId);
+                                intent1.putExtra("UserPassword", userPassword);
+                                intent1.putExtra("UserName", userName);
+                                intent1.putExtra("UserPhoneNum", userPhoneNum);
+                                intent1.putExtra("UserStat", userStat);
+                                LoginActivity.this.startActivity(intent1);
                             } else{
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, MainActivity_manager.class);
                                 intent.putExtra("UserId", userId);
                                 intent.putExtra("UserPassword", userPassword);
                                 intent.putExtra("UserName", userName);
@@ -97,13 +91,7 @@ public class LoginActivity extends Activity {
                                 LoginActivity.this.startActivity(intent);
                             }
                         } else {
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            intent.putExtra("UserId", userId);
-                            intent.putExtra("UserPassword", userPassword);
-                            intent.putExtra("UserName", userName);
-                            intent.putExtra("UserPhoneNum", userPhoneNum);
-                            intent.putExtra("UserStat", userStat);
-                            LoginActivity.this.startActivity(intent);
+
                             if (storeCode.equals("123")) {
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra("UserId", userId);

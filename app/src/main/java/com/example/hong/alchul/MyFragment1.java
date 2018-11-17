@@ -30,7 +30,7 @@ public class MyFragment1 extends Fragment {
     private Context context;
     long mNow, mEnd;
     Date mDate, mEndDate;
-    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     TextView mTextView;
     String aaa, bbb;
 
