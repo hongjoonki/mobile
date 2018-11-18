@@ -102,16 +102,30 @@ public class RegisterActivity extends Activity{
         }
     }
 
+    // CHECK ID 버튼 눌렀을때 이벤트 추가 -> idText에 쓰여져있는 값이 user테이블에 존재하는지 확인 후 checkId값을 설정
     public void checkButton(View view) {
-
+        // idText에 있는 값을 받아옴
         String id = idText.getText().toString();
 
+        // Response.Listener형식의 객체 생성 (response 결과값을 받아서 실행할 코드)
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             public void onResponse(String response) {
                 try {
+                    // php파일 실행 결과로 Json형식의 response가 생성된다
+                    // 이 결과를 Json형식으로 받아오기 위해 JSONObject를 만들어 주었다.
                     JSONObject jsonResponse = new JSONObject(response);
+
+                    // 결과 json에서 "success"라는 키의 값을 success라는 변수에 string 형태로 저장한다..
                     String success = jsonResponse.getString("success");
+
+                    /* success의 값은 2가지 결과로 나온다.
+                         1.  idText에 있는 ID값이 user테이블에 있으면 "SORRY"
+                         2.  idText에 있는 ID값이 user테이블에 없으면 "OK"
+                    */
+                    // success가 "OK"일 경우 해당 id의 값이 테이블에 없으므로 아이디 사용 가능 메세지 호출
                     if (success.equals("OK")) {
+
+                        // checkId변수의 값을 ""에서 "OK"로 바꿔준다 -> 회원 등록이 가능해진다.
                         checkId = "OK";
                         AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
 
@@ -120,6 +134,7 @@ public class RegisterActivity extends Activity{
                                 .create()
                                 .show();
                     }
+                    // success가 "SORRY"일 경우 해당 id의 값이 테이블에 존재하므로 이미 존재한다고 알려주는 메세지 호출
                     else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
                         builder.setMessage("이미 존재하는 아이디입니다.")
@@ -133,7 +148,14 @@ public class RegisterActivity extends Activity{
                 }
             }
         };
+        // IdCheckRequest 객채 생성 (파라미터 값으로 idText에 있는 id값과 response.Listener의 객체 전달)
         IdCheckRequest idCheckRequest = new IdCheckRequest(id, responseListener);
+
+        /*RequestQueue 객체 생성 후 request할 클래스를 큐에 넣은후 실행
+        Volley 사용을 위해서 build.gradle에  compile 'com.android.volley:volley:1.0.0'를 추가하여야 한다.
+        또한, manifest파일에 인터넷 사용허가 추가 -> <uses-permission android:name="android.permission.INTERNET" />
+        Request class로 IdCheckRequest를 선언하였으므로 IdCheckRequest로 이동하게 된다.
+        */
         RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
         queue.add(idCheckRequest);
 

@@ -37,13 +37,13 @@ public class LoginActivity extends Activity {
 
     }
 
-
+    // REGISTER 버튼 눌렀을 때 이벤트 추가 -> RegisterActivity(회원등록 이벤트)로 이동
     public void onClick2(View v) {
         Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
         LoginActivity.this.startActivity(registerIntent);
     }
 
-
+    //
     public void onClick1(View v) {
         String id = idText.getText().toString();
         String password = passwordText.getText().toString();
