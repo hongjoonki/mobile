@@ -8,8 +8,8 @@ import java.util.Map;
 
 public class eventRequest extends StringRequest {
 
-    final static private String URL = "http://10.0.2.2:8080/teamproject/workday.php";
-    final static private String URL1 = "http://10.0.2.2:8080/teamproject/workday_event.php";
+    final static private String URL = "http://18.221.234.141/teamproject/workday.php";
+    final static private String URL1 = "http://18.221.234.141/teamproject/workday_event.php";
     private Map<String, String> parameters;
 
     public eventRequest(String userId, Response.Listener<String> listener) {
