@@ -16,7 +16,7 @@ public class IdCheckRequest extends StringRequest {
     // 사용된 php파일 이름: LoginCheck.php
     final static private String URL = "http://10.0.2.2/teamproject/LoginCheck.php";
 
-    // 나중에 여러 갯수의 파라미터를 한번에 전달하는 방법으로 Map을 아용하였다.
+    // 나중에 여러 갯수의 파라미터를 한번에 전달하는 방법을 위해 Map을 아용하였다.
     private Map<String, String> parameters;
 
     // 파라미터를 해당 URL에 전달하기 위한 메소드
