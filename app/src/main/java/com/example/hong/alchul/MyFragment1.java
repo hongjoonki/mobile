@@ -36,6 +36,7 @@ public class MyFragment1 extends Fragment {
 
 
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState){
@@ -43,13 +44,13 @@ public class MyFragment1 extends Fragment {
         context = container.getContext();
         btn_start = (Button)view.findViewById(R.id.start);
         btn_end = (Button)view.findViewById(R.id.end);
-
-
         String userId = getArguments().getString("UserId");
         String userName = getArguments().getString("UserName");
         String userPhoneNum = getArguments().getString("UserPhoneNum");
         String userStat = getArguments().getString("UserStat");
         String storeCode = getArguments().getString("StoreCode");
+
+
         TextView textView1, textView2, textView3, textView4;
 
         textView1 = (TextView)view.findViewById(R.id.textView1);
