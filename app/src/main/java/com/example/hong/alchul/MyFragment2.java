@@ -63,6 +63,12 @@ public class MyFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_part2, container, false);
         context = container.getContext();
+
+        String userId = getArguments().getString("UserId");
+        String userName = getArguments().getString("UserName");
+        String userPhoneNum = getArguments().getString("UserPhoneNum");
+        String userStat = getArguments().getString("UserStat");
+
         materialCalendarView = (MaterialCalendarView) view.findViewById(R.id.calendarView);
 
         materialCalendarView.state().edit()
@@ -127,15 +133,19 @@ public class MyFragment2 extends Fragment {
                 int Year = date.getYear();
                 int Month = date.getMonth() + 1;
                 int Day = date.getDay();
-
                 Log.i("Year test", Year + "");
                 Log.i("Month test", Month + "");
                 Log.i("Day test", Day + "");
 
-                String shot_Day = Year + "," + Month + "," + Day;
+                String shot_Day = Year + "-" + Month + "-" + Day;
 
                 Log.i("shot_Day test", shot_Day + "");
+
+
                 materialCalendarView.clearSelection();
+
+
+
 
                 Toast.makeText(context, shot_Day, Toast.LENGTH_SHORT).show();
             }
