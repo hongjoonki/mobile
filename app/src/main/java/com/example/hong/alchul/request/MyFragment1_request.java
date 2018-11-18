@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class MyFragment1_request extends StringRequest {
 
-    final static private String URL = "http://10.0.2.2:8080/teamproject/worktime.php";
+    final static private String URL = "http://10.0.2.2/teamproject/worktime.php";
     private Map<String, String> parameters;
 
 

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class eventRequest extends StringRequest {
-    final static private String URL = "http://10.0.2.2:8080/test2.php";
+    final static private String URL = "http://10.0.2.2/test2.php";
     private Map<String, String> parameters;
 
     public eventRequest(String userId, Response.Listener<String> listener) {

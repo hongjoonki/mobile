@@ -65,6 +65,7 @@ public class MainActivity_manager extends AppCompatActivity {
 
         Intent enterIntent = new Intent(MainActivity_manager.this, manager_home.class);
 
+        // find변수를 이용하여 storeCode 확인이 끝난 후에 생성을 할 수 있도록 해주었다
         if (find.equals("OK")) {
 
             Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -100,7 +101,7 @@ public class MainActivity_manager extends AppCompatActivity {
                     }
                 }
             };
-            RegisterStoreRequest registerRequest = new RegisterStoreRequest(storeName, storeCode, responseListener);
+            RegisterStoreRequest registerRequest = new RegisterStoreRequest(storeName, storeCode, userId, responseListener);
             RequestQueue queue = Volley.newRequestQueue(MainActivity_manager.this);
             queue.add(registerRequest);
         } else {
@@ -116,37 +117,57 @@ public class MainActivity_manager extends AppCompatActivity {
     public void checkStore(View view) {
         storeCode = createCodeText.getText().toString();
 
-        Response.Listener<String> responseListener = new Response.Listener<String>() {
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonResponse = new JSONObject(response);
-                    String success = jsonResponse.getString("success");
-                    if (success.equals("OK")) {
-                        find = "OK";
-                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity_manager.this);
-                        builder.setMessage("생성 가능한 코드입니다")
-                                .setPositiveButton("확인", null)
-                                .create()
-                                .show();
+        // storeCode에 아무 값도 입력하지 않았을 경우 메세지 출력
+        if (storeCode.length() == 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity_manager.this);
+            builder.setMessage("storeCode를 입력하세요")
+                    .setNegativeButton("확인", null)
+                    .create()
+                    .show();
+        }
+        else {
+
+            Response.Listener<String> responseListener = new Response.Listener<String>() {
+                public void onResponse(String response) {
+                    try {
+                        JSONObject jsonResponse = new JSONObject(response);
+                        String success = jsonResponse.getString("success");
+
+                        // 해당 storeCode의 가게가 존재하는 경우 success = "SORRY"
+                        // 해당 storeCode의 가게가 존재하지 않는경우 success = "OK"
+
+                        // success = "OK"일때 새로운 가게 생성 가능
+                        if (success.equals("OK")) {
+                            // 해당 이름의 가게를 생성가능하도록 find 변수를 "OK"값으로 변환해준다
+                            find = "OK";
+                            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity_manager.this);
+                            builder.setMessage("생성 가능한 코드입니다")
+                                    .setPositiveButton("확인", null)
+                                    .create()
+                                    .show();
+                        }
+                        else {
+                            find="no";
+                            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity_manager.this);
+                            builder.setMessage("이미 존재하는 코드입니다.")
+                                    .setNegativeButton("다시 시도", null)
+                                    .create()
+                                    .show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                    else {
-                        find="no";
-                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity_manager.this);
-                        builder.setMessage("이미 존재하는 코드입니다.")
-                                .setNegativeButton("다시 시도", null)
-                                .create()
-                                .show();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }
-        };
-        FindStoreRequest findStoreRequest = new FindStoreRequest(storeCode, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(MainActivity_manager.this);
-        queue.add(findStoreRequest);
+            };
+
+            // FindStoreRequest 객체 생성
+            FindStoreRequest findStoreRequest = new FindStoreRequest(storeCode, responseListener);
+            RequestQueue queue = Volley.newRequestQueue(MainActivity_manager.this);
+            queue.add(findStoreRequest);
+        }
     }
 
+    // LOGOUT 버튼 눌렀을 때 이벤트 추가
     public void btn_logout(View v) {
         new AlertDialog.Builder(this)
                 .setTitle("로그아웃").setMessage("로그아웃 하시겠습니까?")

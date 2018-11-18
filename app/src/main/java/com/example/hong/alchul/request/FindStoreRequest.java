@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class FindStoreRequest extends StringRequest {
 
-    final static private String URL = "http://10.0.2.2:8080/teamproject/FindStore.php";
+    final static private String URL = "http://10.0.2.2/teamproject/FindStore.php";
     private Map<String, String> parameters;
 
 
