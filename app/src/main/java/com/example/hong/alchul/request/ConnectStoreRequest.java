@@ -9,7 +9,7 @@ import java.util.Map;
 //request를 받아서 결과값을 Response.Listener에 전달하는 LoginRequest class
 public class ConnectStoreRequest extends StringRequest {
     // 사용된 php파일 이름: connectStore.php
-    final static private String URL = "http://10.0.2.2/teamproject/connectStore.php";
+    final static private String URL = "http://10.0.2.2:8080/teamproject/connectStore.php";
     private Map<String, String> parameters;
 
     public ConnectStoreRequest(String userId, String storeCode, Response.Listener<String> listener) {

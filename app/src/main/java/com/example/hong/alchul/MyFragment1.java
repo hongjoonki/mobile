@@ -44,7 +44,7 @@ public class MyFragment1 extends Fragment {
         context = container.getContext();
         btn_start = (Button)view.findViewById(R.id.start);
         btn_end = (Button)view.findViewById(R.id.end);
-        String userId = getArguments().getString("UserId");
+        final String userId = getArguments().getString("UserId");
         String userName = getArguments().getString("UserName");
         String userPhoneNum = getArguments().getString("UserPhoneNum");
         String userStat = getArguments().getString("UserStat");
@@ -108,7 +108,7 @@ public class MyFragment1 extends Fragment {
                         }
                     }
                 };
-                MyFragment1_request m = new MyFragment1_request("sim3329", startwork, endwork, startday, responseListener);
+                MyFragment1_request m = new MyFragment1_request(userId, startwork, endwork, startday, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(context);
                 queue.add(m);
 
