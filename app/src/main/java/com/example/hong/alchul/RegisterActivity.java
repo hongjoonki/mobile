@@ -65,16 +65,16 @@ public class RegisterActivity extends Activity{
             job = "manager";
         }
 
-        // check버튼중 아무것도 누르지 않았을때 메세지 호출
-        if (job == null) {
+        // 특정 항목이 비어있을 때 메세지 호출
+        if (job == null || id.equals("") || password.equals("") || name.equals("") || phoneNum.equals("")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-            builder.setMessage("part 또는 manager에 체크하세요")
+            builder.setMessage("빈 항목이 있습니다")
                     .setNegativeButton("다시 시도", null)
                     .create()
                     .show();
         } else {
 
-            // check버튼은 눌럿지만, 해당 Id의 유효성검사를 받지 않았을 때 메세지 호출
+            // 모든 항목이 다 값이 있지만 아이디체크가 이루어지지 않았을 때 메세지 호출
             if (checkId == "") {
                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
                 builder.setMessage("아이디가 유효한지 체크하세요")

@@ -43,7 +43,7 @@ public class LoginActivity extends Activity {
         LoginActivity.this.startActivity(registerIntent);
     }
 
-    //
+    // LOGIN 버튼 눌렀을 때 이벤트 추가
     public void onClick1(View v) {
         String id = idText.getText().toString();
         String password = passwordText.getText().toString();
