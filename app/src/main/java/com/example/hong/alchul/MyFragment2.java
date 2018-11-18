@@ -18,10 +18,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Executors;
 
@@ -55,6 +59,9 @@ public class MyFragment2 extends Fragment {
     View view;
     private Context context;
     List list = new ArrayList();
+    TextView frag1, frag2, frag3;
+    int pay_hour = 8000;
+
 
 
     @Nullable
@@ -116,12 +123,7 @@ public class MyFragment2 extends Fragment {
             }
         };
 
-
-
-
-
-        String id = "sim3329";
-        eventRequest event1 = new eventRequest(id, responseListener);
+        eventRequest event1 = new eventRequest(userId, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(event1);
 
@@ -130,24 +132,71 @@ public class MyFragment2 extends Fragment {
         materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+
+                String userId = getArguments().getString("UserId");
+                String userName = getArguments().getString("UserName");
+                String userPhoneNum = getArguments().getString("UserPhoneNum");
+                String userStat = getArguments().getString("UserStat");
+
+                frag1 = (TextView)view.findViewById(R.id.frag1);
+                frag1.setText("이름:   "+ userName);
+
                 int Year = date.getYear();
                 int Month = date.getMonth() + 1;
                 int Day = date.getDay();
-                Log.i("Year test", Year + "");
-                Log.i("Month test", Month + "");
-                Log.i("Day test", Day + "");
+                String startday = Year + "-" + Month + "-" + Day;
 
-                String shot_Day = Year + "-" + Month + "-" + Day;
+                Response.Listener<String> responseListener1 = new Response.Listener<String>() {
+                    public void onResponse(String response) {
 
-                Log.i("shot_Day test", shot_Day + "");
+                        frag2 = (TextView)view.findViewById(R.id.frag2);
+                        frag3 = (TextView)view.findViewById(R.id.frag3);
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            JSONArray success = jsonResponse.getJSONArray("response");
+                            if(success.length()==0){
+                                frag2.setText("근무기록: 휴무입니다");
+                                frag3.setText("일당:   0원");
+                            }
+                            else{
+
+                                for(int i=0; i<1; i++){
+
+                                    JSONObject item = success.getJSONObject(i);
+                                    String workstart = item.getString("workstart");
+                                    String workend = item.getString("workend");
+
+                                    SimpleDateFormat transFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                                    SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                                    Date to1 = transFormat1.parse(workstart);
+                                    Date to2 = transFormat2.parse(workend);
+                                    double diff = Math.round((to2.getTime()-to1.getTime())*pay_hour/3600000.0);
+                                    int payday = (int)diff;
+                                    Log.i("test", "dfd"+diff);
+                                    frag2.setText("근무기록: "+workstart+"~"+workend);
+                                    frag3.setText("일당: "+ payday+"원");
+                                }
 
 
+                            }
+
+                        } catch (JSONException e) {
+
+                            e.printStackTrace();
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
                 materialCalendarView.clearSelection();
 
+                eventRequest event2 = new eventRequest(userId, startday, responseListener1);
+                RequestQueue queue = Volley.newRequestQueue(context);
+                queue.add(event2);
 
 
 
-                Toast.makeText(context, shot_Day, Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -175,7 +224,6 @@ public class MyFragment2 extends Fragment {
             Calendar calendar = Calendar.getInstance();
             ArrayList<CalendarDay> dates = new ArrayList<>();
 
-
             /*특정날짜 달력에 점표시해주는곳*/
             /*월은 0이 1월 년,일은 그대로*/
             //string 문자열인 Time_Result 을 받아와서 ,를 기준으로짜르고 string을 int 로 변환
@@ -196,7 +244,6 @@ public class MyFragment2 extends Fragment {
 
             return dates;
         }
-
 
 
         @Override
