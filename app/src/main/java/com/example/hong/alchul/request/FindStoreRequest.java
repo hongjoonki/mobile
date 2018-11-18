@@ -1,4 +1,4 @@
-package com.example.hong.alchul;
+package com.example.hong.alchul.request;
 
 import android.widget.Toast;
 
@@ -8,17 +8,16 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginRequest extends StringRequest {
+public class FindStoreRequest extends StringRequest {
 
-    final static private String URL = "http://10.0.2.2:8080/teamproject/Login.php";
+    final static private String URL = "http://10.0.2.2:8080/teamproject/FindStore.php";
     private Map<String, String> parameters;
 
 
-    public LoginRequest(String userId, String userPassword,Response.Listener<String> listener) {
+    public FindStoreRequest(String storeCode, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
         parameters = new HashMap<>();
-        parameters.put("userId", userId);
-        parameters.put("userPassword", userPassword);
+        parameters.put("storeCode", storeCode);
     }
 
     public Map<String, String> getParams() {

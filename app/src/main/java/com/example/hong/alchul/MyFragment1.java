@@ -2,12 +2,9 @@ package com.example.hong.alchul;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +15,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.hong.alchul.request.MyFragment1_request;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,7 +29,8 @@ public class MyFragment1 extends Fragment {
     long mNow, mEnd;
     Date mDate, mEndDate;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    String startwork, endwork;
+    SimpleDateFormat mFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+    String startwork, endwork, startday;
     Button btn_start, btn_end;
 
 
@@ -70,6 +69,7 @@ public class MyFragment1 extends Fragment {
                 mNow=System.currentTimeMillis();
                 mDate=new Date(mNow);
                 startwork = mFormat.format(mDate);
+                startday  = mFormat1.format(mDate);
                 btn_end.setEnabled(true);
                 btn_start.setEnabled(false);
                 Toast.makeText(context, startwork+"에"+"출근하였습니다.", Toast.LENGTH_SHORT).show();
@@ -107,7 +107,7 @@ public class MyFragment1 extends Fragment {
                         }
                     }
                 };
-                MyFragment1_request m = new MyFragment1_request("sim3329", startwork,endwork, responseListener);
+                MyFragment1_request m = new MyFragment1_request("sim3329", startwork, endwork, startday, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(context);
                 queue.add(m);
 

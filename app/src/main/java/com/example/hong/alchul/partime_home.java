@@ -22,7 +22,7 @@ public class partime_home extends AppCompatActivity {
         String userStat = intent.getStringExtra("UserStat");
         String storeCode = intent.getStringExtra("StoreCode");
         String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();        //intent 받아오기
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();        //intent 받아오기
 
         LinearLayout button1 = (LinearLayout)findViewById(R.id.button1);
         LinearLayout button2 = (LinearLayout)findViewById(R.id.button2);

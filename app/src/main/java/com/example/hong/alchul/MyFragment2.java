@@ -11,6 +11,8 @@ import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.text.TextPaint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,11 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.Executors;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+import com.example.hong.alchul.request.IdCheckRequest;
+import com.example.hong.alchul.request.eventRequest;
 import com.example.hong.alchul.decorators.EventDecorator;
 import com.example.hong.alchul.decorators.OneDayDecorator;
 import com.example.hong.alchul.decorators.SaturdayDecorator;
@@ -31,6 +38,12 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
+
 import java.util.Calendar;
 import java.util.EventListener;
 
@@ -41,6 +54,8 @@ public class MyFragment2 extends Fragment {
     MaterialCalendarView materialCalendarView;
     View view;
     private Context context;
+    List list = new ArrayList();
+
 
     @Nullable
     @Override
@@ -64,11 +79,40 @@ public class MyFragment2 extends Fragment {
 
 
 
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    JSONArray success = jsonResponse.getJSONArray("response");
+                    for(int i=0; i<success.length(); i++){
+
+                        JSONObject item = success.getJSONObject(i);
+                        String time = item.getString("startday");
+
+                        list.add(time);
+                        Toast.makeText(context, list.get(i).toString(), Toast.LENGTH_SHORT).show();
 
 
+                    }
+                } catch (JSONException e) {
+
+                    e.printStackTrace();
+                }
+            }
+        };
 
 
-        String[] result = {"2017,03,18","2017,04,18","2017,05,18","2017,06,18"};
+        String id = "sim3329";
+        eventRequest event1 = new eventRequest(id, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(event1);
+
+
+        String[] result = new String[list.size()];
+        for(int i= 0; i< list.size(); i++){
+            result[i] = list.get(i).toString();
+
+        }
 
         new ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor());
 
@@ -107,6 +151,7 @@ public class MyFragment2 extends Fragment {
 
         @Override
         protected List<CalendarDay> doInBackground(@NonNull Void... voids) {
+
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -121,7 +166,7 @@ public class MyFragment2 extends Fragment {
             //string 문자열인 Time_Result 을 받아와서 ,를 기준으로짜르고 string을 int 로 변환
             for(int i = 0 ; i < Time_Result.length ; i ++){
                 CalendarDay day = CalendarDay.from(calendar);
-                String[] time = Time_Result[i].split(",");
+                String[] time = Time_Result[i].split("-");
                 int year = Integer.parseInt(time[0]);
                 int month = Integer.parseInt(time[1]);
                 int dayy = Integer.parseInt(time[2]);

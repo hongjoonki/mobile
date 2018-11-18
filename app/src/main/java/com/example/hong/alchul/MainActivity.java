@@ -2,7 +2,6 @@ package com.example.hong.alchul;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +13,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.hong.alchul.request.FindStoreRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     String success = jsonResponse.getString("success");
+
                     if (success.equals("SORRY")) {
                         find = "OK";
                         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
