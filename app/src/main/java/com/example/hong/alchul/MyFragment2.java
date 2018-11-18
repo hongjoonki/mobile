@@ -95,10 +95,9 @@ public class MyFragment2 extends Fragment {
                     String[] result = new String[list.size()];
                     for(int i= 0; i< list.size(); i++){
                         result[i] = list.get(i).toString();
-                        Toast.makeText(context, result[i], Toast.LENGTH_SHORT).show();
 
                     }
-                    //String[] aaa = {"2018-10-18","2018-11-16","2018-11-06","2018-11-07","2018-11-28"};
+
 
 
                     new ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor());
@@ -110,6 +109,9 @@ public class MyFragment2 extends Fragment {
                 }
             }
         };
+
+
+
 
 
         String id = "sim3329";
@@ -163,27 +165,29 @@ public class MyFragment2 extends Fragment {
             Calendar calendar = Calendar.getInstance();
             ArrayList<CalendarDay> dates = new ArrayList<>();
 
+
             /*특정날짜 달력에 점표시해주는곳*/
             /*월은 0이 1월 년,일은 그대로*/
             //string 문자열인 Time_Result 을 받아와서 ,를 기준으로짜르고 string을 int 로 변환
             for(int i = 0 ; i < Time_Result.length ; i ++){
+        
 
-                CalendarDay day = CalendarDay.from(calendar);
+
                 String[] time = Time_Result[i].split("-");
                 int year = Integer.parseInt(time[0]);
                 int month = Integer.parseInt(time[1]);
                 int dayy = Integer.parseInt(time[2]);
                 calendar.set(year,month-1,dayy);
+                CalendarDay day = CalendarDay.from(calendar);
                 dates.add(day);
+
                 //calendar.add(Calendar.DATE, 5);
             }
 
-
-
-
-
             return dates;
         }
+
+
 
         @Override
         protected void onPostExecute(@NonNull List<CalendarDay> calendarDays) {
