@@ -54,6 +54,7 @@
 
     <Button
         android:id="@+id/LoginButton"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="89dp"
         android:layout_height="48dp"
         android:layout_marginStart="72dp"
@@ -68,8 +69,9 @@
 
     <Button
         android:id="@+id/registerButton"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="93dp"
-        android:layout_height="35dp"
+        android:layout_height="39dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"

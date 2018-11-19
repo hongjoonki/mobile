@@ -11,7 +11,7 @@ import java.util.Map;
 //request를 받아서 결과값을 Response.Listener에 전달하는 LoginRequest class
 public class LoginRequest extends StringRequest {
     // 사용된 php파일 이름: Login.php
-    final static private String URL = "http://18.221.234.141/teamproject/Login.php";
+    final static private String URL = "http://10.0.2.2:8080/teamproject/Login.php";
     private Map<String, String> parameters;
 
 
