@@ -12,13 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="389dp"
         app:mcv_selectionColor="#a9dbf0cb"
-        app:mcv_showOtherDates="defaults" />
+        app:mcv_showOtherDates="defaults"
+        android:background="#AB799999"/>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#CE598663">
 
 q
         <TextView
@@ -27,6 +29,7 @@ q
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="이름"
+            android:textStyle="bold"
             />
 
         <TextView
@@ -34,14 +37,16 @@ q
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="근무기록" />
+            android:text="근무기록"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/frag3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="일당"/>
+            android:text="일당"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 

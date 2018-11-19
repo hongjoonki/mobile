@@ -170,7 +170,7 @@ public class MyFragment2 extends Fragment {
                                     double diff = Math.round((to2.getTime()-to1.getTime())*pay_hour/3600000.0);
                                     int payday = (int)diff;
                                     Log.i("test", "dfd"+diff);
-                                    frag2.setText("근무기록: "+workstart+"~"+workend);
+                                    frag2.setText("근무기록: "+workstart+" ~ "+workend);
                                     frag3.setText("일당: "+ payday+"원");
                                 }
 
