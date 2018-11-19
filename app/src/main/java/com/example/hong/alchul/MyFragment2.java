@@ -75,6 +75,8 @@ public class MyFragment2 extends Fragment {
         String userName = getArguments().getString("UserName");
         String userPhoneNum = getArguments().getString("UserPhoneNum");
         String userStat = getArguments().getString("UserStat");
+        frag1 = (TextView)view.findViewById(R.id.frag1);
+        frag1.setText("이름:   "+ userName);
 
         materialCalendarView = (MaterialCalendarView) view.findViewById(R.id.calendarView);
 
@@ -135,11 +137,6 @@ public class MyFragment2 extends Fragment {
 
                 String userId = getArguments().getString("UserId");
                 String userName = getArguments().getString("UserName");
-                String userPhoneNum = getArguments().getString("UserPhoneNum");
-                String userStat = getArguments().getString("UserStat");
-
-                frag1 = (TextView)view.findViewById(R.id.frag1);
-                frag1.setText("이름:   "+ userName);
 
                 int Year = date.getYear();
                 int Month = date.getMonth() + 1;

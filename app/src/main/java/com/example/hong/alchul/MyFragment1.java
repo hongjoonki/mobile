@@ -44,7 +44,7 @@ public class MyFragment1 extends Fragment {
         context = container.getContext();
         btn_start = (Button)view.findViewById(R.id.start);
         btn_end = (Button)view.findViewById(R.id.end);
-        final String userId = getArguments().getString("UserId");
+        String userId = getArguments().getString("UserId");
         String userName = getArguments().getString("UserName");
         String userPhoneNum = getArguments().getString("UserPhoneNum");
         String userStat = getArguments().getString("UserStat");
@@ -86,6 +86,9 @@ public class MyFragment1 extends Fragment {
                 endwork = mFormat.format(mDate);
                 btn_end.setEnabled(false);
                 btn_start.setEnabled(true);
+
+
+                String userId = getArguments().getString("UserId");
 
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
