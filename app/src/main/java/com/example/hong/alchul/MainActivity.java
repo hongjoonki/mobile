@@ -110,13 +110,11 @@ public class MainActivity extends AppCompatActivity {
     // FIND STORE버튼 눌렀을 때 이벤트 추가
     public void clickfind(View view) {
         storeCode = findText.getText().toString();
-
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     String success = jsonResponse.getString("success");
-
                     // 해당 storeCode값의 store이 존재하면 success = "SORRY"
                     if (success.equals("SORRY")) {
                         find = "OK";
@@ -139,10 +137,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-
         // FindStoreRequest 객채 생성
         FindStoreRequest findStoreRequest = new FindStoreRequest(storeCode, responseListener);
-
         // queue 실행
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         queue.add(findStoreRequest);

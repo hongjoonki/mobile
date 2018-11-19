@@ -33,7 +33,11 @@ public class MyFragment1 extends Fragment {
     String startwork, endwork, startday;
     Button btn_start, btn_end;
 
-
+    String userId;
+    String userName;
+    String userPhoneNum;
+    String userStat;
+    String storeCode;
 
 
 
@@ -44,11 +48,11 @@ public class MyFragment1 extends Fragment {
         context = container.getContext();
         btn_start = (Button)view.findViewById(R.id.start);
         btn_end = (Button)view.findViewById(R.id.end);
-        String userId = getArguments().getString("UserId");
-        String userName = getArguments().getString("UserName");
-        String userPhoneNum = getArguments().getString("UserPhoneNum");
-        String userStat = getArguments().getString("UserStat");
-        String storeCode = getArguments().getString("StoreCode");
+        userId = getArguments().getString("UserId");
+        userName = getArguments().getString("UserName");
+        userPhoneNum = getArguments().getString("UserPhoneNum");
+        userStat = getArguments().getString("UserStat");
+        storeCode = getArguments().getString("StoreCode");
 
 
         TextView textView1, textView2, textView3, textView4;
@@ -86,9 +90,6 @@ public class MyFragment1 extends Fragment {
                 endwork = mFormat.format(mDate);
                 btn_end.setEnabled(false);
                 btn_start.setEnabled(true);
-
-
-                String userId = getArguments().getString("UserId");
 
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {

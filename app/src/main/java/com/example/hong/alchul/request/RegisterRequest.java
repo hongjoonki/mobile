@@ -12,7 +12,7 @@ import java.util.Map;
 public class RegisterRequest extends StringRequest {
 
     // Request를 전달할 URL을 설정하였다.
-    // 에뮬레이터를 이용하여 아파치 웹서버에 있는 php파일을 사용하기 위해 10.0.2.2주소를 사용하였다.
+    // ec2주소 : 18.221.234.141
     // 사용된 php파일 이름: Register.php
     final static private String URL = "http://18.221.234.141/teamproject/Register.php";
 
