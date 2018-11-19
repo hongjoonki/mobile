@@ -11,7 +11,7 @@ import java.util.Map;
 public class RegisterStoreRequest extends StringRequest {
     // RegisterStore.php 파일사용
     // store 테이블에 데이터 Insert 및 user테이블에 해당 userId에 있는 storeCode값 변경
-    final static private String URL = "http://10.0.2.2:8080/teamproject/RegisterStore.php";
+    final static private String URL = "http://18.221.234.141/teamproject/RegisterStore.php";
     private Map<String, String> parameters;
 
 
