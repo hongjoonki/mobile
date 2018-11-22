@@ -24,7 +24,7 @@ public class RegisterRequest extends StringRequest {
 
     // 파라미터를 해당 URL에 전달하기 위한 메소드
     public RegisterRequest(String userId, String userPassword, String userName,
-                           String userPhoneNum, String userStat, Response.Listener<String> listener) {
+                           String userPhoneNum, String userStat, Response.Listener<String> listener) {//회원가입생성자
         // POST방식으로 전달
         super(Method.POST, URL, listener, null);
         parameters = new HashMap<>();
@@ -36,7 +36,7 @@ public class RegisterRequest extends StringRequest {
         parameters.put("userStat", userStat);
     }
 
-    public RegisterRequest(String storeName, String storeCode, String userId, Response.Listener<String> listener){
+    public RegisterRequest(String storeName, String storeCode, String userId, Response.Listener<String> listener){//스토어 생성 생성자
         super(Method.POST, URL1, listener, null);
         parameters = new HashMap<>();
         parameters.put("storeName", storeName);
@@ -44,7 +44,7 @@ public class RegisterRequest extends StringRequest {
         parameters.put("userId", userId);
     }
 
-    public RegisterRequest(String storeCode, Response.Listener<String> listener) {
+    public RegisterRequest(String storeCode, Response.Listener<String> listener) {//스토어 찾는 request생성자
         super(Method.POST, URL2, listener, null);
         parameters = new HashMap<>();
         parameters.put("storeCode", storeCode);
