@@ -32,7 +32,6 @@ public class MyFragment1 extends Fragment {
     SimpleDateFormat mFormat1 = new SimpleDateFormat("yyyy-MM-dd");
     String startwork, endwork, startday;
     Button btn_start, btn_end;
-
     String userId;
     String userName;
     String userPhoneNum;
@@ -73,9 +72,9 @@ public class MyFragment1 extends Fragment {
             public void onClick(View v) {
                 mNow=System.currentTimeMillis();
                 mDate=new Date(mNow);
-                startwork = mFormat.format(mDate);
-                startday  = mFormat1.format(mDate);
-                btn_end.setEnabled(true);
+                startwork = mFormat.format(mDate);         //시간까지 있는 형식
+                startday  = mFormat1.format(mDate);     //날짜만 있는 형식
+                btn_end.setEnabled(true);               //처음상태는 출근버튼이 활성화되있고 퇴근버튼 비활성화. 출근버튼누르면 출근버튼 비활성화. 퇴근버튼 활성화
                 btn_start.setEnabled(false);
                 Toast.makeText(context, startwork+"에"+"출근하였습니다.", Toast.LENGTH_SHORT).show();
 
@@ -91,6 +90,7 @@ public class MyFragment1 extends Fragment {
                 btn_end.setEnabled(false);
                 btn_start.setEnabled(true);
 
+                //퇴근 버튼을 눌렀을때, 출근시간 데이터와 퇴근시간데이터를 데이터베이스에 저장
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -114,7 +114,7 @@ public class MyFragment1 extends Fragment {
                 };
                 MyFragment1_request m = new MyFragment1_request(userId, startwork, endwork, startday, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(context);
-                queue.add(m);
+                queue.add(m);                   //MyFragment1_requset 생성자 호출. php로 연결을 하여 원하는 정보를 DB에서 빼온다
 
 
 

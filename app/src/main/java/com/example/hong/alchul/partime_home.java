@@ -10,12 +10,13 @@ import android.widget.Toast;
 
 public class partime_home extends AppCompatActivity {
     Bundle bundle = new Bundle(5);
+    //fragment로 정보넘기기위해 bundle사용
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partime_home);
 
-        Intent intent = getIntent();
+        Intent intent = getIntent();   //로그인유저의 정보를 받아온다.
         final String userId = intent.getStringExtra("UserId");
         String userName = intent.getStringExtra("UserName");
         String userPhoneNum = intent.getStringExtra("UserPhoneNum");
@@ -31,7 +32,7 @@ public class partime_home extends AppCompatActivity {
 
 
 
-        bundle.putString("UserId", userId);
+        bundle.putString("UserId", userId);         //bundle에 정보를 추가한다.
         bundle.putString("UserName", userName);
         bundle.putString("UserPhoneNum", userPhoneNum);
         bundle.putString("UserStat", userStat);
@@ -45,7 +46,7 @@ public class partime_home extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
 
             }
-        });
+        });         //fragment1로 넘어가는 이벤트리스터
 
         button2.setOnClickListener(new View.OnClickListener(){
 
@@ -56,7 +57,7 @@ public class partime_home extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment2).commit();
 
             }
-        });
+        });          //fragment2로 넘어가는 이벤트리스터
 
         button3.setOnClickListener(new View.OnClickListener(){
 
@@ -67,7 +68,7 @@ public class partime_home extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
 
             }
-        });
+        });      //fragment3로 넘어가는 이벤트리스터
 
 
 

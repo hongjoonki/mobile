@@ -55,7 +55,7 @@ public class MyFragment2 extends Fragment {
     String time, kcal, menu;
     private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
     Cursor cursor;
-    MaterialCalendarView materialCalendarView;
+    MaterialCalendarView materialCalendarView;   //캘린더뷰 형식.
     View view;
     private Context context;
     List list = new ArrayList();
@@ -78,7 +78,7 @@ public class MyFragment2 extends Fragment {
         frag1 = (TextView)view.findViewById(R.id.frag1);
         frag1.setText("이름:   "+ userName);
 
-        materialCalendarView = (MaterialCalendarView) view.findViewById(R.id.calendarView);
+        materialCalendarView = (MaterialCalendarView) view.findViewById(R.id.calendarView);    //달력 아이디받아옴
 
         materialCalendarView.state().edit()
                 .setFirstDayOfWeek(Calendar.SUNDAY)
@@ -90,7 +90,7 @@ public class MyFragment2 extends Fragment {
         materialCalendarView.addDecorators(
                 new SundayDecorator(),
                 new SaturdayDecorator(),
-                oneDayDecorator);
+                oneDayDecorator);           //달력꾸미는 소스들 추가.
 
 
 
@@ -109,13 +109,13 @@ public class MyFragment2 extends Fragment {
 
                     String[] result = new String[list.size()];
                     for(int i= 0; i< list.size(); i++){
-                        result[i] = list.get(i).toString();
+                        result[i] = list.get(i).toString();//유저근무기록 리스트로만듬
 
                     }
 
 
 
-                    new ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor());
+                    new ApiSimulator(result).executeOnExecutor(Executors.newSingleThreadExecutor());        //점찍는 클래스 호출
 
 
                 } catch (JSONException e) {
@@ -165,7 +165,7 @@ public class MyFragment2 extends Fragment {
 
                                     SimpleDateFormat transFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                                     SimpleDateFormat transFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                                    Date to1 = transFormat1.parse(workstart);
+                                    Date to1 = transFormat1.parse(workstart);   //근무기록 뽑아온것형식변환
                                     Date to2 = transFormat2.parse(workend);
                                     double diff = Math.round((to2.getTime()-to1.getTime())*pay_hour/3600000.0);
                                     int payday = (int)diff;
@@ -189,7 +189,7 @@ public class MyFragment2 extends Fragment {
 
                 eventRequest event2 = new eventRequest(userId, startday, responseListener1);
                 RequestQueue queue = Volley.newRequestQueue(context);
-                queue.add(event2);
+                queue.add(event2);              //날짜눌렷을때 근무기록 요청
 
 
 
@@ -222,8 +222,8 @@ public class MyFragment2 extends Fragment {
             ArrayList<CalendarDay> dates = new ArrayList<>();
 
             /*특정날짜 달력에 점표시해주는곳*/
-            /*월은 0이 1월 년,일은 그대로*/
-            //string 문자열인 Time_Result 을 받아와서 ,를 기준으로짜르고 string을 int 로 변환
+
+            //string 문자열인 result 을 받아와서 ,를 기준으로짜르고 string을 int 로 변환
             for(int i = 0 ; i < Time_Result.length ; i ++){
         
 

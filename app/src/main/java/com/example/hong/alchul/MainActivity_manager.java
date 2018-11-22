@@ -13,8 +13,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.example.hong.alchul.request.FindStoreRequest;
-import com.example.hong.alchul.request.RegisterStoreRequest;
+import com.example.hong.alchul.request.RegisterRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -101,7 +100,7 @@ public class MainActivity_manager extends AppCompatActivity {
                     }
                 }
             };
-            RegisterStoreRequest registerRequest = new RegisterStoreRequest(storeName, storeCode, userId, responseListener);
+            RegisterRequest registerRequest = new RegisterRequest(storeName, storeCode, userId, responseListener);
             RequestQueue queue = Volley.newRequestQueue(MainActivity_manager.this);
             queue.add(registerRequest);
         } else {
@@ -161,7 +160,7 @@ public class MainActivity_manager extends AppCompatActivity {
             };
 
             // FindStoreRequest 객체 생성
-            FindStoreRequest findStoreRequest = new FindStoreRequest(storeCode, responseListener);
+            RegisterRequest findStoreRequest = new RegisterRequest(storeCode, responseListener);
             RequestQueue queue = Volley.newRequestQueue(MainActivity_manager.this);
             queue.add(findStoreRequest);
         }

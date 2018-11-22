@@ -14,7 +14,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.hong.alchul.request.ConnectStoreRequest;
-import com.example.hong.alchul.request.FindStoreRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
