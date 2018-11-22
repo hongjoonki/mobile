@@ -13,6 +13,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.hong.alchul.request.LoginRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +35,6 @@ public class LoginActivity extends Activity {
         passwordText = (EditText) findViewById(R.id.passwordText);
         loginButton = (Button) findViewById(R.id.LoginButton);
         registerButton = (Button) findViewById(R.id.registerButton);
-
 
     }
 
