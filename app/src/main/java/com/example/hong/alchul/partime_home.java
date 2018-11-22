@@ -16,6 +16,8 @@ public class partime_home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partime_home);
 
+
+
         Intent intent = getIntent();   //로그인유저의 정보를 받아온다.
         final String userId = intent.getStringExtra("UserId");
         String userName = intent.getStringExtra("UserName");
@@ -30,13 +32,18 @@ public class partime_home extends AppCompatActivity {
         LinearLayout button3 = (LinearLayout)findViewById(R.id.button3);           //버튼 인식
     //fragment에 정보넘길것들.
 
-
-
         bundle.putString("UserId", userId);         //bundle에 정보를 추가한다.
         bundle.putString("UserName", userName);
         bundle.putString("UserPhoneNum", userPhoneNum);
         bundle.putString("UserStat", userStat);
         bundle.putString("StoreCode", storeCode);         //번들에 값 추기
+
+        MyFragment1 fragment1 = new MyFragment1();
+        fragment1.setArguments(bundle);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
+
+
 
 
         button1.setOnClickListener(new View.OnClickListener(){
@@ -69,6 +76,9 @@ public class partime_home extends AppCompatActivity {
 
             }
         });      //fragment3로 넘어가는 이벤트리스터
+
+
+
 
 
 
