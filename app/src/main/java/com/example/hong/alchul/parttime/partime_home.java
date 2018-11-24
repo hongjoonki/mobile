@@ -1,12 +1,16 @@
-package com.example.hong.alchul;
+package com.example.hong.alchul.parttime;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.example.hong.alchul.R;
+import com.example.hong.alchul.parttime.MyFragment1;
+import com.example.hong.alchul.parttime.MyFragment2;
+import com.example.hong.alchul.parttime.MyFragment3;
 
 public class partime_home extends AppCompatActivity {
     Bundle bundle = new Bundle(5);
@@ -40,7 +44,6 @@ public class partime_home extends AppCompatActivity {
 
         MyFragment1 fragment1 = new MyFragment1();
         fragment1.setArguments(bundle);
-
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
 
 

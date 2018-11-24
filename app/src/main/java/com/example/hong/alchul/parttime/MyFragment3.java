@@ -1,4 +1,4 @@
-package com.example.hong.alchul;
+package com.example.hong.alchul.parttime;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.hong.alchul.R;
 
 public class MyFragment3 extends Fragment {
     @Nullable

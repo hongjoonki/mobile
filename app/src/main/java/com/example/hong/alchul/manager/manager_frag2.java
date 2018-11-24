@@ -1,4 +1,4 @@
-package com.example.hong.alchul;
+package com.example.hong.alchul.manager;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.hong.alchul.R;
 
 public class manager_frag2 extends Fragment {
     View view;

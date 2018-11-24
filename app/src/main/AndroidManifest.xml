@@ -19,12 +19,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".MainActivity_manager" />
-        <activity android:name=".partime_home" />
-        <activity android:name=".manager_home" />
-        <activity android:name=".manager_frag1" />
-        <activity android:name=".manager_frag2"></activity>
+        <activity android:name=".parttime.MainActivity" />
+        <activity android:name=".manager.MainActivity_manager" />
+        <activity android:name=".parttime.partime_home" />
+        <activity android:name=".manager.manager_home" />
+        <activity android:name=".manager.manager_frag1" />
+        <activity android:name=".manager.manager_frag2" />
+        <activity android:name=".manager.user_calendar"></activity>
     </application>
 
 </manifest>

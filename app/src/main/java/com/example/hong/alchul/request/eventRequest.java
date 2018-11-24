@@ -12,17 +12,17 @@ public class eventRequest extends StringRequest {
     final static private String URL1 = "http://18.221.234.141/teamproject/workday_event.php";
     private Map<String, String> parameters;
 
-    public eventRequest(String userId, Response.Listener<String> listener) {
+    public eventRequest(String userName, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
         parameters = new HashMap<>();
-        parameters.put("userId", userId);
+        parameters.put("userName", userName);
 
     }
 
-    public eventRequest(String userId, String startday, Response.Listener<String> listener) {
+    public eventRequest(String userName, String startday, Response.Listener<String> listener) {
         super(Method.POST, URL1, listener, null);
         parameters = new HashMap<>();
-        parameters.put("userId", userId);
+        parameters.put("userName", userName);
         parameters.put("startday", startday);
 
     }

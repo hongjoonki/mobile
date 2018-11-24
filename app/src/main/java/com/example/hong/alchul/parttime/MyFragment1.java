@@ -1,4 +1,4 @@
-package com.example.hong.alchul;
+package com.example.hong.alchul.parttime;
 
 
 import android.content.Context;
@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.hong.alchul.R;
 import com.example.hong.alchul.request.MyFragment1_request;
 
 import org.json.JSONException;
@@ -112,7 +113,7 @@ public class MyFragment1 extends Fragment {
                         }
                     }
                 };
-                MyFragment1_request m = new MyFragment1_request(userId, startwork, endwork, startday, responseListener);
+                MyFragment1_request m = new MyFragment1_request(userName, startwork, endwork, startday, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(context);
                 queue.add(m);                   //MyFragment1_requset 생성자 호출. php로 연결을 하여 원하는 정보를 DB에서 빼온다
 

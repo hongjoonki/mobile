@@ -1,4 +1,4 @@
-package com.example.hong.alchul;
+package com.example.hong.alchul.manager;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.example.hong.alchul.R;
 
 public class manager_home extends AppCompatActivity {
 
@@ -32,6 +34,10 @@ public class manager_home extends AppCompatActivity {
         bundle.putString("UserPhoneNum", userPhoneNum);
         bundle.putString("UserStat", userStat);
         bundle.putString("StoreCode", storeCode);
+        manager_frag1 fragment1 = new manager_frag1();
+        fragment1.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
+
 
 
 

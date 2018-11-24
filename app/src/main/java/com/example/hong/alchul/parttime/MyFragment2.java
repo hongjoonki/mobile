@@ -1,4 +1,4 @@
-package com.example.hong.alchul;
+package com.example.hong.alchul.parttime;
 
 import android.content.Context;
 import android.content.Intent;
@@ -32,6 +32,7 @@ import java.util.concurrent.Executors;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.hong.alchul.R;
 import com.example.hong.alchul.request.IdCheckRequest;
 import com.example.hong.alchul.request.eventRequest;
 import com.example.hong.alchul.decorators.EventDecorator;
@@ -125,7 +126,7 @@ public class MyFragment2 extends Fragment {
             }
         };
 
-        eventRequest event1 = new eventRequest(userId, responseListener);
+        eventRequest event1 = new eventRequest(userName, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(event1);
 
@@ -135,7 +136,6 @@ public class MyFragment2 extends Fragment {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
 
-                String userId = getArguments().getString("UserId");
                 String userName = getArguments().getString("UserName");
 
                 int Year = date.getYear();
@@ -187,7 +187,7 @@ public class MyFragment2 extends Fragment {
                 };
                 materialCalendarView.clearSelection();
 
-                eventRequest event2 = new eventRequest(userId, startday, responseListener1);
+                eventRequest event2 = new eventRequest(userName, startday, responseListener1);
                 RequestQueue queue = Volley.newRequestQueue(context);
                 queue.add(event2);              //날짜눌렷을때 근무기록 요청
 

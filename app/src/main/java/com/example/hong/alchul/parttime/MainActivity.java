@@ -1,4 +1,4 @@
-package com.example.hong.alchul;
+package com.example.hong.alchul.parttime;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.hong.alchul.LoginActivity;
+import com.example.hong.alchul.R;
 import com.example.hong.alchul.request.ConnectStoreRequest;
 import com.example.hong.alchul.request.RegisterRequest;
 

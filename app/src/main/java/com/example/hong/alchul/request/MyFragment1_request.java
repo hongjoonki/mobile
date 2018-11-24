@@ -14,10 +14,10 @@ public class MyFragment1_request extends StringRequest {
     private Map<String, String> parameters;
 
 
-    public MyFragment1_request(String userId, String workstart, String workend, String startday, Response.Listener<String> listener) {
+    public MyFragment1_request(String userName, String workstart, String workend, String startday, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
         parameters = new HashMap<>();
-        parameters.put("userId", userId);
+        parameters.put("userName", userName);
         parameters.put("workstart", workstart);
         parameters.put("workend", workend);
         parameters.put("startday", startday);
