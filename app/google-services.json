@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "911795622888",
+    "firebase_url": "https://alchul-842b9.firebaseio.com",
+    "project_id": "alchul-842b9",
+    "storage_bucket": "alchul-842b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:911795622888:android:687e86d2ff7374b4",
+        "android_client_info": {
+          "package_name": "com.example.hong.alchul"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "911795622888-emg15j7euuv59a3tfpcg2r04818o5s8t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwHDYAe4XCE755Rs5uda8ja4yIUsYquAI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -17,6 +17,8 @@ import com.example.hong.alchul.manager.manager_home;
 import com.example.hong.alchul.parttime.MainActivity;
 import com.example.hong.alchul.parttime.partime_home;
 import com.example.hong.alchul.request.LoginRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,7 +39,6 @@ public class LoginActivity extends Activity {
         passwordText = (EditText) findViewById(R.id.passwordText);
         loginButton = (Button) findViewById(R.id.LoginButton);
         registerButton = (Button) findViewById(R.id.registerButton);
-
 
     }
 
