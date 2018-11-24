@@ -84,15 +84,11 @@ public class manager_frag1 extends Fragment {
                         UserItem user = new UserItem(part, phonenum);
 
                         data.add(user);
-                        Log.i("test data", String.valueOf(data.get(0)));
+
                      }//알바이름이랑 폰번호를 받아와서 어레이리스트에 넣는다. 그 다음 리스트뷰에 넣을 Data에 add한다.
 
                     UserAdapter adapter = new UserAdapter(context ,R.layout.user_item, data);
-                    listView.setAdapter(adapter);
-
-                    /*String[] result = new String[list.size()];
-                    for(int i= 0; i< list.size(); i++) {
-                        result[i] = list.get(i).toString();//유저근무기록 리스트로만듬*/
+                    listView.setAdapter(adapter); //data에 있는 값들을 user-item있는 레이아웃과 매칭한다.
 
 
 

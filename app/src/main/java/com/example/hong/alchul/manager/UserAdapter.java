@@ -50,7 +50,7 @@ public class UserAdapter extends BaseAdapter {
         userName.setText(useritem.getName());
 
         TextView userPhone = (TextView) convertView.findViewById(R.id.phone);
-        userPhone.setText(useritem.getPhone());
+        userPhone.setText(useritem.getPhone());   // user_item 레이아웃에서 가져옴
 
 
         return convertView;
