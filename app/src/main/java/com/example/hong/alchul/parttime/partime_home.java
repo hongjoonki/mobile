@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.hong.alchul.ChattingActivity;
 import com.example.hong.alchul.R;
 import com.example.hong.alchul.parttime.MyFragment1;
 import com.example.hong.alchul.parttime.MyFragment2;
@@ -86,5 +87,6 @@ public class partime_home extends AppCompatActivity {
 
 
     }
+
 }
 

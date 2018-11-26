@@ -30,6 +30,7 @@ public class RegisterActivity extends Activity{
     RadioButton managerButton;
     RadioGroup rg;
     String checkId = "";
+    private final int GALLERY_CODE=1112;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,5 +190,4 @@ public class RegisterActivity extends Activity{
         queue.add(idCheckRequest);
 
     }
-
 }
