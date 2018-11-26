@@ -8,6 +8,8 @@ import android.os.Bundle;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 
 public class ChattingActivity extends Activity{
 
@@ -15,20 +17,24 @@ public class ChattingActivity extends Activity{
     String userName;
     String userPhoneNum;
     String userStat;
+    String storeCode;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
+    ArrayList<String> array = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_chatting);
 
         Intent intent = getIntent();
         userId = intent.getStringExtra("UserId");
         userName = intent.getStringExtra("UserName");
         userPhoneNum = intent.getStringExtra("UserPhoneNum");
         userStat = intent.getStringExtra("UserStat");
+        storeCode = intent.getStringExtra("StoreCode");
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
