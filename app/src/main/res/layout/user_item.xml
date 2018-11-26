@@ -26,9 +26,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center"
-                android:text="이름"
+                android:text="이 름"
                 android:textStyle="bold"
-                android:textSize="15dp"
+                android:textSize="21dp"
                 />
 
             <TextView
@@ -38,7 +38,7 @@
                 android:layout_gravity="left|center"
                 android:text="휴대폰 번호"
                 android:textColor='#69b9ab'
-                android:textSize="15dp"
+                android:textSize="18dp"
                 />
         </LinearLayout>
     </LinearLayout>

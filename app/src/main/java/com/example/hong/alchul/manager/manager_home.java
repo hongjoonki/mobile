@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.hong.alchul.R;
+import com.example.hong.alchul.parttime.MyFragment3;
 
 public class manager_home extends AppCompatActivity {
 
@@ -57,9 +58,9 @@ public class manager_home extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                manager_frag2 fragment2 = new manager_frag2();
-                fragment2.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment2).commit();
+                MyFragment3 fragment3 = new MyFragment3();
+                fragment3.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
 
             }
         });

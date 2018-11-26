@@ -39,7 +39,6 @@ public class manager_frag1 extends Fragment {
     private Context context;
 
     private ArrayList<UserItem> data = null;
-    private HashMap<String,String> InputData2 = new HashMap<>();
     List list = new ArrayList();
     String userId;
     String userName;
