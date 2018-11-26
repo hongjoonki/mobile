@@ -25,7 +25,8 @@
         <activity android:name=".manager.manager_home" />
         <activity android:name=".manager.manager_frag1" />
         <activity android:name=".manager.manager_frag2" />
-        <activity android:name=".manager.user_calendar"></activity>
+        <activity android:name=".manager.user_calendar" />
+        <activity android:name=".WriteNotice"></activity>
     </application>
 
 </manifest>

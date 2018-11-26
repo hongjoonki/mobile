@@ -20,6 +20,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.hong.alchul.R;
+import com.example.hong.alchul.WriteNotice;
 import com.example.hong.alchul.manager.UserAdapter;
 import com.example.hong.alchul.manager.UserItem;
 import com.example.hong.alchul.manager.user_calendar;
@@ -60,35 +61,27 @@ public class MyFragment3 extends Fragment {
         data = new ArrayList<>();
 
         final LinearLayout edit = (LinearLayout)view.findViewById(R.id.edit);
+        final LinearLayout chat = (LinearLayout) view.findViewById(R.id.chat);
 
         edit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                final EditText edittitle = new EditText(context);
-                final EditText editcontent = new EditText(context);
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-
-                builder.setTitle("제 목");
-
-                builder.setMessage("내용");
-                builder.setView(edittitle);
-
-                builder.setPositiveButton("확인",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(context,edittitle.getText().toString() ,Toast.LENGTH_LONG).show();
-                            }
-                        });
-                builder.setNegativeButton("취소",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-                builder.show();
-
+                Intent intent = new Intent(context, WriteNotice.class);
+                intent.putExtra("userId", userId);
+                intent.putExtra("userName", userName);
+                intent.putExtra("userStat", userStat);
+                intent.putExtra("storeCode", storeCode);
+                startActivity(intent);
             }
         });
+
+        chat.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(context, WriteNotice.class);
+
+                startActivity(intent);
+            }
+        });
+
 
 
 
@@ -148,6 +141,7 @@ public class MyFragment3 extends Fragment {
 
         return view;
     }*/
+
         return view;
     }
 }
