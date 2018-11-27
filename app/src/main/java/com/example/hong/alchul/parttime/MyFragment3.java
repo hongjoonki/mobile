@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.hong.alchul.ChatActivity;
 import com.example.hong.alchul.ChattingActivity;
 import com.example.hong.alchul.R;
 import com.example.hong.alchul.WriteNotice;
@@ -77,7 +78,7 @@ public class MyFragment3 extends Fragment {
 
         chat.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(context, ChattingActivity.class);
+                Intent intent = new Intent(context, ChatActivity.class);
                 intent.putExtra("UserId", userId);
                 intent.putExtra("UserName", userName);
                 intent.putExtra("UserPhoneNum", userPhoneNum);
