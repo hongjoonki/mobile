@@ -78,11 +78,11 @@ public class MyFragment3 extends Fragment {
         chat.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(context, ChattingActivity.class);
-                userId = intent.getStringExtra("UserId");
-                userName = intent.getStringExtra("UserName");
-                userPhoneNum = intent.getStringExtra("UserPhoneNum");
-                userStat = intent.getStringExtra("UserStat");
-                storeCode = intent.getStringExtra("StoreCode");
+                intent.putExtra("UserId", userId);
+                intent.putExtra("UserName", userName);
+                intent.putExtra("UserPhoneNum", userPhoneNum);
+                intent.putExtra("UserStat", userStat);
+                intent.putExtra("StoreCode", storeCode);
                 startActivity(intent);
             }
         });
