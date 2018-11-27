@@ -67,10 +67,10 @@ public class MyFragment3 extends Fragment {
         edit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent intent = new Intent(context, WriteNotice.class);
-                intent.putExtra("userId", userId);
-                intent.putExtra("userName", userName);
-                intent.putExtra("userStat", userStat);
-                intent.putExtra("storeCode", storeCode);
+                intent.putExtra("UserId", userId);
+                intent.putExtra("UserName", userName);
+                intent.putExtra("UserStat", userStat);
+                intent.putExtra("StoreCode", storeCode);
                 startActivity(intent);
             }
         });

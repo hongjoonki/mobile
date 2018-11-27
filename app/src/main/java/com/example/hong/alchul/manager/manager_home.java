@@ -35,9 +35,11 @@ public class manager_home extends AppCompatActivity {
         bundle.putString("UserPhoneNum", userPhoneNum);
         bundle.putString("UserStat", userStat);
         bundle.putString("StoreCode", storeCode);
-        manager_frag1 fragment1 = new manager_frag1();
-        fragment1.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
+
+
+        MyFragment3 fragment3 = new MyFragment3();
+        fragment3.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
 
 
 
