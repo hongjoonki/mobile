@@ -120,7 +120,7 @@ public class WriteNotice extends AppCompatActivity {
             // queue 실행
             RequestQueue queue = Volley.newRequestQueue(WriteNotice.this);
             queue.add(request);
-            //홍준기
+
 
 
         }

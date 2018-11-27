@@ -20,7 +20,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.hong.alchul.ChatActivity;
-import com.example.hong.alchul.ChattingActivity;
+//import com.example.hong.alchul.ChattingActivity;
 import com.example.hong.alchul.R;
 import com.example.hong.alchul.WriteNotice;
 import com.example.hong.alchul.manager.UserAdapter;
