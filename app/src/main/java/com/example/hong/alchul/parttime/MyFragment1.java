@@ -2,6 +2,7 @@ package com.example.hong.alchul.parttime;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.hong.alchul.R;
+import com.example.hong.alchul.GpsActivity;
 import com.example.hong.alchul.request.MyFragment1_request;
 
 import org.json.JSONException;
@@ -32,7 +34,7 @@ public class MyFragment1 extends Fragment {
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     SimpleDateFormat mFormat1 = new SimpleDateFormat("yyyy-MM-dd");
     String startwork, endwork, startday;
-    Button btn_start, btn_end;
+    Button btn_start, btn_end, mapbutton;
     String userId;
     String userName;
     String userPhoneNum;
@@ -66,6 +68,23 @@ public class MyFragment1 extends Fragment {
         textView2.setText("직종:   "+ userStat);
         textView3.setText("전화번호:   "+ userPhoneNum);
         textView4.setText("지점:   "+ storeCode);
+
+        mapbutton = (Button)view.findViewById(R.id.map);
+
+        mapbutton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, GpsActivity.class);
+                intent.putExtra("UserId", userId);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+
 
 
         btn_start.setOnClickListener(new View.OnClickListener() {

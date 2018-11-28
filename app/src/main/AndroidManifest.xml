@@ -3,6 +3,7 @@
     package="com.example.hong.alchul">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB1tdCXr_55rDEvFqJF6jInBlC-9wJdN4I"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,8 +29,11 @@
         <activity android:name=".parttime.partime_home" />
         <activity android:name=".manager.manager_home" />
         <activity android:name=".manager.user_calendar" />
-        <activity android:name=".WriteNotice"/>
-        <activity android:name=".ChatActivity"/>
+        <activity android:name=".WriteNotice" />
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".getmap" />
+        <activity android:name=".GpsActivity" />
+        <activity android:name=".googlemap"></activity>
     </application>
 
 </manifest>
