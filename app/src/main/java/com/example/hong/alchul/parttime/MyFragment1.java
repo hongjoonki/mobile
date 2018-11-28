@@ -2,7 +2,6 @@ package com.example.hong.alchul.parttime;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,12 +19,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.hong.alchul.R;
-import com.example.hong.alchul.GpsActivity;
-import com.example.hong.alchul.RegisterActivity;
 import com.example.hong.alchul.getmap;
 import com.example.hong.alchul.request.GpsRequest;
 import com.example.hong.alchul.request.MyFragment1_request;
-import com.example.hong.alchul.request.eventRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,7 +29,6 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.Executors;
 
 public class MyFragment1 extends Fragment {
     View view;
