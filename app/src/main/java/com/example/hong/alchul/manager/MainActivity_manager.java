@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,7 +16,9 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.hong.alchul.LoginActivity;
 import com.example.hong.alchul.R;
+import com.example.hong.alchul.googlemap;
 import com.example.hong.alchul.request.RegisterRequest;
+import com.example.hong.alchul.request.storeRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,10 +33,12 @@ public class MainActivity_manager extends AppCompatActivity {
     String find = "";
     String storeCode;
     String storeName;
+    String lat= null;
+    String lon= null;
 
     EditText createText;
     EditText createCodeText;
-
+    TextView mapview;
     TextView textView;
 
     @Override
@@ -47,16 +52,26 @@ public class MainActivity_manager extends AppCompatActivity {
         userName = intent.getStringExtra("UserName");
         userPhoneNum = intent.getStringExtra("UserPhoneNum");
         userStat = intent.getStringExtra("UserStat");
+        lat = intent.getStringExtra("lat");
+        lon = intent.getStringExtra("lon");
+
+
+
+
 
         createText = (EditText) findViewById(R.id.createText);
         createCodeText = (EditText) findViewById(R.id.createCodeText);
-
+        mapview = (TextView)findViewById(R.id.map);
         textView = (TextView) findViewById(R.id.NameView);
         textView.setText(userName);
 
-        String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
+        if(lat != null){
+            mapview.setText("위도: "+lat+", 경도: " + lon);
+        }
 
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        //String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
+
+        //Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     public void createStore(View view) {
@@ -67,6 +82,7 @@ public class MainActivity_manager extends AppCompatActivity {
         Intent enterIntent = new Intent(MainActivity_manager.this, manager_home.class);
 
         // find변수를 이용하여 storeCode 확인이 끝난 후에 생성을 할 수 있도록 해주었다
+
         if (find.equals("OK")) {
 
             Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -102,9 +118,9 @@ public class MainActivity_manager extends AppCompatActivity {
                     }
                 }
             };
-            RegisterRequest registerRequest = new RegisterRequest(storeName, storeCode, userId, responseListener);
+            storeRequest store = new storeRequest(storeName, storeCode, userId, lat, lon, responseListener);
             RequestQueue queue = Volley.newRequestQueue(MainActivity_manager.this);
-            queue.add(registerRequest);
+            queue.add(store);
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity_manager.this);
             builder.setMessage("코드번호를 먼저 확인하십시오")
@@ -116,10 +132,11 @@ public class MainActivity_manager extends AppCompatActivity {
     }
 
     public void checkStore(View view) {
+        Log.i("test", lat);
         storeCode = createCodeText.getText().toString();
 
         // storeCode에 아무 값도 입력하지 않았을 경우 메세지 출력
-        if (storeCode.length() == 0) {
+        if (storeCode.length() == 0 || lat == null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity_manager.this);
             builder.setMessage("storeCode를 입력하세요")
                     .setNegativeButton("확인", null)
@@ -162,9 +179,9 @@ public class MainActivity_manager extends AppCompatActivity {
             };
 
             // FindStoreRequest 객체 생성
-            RegisterRequest findStoreRequest = new RegisterRequest(storeCode, responseListener);
+            storeRequest findstore = new storeRequest(storeCode, responseListener);
             RequestQueue queue = Volley.newRequestQueue(MainActivity_manager.this);
-            queue.add(findStoreRequest);
+            queue.add(findstore);
         }
     }
 
@@ -185,5 +202,17 @@ public class MainActivity_manager extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+
+    public void goMap(View view) {
+        Intent enterIntent = new Intent(MainActivity_manager.this, googlemap.class);
+        enterIntent.putExtra("UserId", userId);
+        enterIntent.putExtra("UserName", userName);
+        enterIntent.putExtra("UserPhoneNum", userPhoneNum);
+        enterIntent.putExtra("UserStat", userStat);
+        startActivity(enterIntent);
+
+
     }
 }
