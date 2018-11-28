@@ -21,18 +21,28 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.hong.alchul.ChatActivity;
 //import com.example.hong.alchul.ChattingActivity;
+import com.example.hong.alchul.ChatVO;
+import com.example.hong.alchul.NoticeActivity;
+import com.example.hong.alchul.NoticeAdapter;
 import com.example.hong.alchul.R;
 import com.example.hong.alchul.WriteNotice;
 import com.example.hong.alchul.manager.UserAdapter;
 import com.example.hong.alchul.manager.UserItem;
 import com.example.hong.alchul.manager.user_calendar;
 import com.example.hong.alchul.request.listRequest;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,6 +59,11 @@ public class MyFragment3 extends Fragment {
     String storeCode;
     ListView listView;
 
+    String title = null;
+    String content = null;
+
+    ArrayList<ChatVO> listVO = new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -59,7 +74,14 @@ public class MyFragment3 extends Fragment {
         userPhoneNum = getArguments().getString("UserPhoneNum");
         userStat = getArguments().getString("UserStat");
         storeCode = getArguments().getString("StoreCode");
-        listView = (ListView) view.findViewById(R.id.List_view);
+        title = getArguments().getString("title");
+        content = getArguments().getString("content");
+
+        // firebase 객체 생성
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference("notice");
+
+        listView = (ListView) view.findViewById(R.id.List);
         data = new ArrayList<>();
 
         final LinearLayout edit = (LinearLayout)view.findViewById(R.id.edit);
@@ -67,9 +89,10 @@ public class MyFragment3 extends Fragment {
 
         edit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent intent = new Intent(context, WriteNotice.class);
+                Intent intent = new Intent(context, NoticeActivity.class);
                 intent.putExtra("UserId", userId);
                 intent.putExtra("UserName", userName);
+                intent.putExtra("UserPhoneNum", userPhoneNum);
                 intent.putExtra("UserStat", userStat);
                 intent.putExtra("StoreCode", storeCode);
                 startActivity(intent);
@@ -88,6 +111,60 @@ public class MyFragment3 extends Fragment {
             }
         });
 
+        final NoticeAdapter adapter = new NoticeAdapter(context, R.layout.notice_item, listVO, userId);
+        listView.setAdapter(adapter);
+
+        if (title != null || content != null) {
+            if (content.equals("")) {
+                Toast.makeText(context, "내용을 입력하세요.", Toast.LENGTH_LONG).show();
+            } else {
+                Date today = new Date();
+                SimpleDateFormat timeNow = new SimpleDateFormat("a K:mm");
+
+                StringBuffer sb = new StringBuffer(content);
+                if (sb.length() >= 15) {
+                    for (int i = 1; i <= sb.length() / 15; i++) {
+                        sb.insert(15 * i, "\n");
+                    }
+                }
+
+                //list.add(new ChatVO(R.drawable.profile1, id, sb.toString(), timeNow.format(today)));
+                //adapter.notifyDataSetChanged();
+
+                myRef.push().setValue(new ChatVO(userId, sb.toString(), timeNow.format(today)));
+                content="";
+                title="";
+            }
+        }
+
+        myRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                ChatVO value = dataSnapshot.getValue(ChatVO.class); // 괄호 안 : 꺼낼 자료 형태
+                listVO.add(value);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
 

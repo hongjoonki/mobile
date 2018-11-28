@@ -31,6 +31,7 @@
         <activity android:name=".manager.user_calendar" />
         <activity android:name=".WriteNotice" />
         <activity android:name=".ChatActivity" />
+        <activity android:name=".NoticeActivity" />
         <activity android:name=".getmap" />
         <activity android:name=".GpsActivity" />
         <activity android:name=".googlemap"></activity>
