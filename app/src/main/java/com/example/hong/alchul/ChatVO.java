@@ -31,4 +31,10 @@ public class ChatVO {
     public String getTime() {
         return time;
     }
+
+    public ChatVO(String id, String content, String time) {
+        this.id = id;
+        this.content = content;
+        this.time = time;
+    }
 }

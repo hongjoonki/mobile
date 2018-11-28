@@ -2,10 +2,12 @@ package com.example.hong.alchul.parttime;
 
 
 import android.content.Context;
-import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +19,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.hong.alchul.R;
-import com.example.hong.alchul.GpsActivity;
+import com.example.hong.alchul.getmap;
+import com.example.hong.alchul.request.GpsRequest;
 import com.example.hong.alchul.request.MyFragment1_request;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,6 +44,11 @@ public class MyFragment1 extends Fragment {
     String userPhoneNum;
     String userStat;
     String storeCode;
+    String enter="";
+    private getmap gps;
+    double latitude, longitude;
+
+
 
 
 
@@ -75,9 +84,66 @@ public class MyFragment1 extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, GpsActivity.class);
-                intent.putExtra("UserId", userId);
-                startActivity(intent);
+                gps = new getmap(context);
+                //GPS사용유무
+                if(gps.isGetLocation()){
+                    latitude = gps.getLatitude();
+                    longitude = gps.getLongitude();
+
+                    Toast.makeText(context, "당신의 위치 - \n위도: " + latitude + "\n경도: " + longitude, Toast.LENGTH_LONG).show();
+                } else {
+                    // GPS 를 사용할수 없으므로
+                    gps.showSettingsAlert();
+                }
+
+                Response.Listener<String> gpsListener = new Response.Listener<String>() {
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            JSONArray success = jsonResponse.getJSONArray("response");
+
+                            JSONObject item = success.getJSONObject(0);
+                            Double lat = item.getDouble("latitude");
+                            Double lon = item.getDouble("longitude");
+
+                            Location start = new Location("start");
+                            Location end = new Location("end");
+
+                            start.setLatitude(latitude);
+                            start.setLongitude(longitude);
+                            end.setLatitude(lat);
+                            end.setLongitude(lon);
+
+                            double distance = start.distanceTo(end);
+
+                            Log.i("거리", "distance"+distance);
+                            if(distance<50){
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                builder.setMessage("인증되었습니다")
+                                        .setPositiveButton("확인", null)
+                                        .create()
+                                        .show();
+                                enter = "OK";
+                            }else{
+                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                            builder.setMessage("가게가 아닙니다.")
+                                    .setPositiveButton("확인", null)
+                                    .create()
+                                    .show();
+                            }
+
+                        } catch (JSONException e) {
+
+                            e.printStackTrace();
+                        }
+                    }
+                };
+
+                GpsRequest gps = new GpsRequest(storeCode, gpsListener);
+                RequestQueue queue = Volley.newRequestQueue(context);
+                queue.add(gps);
+
+
             }
         });
 
@@ -90,6 +156,13 @@ public class MyFragment1 extends Fragment {
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(enter==""){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setMessage("출근인증을 하세요^^")
+                            .setPositiveButton("확인", null)
+                            .create()
+                            .show();
+                }else{
                 mNow=System.currentTimeMillis();
                 mDate=new Date(mNow);
                 startwork = mFormat.format(mDate);         //시간까지 있는 형식
@@ -98,7 +171,7 @@ public class MyFragment1 extends Fragment {
                 btn_start.setEnabled(false);
                 Toast.makeText(context, startwork+"에"+"출근하였습니다.", Toast.LENGTH_SHORT).show();
 
-            }           //출근 버튼눌렀을 때.
+            } }          //출근 버튼눌렀을 때.
         });
 
         btn_end.setOnClickListener(new View.OnClickListener() {

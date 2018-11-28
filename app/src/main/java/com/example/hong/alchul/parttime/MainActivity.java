@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Toast를 이용해 userStat와 userId 표시
         String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     // ENTER 버튼 눌렀을 때 이벤트 추가
