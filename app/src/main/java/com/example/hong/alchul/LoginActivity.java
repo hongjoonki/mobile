@@ -88,7 +88,7 @@ public class LoginActivity extends Activity {
                             // else -> 특정 store코드가 있는 회원
                             if (storeCode.equals("123")) {
                                 // 특정 코드가 없는 상태로, 코드를 생성할수 있는 MainActivity_manager 액티비티로 이동한다
-                                Intent intent1 = new Intent(LoginActivity.this, googlemap.class);
+                                Intent intent1 = new Intent(LoginActivity.this, MainActivity_manager.class);
                                 // 이동할 때 intent에 id, name과 같은 값을 넣어준다.
                                 intent1.putExtra("UserId", userId);
                                 intent1.putExtra("UserName", userName);

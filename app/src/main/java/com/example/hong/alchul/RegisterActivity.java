@@ -1,6 +1,7 @@
 package com.example.hong.alchul;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
@@ -102,11 +103,16 @@ public class RegisterActivity extends Activity{
                             if (success) {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
                                 builder.setMessage("회원 등록에 성공했습니다.")
-                                        .setPositiveButton("확인", null)
+                                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                                RegisterActivity.this.startActivity(intent);
+                                            }
+                                        })
                                         .create()
                                         .show();
-                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                RegisterActivity.this.startActivity(intent);
+
                             }
                             // insert쿼리가 잘 작동하지 않았으므로 회원등록 실패 메세지 호출
                             else {

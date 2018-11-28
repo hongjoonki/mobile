@@ -17,6 +17,7 @@ import com.example.hong.alchul.LoginActivity;
 import com.example.hong.alchul.R;
 import com.example.hong.alchul.request.ConnectStoreRequest;
 import com.example.hong.alchul.request.RegisterRequest;
+import com.example.hong.alchul.request.storeRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -140,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         // FindStoreRequest 객채 생성
-        RegisterRequest findStoreRequest = new RegisterRequest(storeCode, responseListener);
+        storeRequest findStoreRequest = new storeRequest(storeCode, responseListener);
         // queue 실행
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
         queue.add(findStoreRequest);

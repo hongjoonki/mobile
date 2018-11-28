@@ -15,8 +15,7 @@ public class RegisterRequest extends StringRequest {
     // ec2주소 : 18.221.234.141
     // 사용된 php파일 이름: Register.php
     final static private String URL = "http://18.221.234.141/teamproject/Register.php";
-    final static private String URL1= "http://18.221.234.141/teamproject/RegisterStore.php";
-    final static private String URL2= "http://18.221.234.141/teamproject/FindStore.php";
+
 
 
     // 여러 갯수의 파라미터를 한번에 전달하는 방법으로 Map을 아용하였다.
@@ -36,19 +35,7 @@ public class RegisterRequest extends StringRequest {
         parameters.put("userStat", userStat);
     }
 
-    public RegisterRequest(String storeName, String storeCode, String userId, Response.Listener<String> listener){//스토어 생성 생성자
-        super(Method.POST, URL1, listener, null);
-        parameters = new HashMap<>();
-        parameters.put("storeName", storeName);
-        parameters.put("storeCode", storeCode);
-        parameters.put("userId", userId);
-    }
 
-    public RegisterRequest(String storeCode, Response.Listener<String> listener) {//스토어 찾는 request생성자
-        super(Method.POST, URL2, listener, null);
-        parameters = new HashMap<>();
-        parameters.put("storeCode", storeCode);
-    }
 
     public Map<String, String> getParams() {
         return parameters;
