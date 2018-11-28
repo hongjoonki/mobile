@@ -36,7 +36,7 @@ public class getmap extends Service implements LocationListener {
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATE = 10;
 
     //최소 GPS 정보 엡데이트 시간
-    private static final long MIN_TIME_BW_UPDATES = 1000 * 10 * 1;
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 5 * 1;
 
     protected LocationManager locationManager;
 

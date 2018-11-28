@@ -93,7 +93,7 @@
                 android:id="@+id/map"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="위치"
+                android:text="인증"
                 android:textSize="20dp"
                 android:textStyle="bold" />
         </LinearLayout>
