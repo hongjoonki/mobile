@@ -44,9 +44,11 @@ ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(),
         edt = findViewById(R.id.send_txt);
         btn = findViewById(R.id.send_btn);
 
+        String code = getIntent().getStringExtra("StoreCode");
+
 // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = database.getReference("message");
+        final DatabaseReference myRef = database.getReference("message"+code);
 
 
 //로그인한 아이디
