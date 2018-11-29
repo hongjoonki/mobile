@@ -139,7 +139,7 @@ public class MyFragment1 extends Fragment {
                     RequestQueue queue = Volley.newRequestQueue(context);
                     queue.add(gps);
 
-                    
+
                 } else {
                     // GPS 를 사용할수 없으므로
                     gps.showSettingsAlert();
