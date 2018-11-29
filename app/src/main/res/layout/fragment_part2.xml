@@ -20,9 +20,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#CE598663">
+        android:background="#ce597e86">
 
-q
+
         <TextView
             android:id="@+id/frag1"
             android:layout_width="match_parent"

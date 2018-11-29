@@ -79,7 +79,7 @@ public class MyFragment3 extends Fragment {
 
         // firebase 객체 생성
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = database.getReference("notice");
+        final DatabaseReference myRef = database.getReference("notice"+storeCode);
 
         listView = (ListView) view.findViewById(R.id.List);
         data = new ArrayList<>();

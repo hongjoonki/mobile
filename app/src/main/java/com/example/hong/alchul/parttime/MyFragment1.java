@@ -91,57 +91,61 @@ public class MyFragment1 extends Fragment {
                     longitude = gps.getLongitude();
 
                     Toast.makeText(context, "당신의 위치 - \n위도: " + latitude + "\n경도: " + longitude, Toast.LENGTH_LONG).show();
+
+                    Response.Listener<String> gpsListener = new Response.Listener<String>() {
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonResponse = new JSONObject(response);
+                                JSONArray success = jsonResponse.getJSONArray("response");
+
+                                JSONObject item = success.getJSONObject(0);
+                                Double lat = item.getDouble("latitude");
+                                Double lon = item.getDouble("longitude");
+
+                                Location start = new Location("start");
+                                Location end = new Location("end");
+
+                                start.setLatitude(latitude);
+                                start.setLongitude(longitude);
+                                end.setLatitude(lat);
+                                end.setLongitude(lon);
+
+                                double distance = start.distanceTo(end);
+
+                                Log.i("거리", "distance"+distance);
+                                if(distance<50){
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                    builder.setMessage("인증되었습니다")
+                                            .setPositiveButton("확인", null)
+                                            .create()
+                                            .show();
+                                    enter = "OK";
+                                }else{
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                    builder.setMessage("가게가 아닙니다.")
+                                            .setPositiveButton("확인", null)
+                                            .create()
+                                            .show();
+                                }
+
+                            } catch (JSONException e) {
+
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+
+                    GpsRequest gps = new GpsRequest(storeCode, gpsListener);
+                    RequestQueue queue = Volley.newRequestQueue(context);
+                    queue.add(gps);
+
+
                 } else {
                     // GPS 를 사용할수 없으므로
                     gps.showSettingsAlert();
                 }
 
-                Response.Listener<String> gpsListener = new Response.Listener<String>() {
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            JSONArray success = jsonResponse.getJSONArray("response");
 
-                            JSONObject item = success.getJSONObject(0);
-                            Double lat = item.getDouble("latitude");
-                            Double lon = item.getDouble("longitude");
-
-                            Location start = new Location("start");
-                            Location end = new Location("end");
-
-                            start.setLatitude(latitude);
-                            start.setLongitude(longitude);
-                            end.setLatitude(lat);
-                            end.setLongitude(lon);
-
-                            double distance = start.distanceTo(end);
-
-                            Log.i("거리", "distance"+distance);
-                            if(distance<50){
-                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                                builder.setMessage("인증되었습니다")
-                                        .setPositiveButton("확인", null)
-                                        .create()
-                                        .show();
-                                enter = "OK";
-                            }else{
-                            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                            builder.setMessage("가게가 아닙니다.")
-                                    .setPositiveButton("확인", null)
-                                    .create()
-                                    .show();
-                            }
-
-                        } catch (JSONException e) {
-
-                            e.printStackTrace();
-                        }
-                    }
-                };
-
-                GpsRequest gps = new GpsRequest(storeCode, gpsListener);
-                RequestQueue queue = Volley.newRequestQueue(context);
-                queue.add(gps);
 
 
             }
