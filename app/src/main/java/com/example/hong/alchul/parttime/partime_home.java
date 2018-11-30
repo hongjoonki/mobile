@@ -24,7 +24,7 @@ import com.example.hong.alchul.LoginActivity;
 import com.example.hong.alchul.R;
 import com.example.hong.alchul.RegisterActivity;
 import com.example.hong.alchul.manager.manager_frag1;
-import com.example.hong.alchul.manager.phone_list;
+import com.example.hong.alchul.parttime.phone_list;
 import com.example.hong.alchul.parttime.MyFragment1;
 import com.example.hong.alchul.parttime.MyFragment2;
 import com.example.hong.alchul.parttime.MyFragment3;

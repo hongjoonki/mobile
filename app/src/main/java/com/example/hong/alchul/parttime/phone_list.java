@@ -1,4 +1,4 @@
-package com.example.hong.alchul.manager;
+package com.example.hong.alchul.parttime;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +20,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.hong.alchul.R;
+import com.example.hong.alchul.manager.UserAdapter;
+import com.example.hong.alchul.manager.UserItem;
 import com.example.hong.alchul.parttime.MyFragment2;
 import com.example.hong.alchul.request.eventRequest;
 import com.example.hong.alchul.request.listRequest;
