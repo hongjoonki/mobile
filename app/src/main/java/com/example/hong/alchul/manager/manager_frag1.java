@@ -115,12 +115,12 @@ public class manager_frag1 extends Fragment {
                 intent.putExtra("userName", data.get(position).getName());
                 intent.putExtra("userPhoneNum", data.get(position).getPhone());
                 intent.putExtra("storeCode", userStat);
-
-
-
+                startActivity(intent);
 
             }
         });
+
+
 
 
         return view;

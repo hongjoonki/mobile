@@ -1,11 +1,15 @@
 package com.example.hong.alchul.manager;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hong.alchul.R;
 
@@ -44,7 +48,7 @@ public class UserAdapter extends BaseAdapter {
             convertView = inflater.inflate(layout,parent, false);
 
         }
-        UserItem useritem = data.get(position);
+        final UserItem useritem = data.get(position);
 
         TextView userName = (TextView) convertView.findViewById(R.id.name);
         userName.setText(useritem.getName());
@@ -52,6 +56,8 @@ public class UserAdapter extends BaseAdapter {
         TextView userPhone = (TextView) convertView.findViewById(R.id.phone);
         userPhone.setText(useritem.getPhone());   // user_item 레이아웃에서 가져옴
 
+        LinearLayout button1 = (LinearLayout)convertView.findViewById(R.id.call);
+       // button1.setOnClickListener(useritem.getItem(cposition).onClickListener);
 
         return convertView;
     }
