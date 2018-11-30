@@ -63,9 +63,18 @@ public class partime_home extends AppCompatActivity implements NavigationView.On
         String title = intent.getStringExtra("title");
         String content = intent.getStringExtra("content");
 
+<<<<<<< HEAD
+        String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();        //intent 받아오기
+
+        LinearLayout button1 = (LinearLayout)findViewById(R.id.button1);
+        LinearLayout button2 = (LinearLayout)findViewById(R.id.button2);
+        LinearLayout button3 = (LinearLayout)findViewById(R.id.button3);           //버튼 인식
+=======
         header_id.setText(userName);
 
 
+>>>>>>> 6403ee9d56d665ffb5ee92d6ad54a71df3afd28b
 
         if (title != null || content != null) {
             bundle.putString("UserId", userId);
@@ -75,17 +84,11 @@ public class partime_home extends AppCompatActivity implements NavigationView.On
             bundle.putString("StoreCode", storeCode);
             bundle.putString("title", title);
             bundle.putString("content", content);
-            //  if(userStat == "part")
             MyFragment3 fragment3 = new MyFragment3();
             fragment3.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
-        } else {
-            String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();        //intent 받아오기
 
-            LinearLayout button1 = (LinearLayout)findViewById(R.id.button1);
-            LinearLayout button2 = (LinearLayout)findViewById(R.id.button2);
-            LinearLayout button3 = (LinearLayout)findViewById(R.id.button3);           //버튼 인식
+        } else {
             //fragment에 정보넘길것들.
 
             bundle.putString("UserId", userId);         //bundle에 정보를 추가한다.
@@ -97,41 +100,39 @@ public class partime_home extends AppCompatActivity implements NavigationView.On
             MyFragment1 fragment1 = new MyFragment1();
             fragment1.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
-
-
-
-
-            button1.setOnClickListener(new View.OnClickListener(){
-                public void onClick(View v){
-                    MyFragment1 fragment1= new MyFragment1();
-                    fragment1.setArguments(bundle);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
-
-                }
-            });         //fragment1로 넘어가는 이벤트리스터
-
-            button2.setOnClickListener(new View.OnClickListener(){
-
-                @Override
-                public void onClick(View v) {
-                    MyFragment2 fragment2 = new MyFragment2();
-                    fragment2.setArguments(bundle);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment2).commit();
-
-                }
-            });          //fragment2로 넘어가는 이벤트리스터
-
-            button3.setOnClickListener(new View.OnClickListener(){
-
-                @Override
-                public void onClick(View v) {
-                    MyFragment3 fragment3 = new MyFragment3();
-                    fragment3.setArguments(bundle);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
-
-                }
-            });      //fragment3로 넘어가는 이벤트리스터
         }
+
+        button1.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                MyFragment1 fragment1= new MyFragment1();
+                fragment1.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
+
+            }
+        });         //fragment1로 넘어가는 이벤트리스터
+
+        button2.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                MyFragment2 fragment2 = new MyFragment2();
+                fragment2.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment2).commit();
+
+            }
+        });          //fragment2로 넘어가는 이벤트리스터
+
+        button3.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                MyFragment3 fragment3 = new MyFragment3();
+                fragment3.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
+
+            }
+        });      //fragment3로 넘어가는 이벤트리스터
+
     }
 
     @SuppressWarnings("statementWithEmptyBody")
