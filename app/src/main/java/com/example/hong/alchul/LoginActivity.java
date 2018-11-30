@@ -21,6 +21,7 @@ import com.example.hong.alchul.manager.manager_home;
 import com.example.hong.alchul.parttime.MainActivity;
 import com.example.hong.alchul.parttime.partime_home;
 import com.example.hong.alchul.request.LoginRequest;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -34,6 +35,9 @@ public class LoginActivity extends Activity {
     Button loginButton;
     Button registerButton;
     Toolbar mToolbar;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,4 +163,6 @@ public class LoginActivity extends Activity {
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
         queue.add(loginRequest);
     }
+
+
 }
