@@ -15,15 +15,15 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:fillViewport="true">
+
             <ListView
                 android:id="@+id/List_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:choiceMode="singleChoice"
-                android:dividerHeight="1.5dp">
-            </ListView>
+                android:dividerHeight="1.5dp"></ListView>
         </ScrollView>
 
 
