@@ -1,6 +1,7 @@
 package com.example.hong.alchul.parttime;
 
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -30,10 +32,17 @@ public class partime_home extends AppCompatActivity {
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View nav_header_view = navigationView.inflateHeaderView(R.layout.nav_header);
+        TextView header_id = (TextView) nav_header_view.findViewById(R.id.loginname);
+
+
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+
 
 
 
@@ -45,6 +54,10 @@ public class partime_home extends AppCompatActivity {
         String storeCode = intent.getStringExtra("StoreCode");
         String title = intent.getStringExtra("title");
         String content = intent.getStringExtra("content");
+
+        header_id.setText(userName);
+
+
 
         if (title != null || content != null) {
             bundle.putString("UserId", userId);
