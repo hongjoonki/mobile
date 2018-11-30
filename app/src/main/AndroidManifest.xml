@@ -29,9 +29,9 @@
         <activity android:name=".parttime.partime_home" />
         <activity android:name=".manager.manager_home" />
         <activity android:name=".manager.user_calendar" />
-        <activity android:name=".WriteNotice" />
         <activity android:name=".ChatActivity" />
         <activity android:name=".NoticeActivity" />
+        <activity android:name=".NoticeRoom" />
         <activity android:name=".getmap" />
         <activity android:name=".googlemap"></activity>
     </application>

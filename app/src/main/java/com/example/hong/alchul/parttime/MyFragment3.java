@@ -24,6 +24,7 @@ import com.example.hong.alchul.ChatActivity;
 import com.example.hong.alchul.ChatVO;
 import com.example.hong.alchul.NoticeActivity;
 import com.example.hong.alchul.NoticeAdapter;
+import com.example.hong.alchul.NoticeRoom;
 import com.example.hong.alchul.NoticeVO;
 import com.example.hong.alchul.R;
 import com.example.hong.alchul.manager.UserAdapter;
@@ -110,8 +111,55 @@ public class MyFragment3 extends Fragment {
             }
         });
 
-        final NoticeAdapter adapter = new NoticeAdapter(context, R.layout.notice_item, listVO, userId);
+        // 공지 (파이어베이스 및 뷰에 글 올리는 기능)
+        final NoticeAdapter adapter = new NoticeAdapter(context, R.layout.notice_item, listVO, userId, userStat);
         listView.setAdapter(adapter);
+
+        /*
+        // 롱클릭시 지우기
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long id) {
+
+                final int position = i;
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("삭제하기");
+                builder.setMessage("이 메시지를 삭제할까요?");
+
+                builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        listVO.remove(position);
+                        adapter.notifyDataSetChanged();//새로고침
+                    }
+                });
+                //취소
+                builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                return true;
+            }
+        });
+        */
+
+        // 클릭하면 공지 확인 뷰으로 보내기
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(context, NoticeRoom.class);
+                intent.putExtra("UserId", userId);
+                intent.putExtra("UserName", userName);
+                intent.putExtra("UserPhoneNum", userPhoneNum);
+                intent.putExtra("UserStat", userStat);
+                intent.putExtra("StoreCode", storeCode);
+                startActivity(intent);
+            }
+        });
+
 
         if (title != null || content != null) {
             if (content.equals("")) {
@@ -130,7 +178,7 @@ public class MyFragment3 extends Fragment {
                 //list.add(new ChatVO(R.drawable.profile1, id, sb.toString(), timeNow.format(today)));
                 //adapter.notifyDataSetChanged();
 
-                myRef.push().setValue(new NoticeVO(userId, content, title, timeNow.format(today)));
+                myRef.push().setValue(new NoticeVO(userId, title, content, timeNow.format(today), userStat));
                 content="";
                 title="";
             }
