@@ -67,6 +67,11 @@ public class ChatAdapter extends BaseAdapter {
 
 //누군지 판별
         if(chatData.get(position).getId().equals(id)){
+            holder.tv_time.setVisibility(View.GONE);
+            holder.tv_name.setVisibility(View.GONE);
+            holder.tv_msg.setVisibility(View.GONE);
+            holder.img.setVisibility(View.GONE);
+
             holder.my_msg.setVisibility(View.VISIBLE);
             holder.my_time.setVisibility(View.VISIBLE);
 
