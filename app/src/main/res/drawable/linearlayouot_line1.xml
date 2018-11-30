@@ -8,13 +8,11 @@
         android:top="1dp">
         <shape android:shape="rectangle" >
             <stroke
-                android:width="3dp"
-                android:color="#dcdcdc" />
+                android:width="0.5dp"
+                android:color="#9ba6b9" />
 
-            <solid android:color="#FFF" />
+            <solid android:color="#d7e5ff" />
         </shape>
     </item>
 
 </layer-list>
-
-
