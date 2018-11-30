@@ -12,9 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hong.alchul.R;
+import com.example.hong.alchul.parttime.MyFragment1;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+
+import static android.support.v4.content.ContextCompat.startActivity;
 
 public class UserAdapter extends BaseAdapter {
     private LayoutInflater inflater;
@@ -57,7 +60,7 @@ public class UserAdapter extends BaseAdapter {
         userPhone.setText(useritem.getPhone());   // user_item 레이아웃에서 가져옴
 
         LinearLayout button1 = (LinearLayout)convertView.findViewById(R.id.call);
-       // button1.setOnClickListener(useritem.getItem(cposition).onClickListener);
+
 
         return convertView;
     }
