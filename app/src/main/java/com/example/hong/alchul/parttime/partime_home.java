@@ -63,18 +63,16 @@ public class partime_home extends AppCompatActivity implements NavigationView.On
         String title = intent.getStringExtra("title");
         String content = intent.getStringExtra("content");
 
-<<<<<<< HEAD
+
         String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();        //intent 받아오기
 
         LinearLayout button1 = (LinearLayout)findViewById(R.id.button1);
         LinearLayout button2 = (LinearLayout)findViewById(R.id.button2);
         LinearLayout button3 = (LinearLayout)findViewById(R.id.button3);           //버튼 인식
-=======
+
         header_id.setText(userName);
 
-
->>>>>>> 6403ee9d56d665ffb5ee92d6ad54a71df3afd28b
 
         if (title != null || content != null) {
             bundle.putString("UserId", userId);

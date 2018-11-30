@@ -56,16 +56,13 @@ public class manager_home extends AppCompatActivity implements NavigationView.On
         String title = intent.getStringExtra("title");
         String content = intent.getStringExtra("content");
 
-<<<<<<< HEAD
         header_id.setText(userName);
 
-=======
         String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();//intent 받아오기
 
         LinearLayout button1 = (LinearLayout)findViewById(R.id.button1);
         LinearLayout button2 = (LinearLayout)findViewById(R.id.button2);
->>>>>>> 12b29c02969ee71e20ed40137d0c3d5e3e7f86bb
 
         if (title != null || content != null) {
             bundle.putString("UserId", userId);
