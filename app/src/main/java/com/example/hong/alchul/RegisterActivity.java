@@ -3,25 +3,38 @@ package com.example.hong.alchul;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.hong.alchul.model.UserModel;
 import com.example.hong.alchul.request.IdCheckRequest;
 import com.example.hong.alchul.request.RegisterRequest;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.UploadTask;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class RegisterActivity extends Activity{
 
+    ImageView imageView;
     EditText idText;
     EditText passwordText;
     EditText phoneText;
@@ -31,14 +44,19 @@ public class RegisterActivity extends Activity{
     RadioButton managerButton;
     RadioGroup rg;
     String checkId = "";
+    String checkImage = "";
+    Uri imageUri;
     private final int GALLERY_CODE=1112;
+    private static final int PICK_FROM_ALBUM = 10;
+    // check버튼에 체크여부를 확인하기 위해 job변수 선언
+    String job = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-
+        imageView = (ImageView) findViewById(R.id.imageView);
         idText = (EditText) findViewById(R.id.idText);
         passwordText = (EditText) findViewById(R.id.passwordText);
         phoneText = (EditText) findViewById(R.id.PhoneText);
@@ -52,12 +70,11 @@ public class RegisterActivity extends Activity{
     }
 
     public void registerBt(View v) {
-        String id = idText.getText().toString();
-        String password = passwordText.getText().toString();
-        String name = nameText.getText().toString();
-        String phoneNum = phoneText.getText().toString();
-        // check버튼에 체크여부를 확인하기 위해 job변수 선언
-        String job = null;
+        final String id = idText.getText().toString();
+        final String password = passwordText.getText().toString();
+        final String name = nameText.getText().toString();
+        final String phoneNum = phoneText.getText().toString();
+
 
         // part버튼에 체크가 되어있으면 job = "part-time", manager버튼에 체크가 되어있으면 job = "manager" 저장
         if(partButton.isChecked()) {
@@ -68,7 +85,7 @@ public class RegisterActivity extends Activity{
         }
 
         // 특정 항목이 비어있을 때 메세지 호출
-        if (job == null || id.equals("") || password.equals("") || name.equals("") || phoneNum.equals("")) {
+        if (job == null || id.equals("") || password.equals("") || name.equals("") || phoneNum.equals("") || checkImage.equals("")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
             builder.setMessage("빈 항목이 있습니다")
                     .setNegativeButton("다시 시도", null)
@@ -84,6 +101,31 @@ public class RegisterActivity extends Activity{
                         .create()
                         .show();
             }else {
+                //Firebase user에 추가
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(id, password)
+                        .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                final String uid = task.getResult().getUser().getUid();
+                                FirebaseStorage.getInstance().getReference().child("userImages").child(uid).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                        @SuppressWarnings("VisibleForTests")
+                                        String imageUrl = task.getResult().getUploadSessionUri().toString();
+
+                                        UserModel userModel = new UserModel();
+                                        userModel.userName = name;
+                                        userModel.userPhoneNum = phoneNum;
+                                        userModel.userStat = job;
+                                        userModel.userPassword = password;
+                                        userModel.userImage = imageUrl;
+                                        FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(userModel);
+                                    }
+                                });
+                            }
+                        });
+
+
                 // Response.Listener형식의 객체 생성 (response 결과값을 받아서 실행할 코드)
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     public void onResponse(String response) {
@@ -177,7 +219,7 @@ public class RegisterActivity extends Activity{
                     // success가 "SORRY"일 경우 해당 id의 값이 테이블에 존재하므로 이미 존재한다고 알려주는 메세지 호출
                     else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                        builder.setMessage("이미 존재하는 아이디입니다.")
+                        builder.setMessage("이미 존재하는 이메일입니다.")
                                 .setNegativeButton("다시 시도", null)
                                 .create()
                                 .show();
@@ -195,5 +237,20 @@ public class RegisterActivity extends Activity{
         RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
         queue.add(idCheckRequest);
 
+    }
+
+    public void clickImage(View view) {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+        startActivityForResult(intent, PICK_FROM_ALBUM);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PICK_FROM_ALBUM && resultCode == RESULT_OK) {
+            imageView.setImageURI(data.getData());
+            imageUri = data.getData();
+            checkImage = "OK";
+        }
     }
 }

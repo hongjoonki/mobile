@@ -103,6 +103,26 @@ public class partime_home extends AppCompatActivity implements NavigationView.On
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         button1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 MyFragment1 fragment1= new MyFragment1();
