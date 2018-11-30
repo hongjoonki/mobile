@@ -101,7 +101,7 @@ public class RegisterActivity extends Activity{
                         .show();
             }
             else {
-                / 모든 항목이 다 값이 있지만 아이디체크가 이루어지지 않았을 때 메세지 호출
+                // 모든 항목이 다 값이 있지만 아이디체크가 이루어지지 않았을 때 메세지 호출
                 if (checkId == "") {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
                     builder.setMessage("아이디가 유효한지 체크하세요")
