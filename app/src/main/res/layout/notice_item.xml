@@ -52,36 +52,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="68dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:textStyle="bold">
-
-
-            <TextView
-                android:id="@+id/my_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center"
-                android:text="제목"
-                android:textColor='#69b9ab'
-                android:textSize="18dp" />
-
-            <TextView
-                android:id="@+id/my_time"
-                android:layout_width="32dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center"
-                android:text="시간"
-                android:textColor='#69b9ab'
-                android:textSize="10dp" />
-
-
-        </LinearLayout>
-
-
     </LinearLayout>
 
 </LinearLayout>

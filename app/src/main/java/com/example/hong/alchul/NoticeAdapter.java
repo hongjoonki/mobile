@@ -57,52 +57,20 @@ public class NoticeAdapter extends BaseAdapter {
             holder.tv_title = (TextView)convertView.findViewById(R.id.tv_title);
             holder.tv_time = (TextView)convertView.findViewById(R.id.tv_time);
 
-
-            holder.my_title = (TextView)convertView.findViewById(R.id.my_title);
-            holder.my_time = (TextView)convertView.findViewById(R.id.my_time);
-
             convertView.setTag(holder);
         }else{
             holder= (ViewHolder) convertView.getTag();
         }
 
 //누군지 판별
-        if(noticeData.get(position).getId().equals(id)){
-            holder.tv_time.setVisibility(View.GONE);
-            holder.tv_name.setVisibility(View.GONE);
-            holder.tv_title.setVisibility(View.GONE);
+        String writer = noticeData.get(position).getUserState();
+        holder.tv_time.setVisibility(View.VISIBLE);
+        holder.tv_name.setVisibility(View.VISIBLE);
+        holder.tv_title.setVisibility(View.VISIBLE);
 
-            holder.my_title.setVisibility(View.VISIBLE);
-            holder.my_time.setVisibility(View.VISIBLE);
-
-            holder.my_time.setText(noticeData.get(position).getTime());
-            holder.my_title.setText(noticeData.get(position).getTitle());
-        }else{
-            String writer = noticeData.get(position).getUserState();
-            if (writer.equals("manager")) {
-                holder.tv_time.setVisibility(View.VISIBLE);
-                holder.tv_name.setVisibility(View.VISIBLE);
-                holder.tv_title.setVisibility(View.VISIBLE);
-
-                holder.my_title.setVisibility(View.GONE);
-                holder.my_time.setVisibility(View.GONE);
-
-                holder.tv_time.setText(noticeData.get(position).getTime());
-                holder.tv_name.setText(noticeData.get(position).getId() + " [MANAGER]");
-                holder.tv_title.setText(noticeData.get(position).getTitle());
-            } else {
-                holder.tv_time.setVisibility(View.VISIBLE);
-                holder.tv_name.setVisibility(View.VISIBLE);
-                holder.tv_title.setVisibility(View.VISIBLE);
-
-                holder.my_title.setVisibility(View.GONE);
-                holder.my_time.setVisibility(View.GONE);
-
-                holder.tv_time.setText(noticeData.get(position).getTime());
-                holder.tv_name.setText(noticeData.get(position).getId()+ " [PART-TIMER]");
-                holder.tv_title.setText(noticeData.get(position).getTitle());
-            }
-        }
+        holder.tv_time.setText(noticeData.get(position).getTime());
+        holder.tv_name.setText(noticeData.get(position).getId()+ " [" + writer + "]");
+        holder.tv_title.setText(noticeData.get(position).getTitle());
 
         return convertView;
     }
@@ -112,9 +80,6 @@ public class NoticeAdapter extends BaseAdapter {
         TextView tv_time;
         TextView tv_name;
         TextView tv_title;
-
-        TextView my_title;
-        TextView my_time;
     }
 
 }
