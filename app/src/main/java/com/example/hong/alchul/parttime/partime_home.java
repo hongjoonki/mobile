@@ -24,6 +24,7 @@ import com.example.hong.alchul.LoginActivity;
 import com.example.hong.alchul.R;
 import com.example.hong.alchul.RegisterActivity;
 import com.example.hong.alchul.manager.manager_frag1;
+import com.example.hong.alchul.manager.phone_list;
 import com.example.hong.alchul.parttime.MyFragment1;
 import com.example.hong.alchul.parttime.MyFragment2;
 import com.example.hong.alchul.parttime.MyFragment3;
@@ -142,8 +143,9 @@ public class partime_home extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if(id==R.id.contact){
-            manager_frag1 fragment1 = new manager_frag1();
-            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
+            phone_list list_phone = new phone_list();
+            list_phone.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, list_phone).commit();
 
 
 
@@ -158,7 +160,7 @@ public class partime_home extends AppCompatActivity implements NavigationView.On
                             Intent intent = new Intent(partime_home.this, LoginActivity.class);
                             partime_home.this.startActivity(intent);
                         }
-                    })
+                    }).setNegativeButton("취소",null)
                     .create()
                     .show();
 

@@ -58,7 +58,7 @@ public class NoticeAdapter extends BaseAdapter {
             holder.tv_time = (TextView)convertView.findViewById(R.id.tv_time);
 
 
-            holder.my_title = (TextView)convertView.findViewById(R.id.my_title);
+            //holder.my_title = (TextView)convertView.findViewById(R.id.my_title);
             holder.my_time = (TextView)convertView.findViewById(R.id.my_time);
 
             convertView.setTag(holder);

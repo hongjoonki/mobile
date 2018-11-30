@@ -9,14 +9,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-<<<<<<< HEAD
-        android:layout_height="wrap_content"
-=======
-        android:layout_height="105dp"
->>>>>>> e2b391557a7b5e90a9dc2999ddd6207082003d8a
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:textStyle="bold">
+        android:layout_height="wrap_content">
+
 
 
         <LinearLayout
@@ -62,15 +56,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-<<<<<<< HEAD
             android:layout_height="match_parent"
-            android:layout_weight="3"
-=======
-            android:layout_height="61dp"
->>>>>>> e2b391557a7b5e90a9dc2999ddd6207082003d8a
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:textStyle="bold">
+            android:layout_weight="3">
 
 
             <TextView
