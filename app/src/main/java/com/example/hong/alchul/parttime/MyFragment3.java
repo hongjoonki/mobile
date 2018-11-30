@@ -85,7 +85,7 @@ public class MyFragment3 extends Fragment {
         data = new ArrayList<>();
 
         final LinearLayout edit = (LinearLayout)view.findViewById(R.id.edit);
-        final LinearLayout chat = (LinearLayout) view.findViewById(R.id.chat);
+        final LinearLayout chat = (LinearLayout)view.findViewById(R.id.chat);
 
         edit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -112,7 +112,7 @@ public class MyFragment3 extends Fragment {
         });
 
         // 공지 (파이어베이스 및 뷰에 글 올리는 기능)
-        final NoticeAdapter adapter = new NoticeAdapter(context, R.layout.notice_item, listVO, userId, userStat);
+        final NoticeAdapter adapter = new NoticeAdapter(context, R.layout.notice_item, listVO, userName, userStat);
         listView.setAdapter(adapter);
 
 
@@ -162,7 +162,7 @@ public class MyFragment3 extends Fragment {
                 //list.add(new ChatVO(R.drawable.profile1, id, sb.toString(), timeNow.format(today)));
                 //adapter.notifyDataSetChanged();
 
-                myRef.push().setValue(new NoticeVO(userId, title, content, timeNow.format(today), userStat));
+                myRef.push().setValue(new NoticeVO(userName, title, content, timeNow.format(today), userStat));
                 content="";
                 title="";
             }
