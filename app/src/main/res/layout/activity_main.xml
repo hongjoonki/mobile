@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".parttime.MainActivity">
+    tools:context=".parttime.MainActivity"
+    android:background="#d7e5ff">
 
 
     <android.support.design.widget.AppBarLayout
@@ -71,7 +72,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:onClick="clickfind"
-            android:text="Find Store" />
+            android:text="Find Store"
+            android:textColor="#ffff"
+            android:background="@drawable/color_button3"/>
 
         <Button
             android:id="@+id/enterBt"
@@ -79,7 +82,10 @@
             android:layout_height="wrap_content"
             android:onClick="clickenter"
             android:layout_marginLeft="20dp"
-            android:text="enter" />
+            android:text="enter"
+            android:textColor="#ffff"
+            android:background="@drawable/color_button3"/>
+
         </LinearLayout>
     </LinearLayout>
 
@@ -90,6 +96,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="logout"
+        android:textColor="#ffff"
+        android:background="#547ed3"
         android:onClick="btn_logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
