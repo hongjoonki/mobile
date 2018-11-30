@@ -7,6 +7,25 @@
     android:orientation="vertical"
     tools:context=".parttime.MainActivity">
 
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme" />
+
+
+    </android.support.design.widget.AppBarLayout>
+
+
+
     <TextView
         android:id="@+id/NameView"
         android:layout_width="100dp"

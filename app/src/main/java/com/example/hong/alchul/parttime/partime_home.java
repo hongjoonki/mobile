@@ -1,11 +1,16 @@
 package com.example.hong.alchul.parttime;
 
 import android.content.Intent;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 //import com.example.hong.alchul.ChattingActivity;
 import com.example.hong.alchul.R;
@@ -14,12 +19,21 @@ import com.example.hong.alchul.parttime.MyFragment2;
 import com.example.hong.alchul.parttime.MyFragment3;
 
 public class partime_home extends AppCompatActivity {
+    private DrawerLayout drawer;
     Bundle bundle = new Bundle(7);
     //fragment로 정보넘기기위해 bundle사용
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partime_home);
+
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
 
 
@@ -96,6 +110,15 @@ public class partime_home extends AppCompatActivity {
 
                 }
             });      //fragment3로 넘어가는 이벤트리스터
+        }
+    }
+
+    @Override
+    public void onBackPressed(){
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        } else{
+            super.onBackPressed();
         }
     }
 
