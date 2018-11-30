@@ -61,10 +61,8 @@ ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(),
         ((ListView) findViewById(R.id.List_view)).setAdapter(adapter);
 
 
-        final ChatAdapter2 adapter2 = new ChatAdapter2(getApplicationContext(), R.layout.my_message, list, id);
 
 
-        ((ListView) findViewById(R.id.List_view)).setAdapter(adapter2);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,11 +101,9 @@ ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(),
                 Log.i("test", userId + id);
 
 
-                if (userId.equals(id)) {
-                    adapter2.notifyDataSetChanged();
-                } else {
+
                     adapter.notifyDataSetChanged();
-                }
+
 
             }
 
