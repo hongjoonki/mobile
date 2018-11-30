@@ -60,6 +60,9 @@ ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(),
         final ChatAdapter adapter = new ChatAdapter(getApplicationContext(), R.layout.chat_item, list, id);
         ((ListView) findViewById(R.id.listView)).setAdapter(adapter);
 
+        final ChatAdapter adapter2 = new ChatAdapter(getApplicationContext(), R.layout.chat_item, list, id);
+        ((ListView) findViewById(R.id.listView)).setAdapter(adapter2);
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,9 +93,15 @@ ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(),
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
                 ChatVO value = dataSnapshot.getValue(ChatVO.class); // 괄호 안 : 꺼낼 자료 형태
                 list.add(value);
-                adapter.notifyDataSetChanged();
+                String userId = value.getId();
+                if (userId.equals(id)) {
+                    adapter2.notifyDataSetChanged();
+                } else {
+                    adapter.notifyDataSetChanged();
+                }
             }
 
             @Override
