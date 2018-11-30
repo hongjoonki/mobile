@@ -16,9 +16,10 @@
 
 
         <LinearLayout
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_weight="1"
             android:orientation="vertical">
 
 
@@ -28,8 +29,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center"
                 android:text="이 름"
-                android:textSize="10dp"
-                android:textStyle="bold" />
+                android:textSize="15dp"
+                android:textColor="#202020"
+                />
 
             <TextView
                 android:id="@+id/tv_title"
@@ -37,20 +39,47 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center"
                 android:text="메세지"
-                android:textColor='#69b9ab'
-                android:textSize="15dp" />
+                android:textStyle="bold"
+                android:textColor="#191a19"
+                android:textSize="30dp" />
 
-
-            <TextView
-                android:id="@+id/tv_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center"
-                android:text="시간"
-                android:textColor='#69b9ab'
-                android:textSize="10dp" />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                > </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="bottom"
+                >
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="시간"
+                    android:textColor="#b4b4b4"
+                    android:textSize="12dp"
+                    />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
