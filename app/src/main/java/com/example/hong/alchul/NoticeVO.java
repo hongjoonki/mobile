@@ -1,24 +1,24 @@
 package com.example.hong.alchul;
 
-public class ChatVO {
+public class NoticeVO {
 
-    private int imageID ;
     private String id;
+    private String title;
     private String content;
     private String time;
+    private String userState;
 
-    public ChatVO(){}
+    public NoticeVO(){}
 
-    public ChatVO(int imageID, String id, String content, String time) {
-        this.imageID = imageID;
+    public NoticeVO(String id, String title, String content, String time, String userStat) {
         this.id = id;
+        this.title = title;
         this.content = content;
         this.time = time;
+        this.userState = userStat;
     }
 
-    public int getImageID() {
-        return imageID;
-    }
+    public String getUserState() { return userState; }
 
     public String getId() {
         return id;
@@ -28,8 +28,9 @@ public class ChatVO {
         return content;
     }
 
+    public String getTitle() { return title; }
+
     public String getTime() {
         return time;
     }
-
 }

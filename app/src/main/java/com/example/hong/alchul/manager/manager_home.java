@@ -1,6 +1,8 @@
 package com.example.hong.alchul.manager;
 
 import android.content.Intent;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,13 +13,22 @@ import com.example.hong.alchul.R;
 import com.example.hong.alchul.parttime.MyFragment3;
 
 public class manager_home extends AppCompatActivity {
-
+    private DrawerLayout drawer;
     Bundle bundle = new Bundle(7);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_home);
+
+
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
         Intent intent = getIntent();   //로그인유저의 정보를 받아온다.
         final String userId = intent.getStringExtra("UserId");
         String userName = intent.getStringExtra("UserName");
@@ -26,6 +37,12 @@ public class manager_home extends AppCompatActivity {
         String storeCode = intent.getStringExtra("StoreCode");
         String title = intent.getStringExtra("title");
         String content = intent.getStringExtra("content");
+
+        String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();//intent 받아오기
+
+        LinearLayout button1 = (LinearLayout)findViewById(R.id.button1);
+        LinearLayout button2 = (LinearLayout)findViewById(R.id.button2);
 
         if (title != null || content != null) {
             bundle.putString("UserId", userId);
@@ -40,11 +57,6 @@ public class manager_home extends AppCompatActivity {
             fragment3.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
         } else {
-            String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();//intent 받아오기
-
-            LinearLayout button1 = (LinearLayout)findViewById(R.id.button1);
-            LinearLayout button2 = (LinearLayout)findViewById(R.id.button2);
 
             bundle.putString("UserId", userId);         //bundle에 정보를 추가한다.
             bundle.putString("UserName", userName);
@@ -56,32 +68,27 @@ public class manager_home extends AppCompatActivity {
             MyFragment3 fragment3 = new MyFragment3();
             fragment3.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
-
-
-
-
-
-            button1.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    manager_frag1 fragment1 = new manager_frag1();
-                    fragment1.setArguments(bundle);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
-
-                }
-            });
-
-            button2.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    MyFragment3 fragment3 = new MyFragment3();
-                    fragment3.setArguments(bundle);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
-
-                }
-            });
         }
+        button1.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                manager_frag1 fragment1 = new manager_frag1();
+                fragment1.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
+
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                MyFragment3 fragment3 = new MyFragment3();
+                fragment3.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
+
+            }
+        });
     }
 }

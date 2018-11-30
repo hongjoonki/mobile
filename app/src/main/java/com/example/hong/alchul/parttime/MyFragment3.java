@@ -24,8 +24,9 @@ import com.example.hong.alchul.ChatActivity;
 import com.example.hong.alchul.ChatVO;
 import com.example.hong.alchul.NoticeActivity;
 import com.example.hong.alchul.NoticeAdapter;
+import com.example.hong.alchul.NoticeRoom;
+import com.example.hong.alchul.NoticeVO;
 import com.example.hong.alchul.R;
-import com.example.hong.alchul.WriteNotice;
 import com.example.hong.alchul.manager.UserAdapter;
 import com.example.hong.alchul.manager.UserItem;
 import com.example.hong.alchul.manager.user_calendar;
@@ -51,7 +52,6 @@ public class MyFragment3 extends Fragment {
     private Context context;
 
     private ArrayList<UserItem> data = null;
-    List list = new ArrayList();
     String userId;
     String userName;
     String userPhoneNum;
@@ -62,7 +62,7 @@ public class MyFragment3 extends Fragment {
     String title = null;
     String content = null;
 
-    ArrayList<ChatVO> listVO = new ArrayList<>();
+    ArrayList<NoticeVO> listVO = new ArrayList<>();
 
     @Nullable
     @Override
@@ -111,8 +111,39 @@ public class MyFragment3 extends Fragment {
             }
         });
 
-        final NoticeAdapter adapter = new NoticeAdapter(context, R.layout.notice_item, listVO, userId);
+        // 공지 (파이어베이스 및 뷰에 글 올리는 기능)
+        final NoticeAdapter adapter = new NoticeAdapter(context, R.layout.notice_item, listVO, userId, userStat);
         listView.setAdapter(adapter);
+
+
+        // 롱클릭시 지우기
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long id) {
+                listVO.remove(i);
+                adapter.notifyDataSetChanged();//새로고침
+                //myRef.removeValue();
+
+
+                return true;
+            }
+        });
+
+
+        // 클릭하면 공지 확인 뷰으로 보내기
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(context, NoticeRoom.class);
+                intent.putExtra("UserId", userId);
+                intent.putExtra("UserName", userName);
+                intent.putExtra("UserPhoneNum", userPhoneNum);
+                intent.putExtra("UserStat", userStat);
+                intent.putExtra("StoreCode", storeCode);
+                startActivity(intent);
+            }
+        });
+
 
         if (title != null || content != null) {
             if (content.equals("")) {
@@ -131,7 +162,7 @@ public class MyFragment3 extends Fragment {
                 //list.add(new ChatVO(R.drawable.profile1, id, sb.toString(), timeNow.format(today)));
                 //adapter.notifyDataSetChanged();
 
-                myRef.push().setValue(new ChatVO(userId, sb.toString(), timeNow.format(today)));
+                myRef.push().setValue(new NoticeVO(userId, title, content, timeNow.format(today), userStat));
                 content="";
                 title="";
             }
@@ -140,7 +171,7 @@ public class MyFragment3 extends Fragment {
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                ChatVO value = dataSnapshot.getValue(ChatVO.class); // 괄호 안 : 꺼낼 자료 형태
+                NoticeVO value = dataSnapshot.getValue(NoticeVO.class); // 괄호 안 : 꺼낼 자료 형태
                 listVO.add(value);
                 adapter.notifyDataSetChanged();
             }
@@ -165,65 +196,6 @@ public class MyFragment3 extends Fragment {
 
             }
         });
-
-
-
-
-        /*Response.Listener<String> responseListener = new Response.Listener<String>() {
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonResponse = new JSONObject(response);
-                    JSONArray success = jsonResponse.getJSONArray("response");
-                    for (int i = 0; i < success.length(); i++) {
-                        HashMap<String, String> InputData1 = new HashMap<>();
-
-                        JSONObject item = success.getJSONObject(i);
-                        String part = item.getString("userName");
-                        //list.add(part);
-                        //InputData1.put("userName", part);
-                        String phonenum = item.getString("userPhoneNum");
-                        //InputData1.put("userPhoneNum", phonenum );
-
-                        UserItem user = new UserItem(part, phonenum);
-
-                        data.add(user);
-
-                    }//알바이름이랑 폰번호를 받아와서 어레이리스트에 넣는다. 그 다음 리스트뷰에 넣을 Data에 add한다.
-
-                    UserAdapter adapter = new UserAdapter(context, R.layout.user_item, data);
-                    listView.setAdapter(adapter); //data에 있는 값들을 user-item있는 레이아웃과 매칭한다.
-
-
-                } catch (JSONException e) {
-
-                    e.printStackTrace();
-                }
-            }
-        };
-
-
-        listRequest list_user = new listRequest(storeCode, responseListener);
-
-        RequestQueue queue = Volley.newRequestQueue(context);
-        queue.add(list_user);
-
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(context, user_calendar.class);
-                intent.putExtra("userName", data.get(position).getName());
-                intent.putExtra("userPhoneNum", data.get(position).getPhone());
-                intent.putExtra("storeCode", userStat);
-                startActivity(intent);
-
-
-            }
-        });
-
-
-        return view;
-    }*/
 
         return view;
     }

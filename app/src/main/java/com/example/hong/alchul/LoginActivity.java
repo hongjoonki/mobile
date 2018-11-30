@@ -5,9 +5,13 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toolbar;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,7 +33,7 @@ public class LoginActivity extends Activity {
     EditText passwordText;
     Button loginButton;
     Button registerButton;
-
+    Toolbar mToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,11 @@ public class LoginActivity extends Activity {
         registerButton = (Button) findViewById(R.id.registerButton);
 
     }
+
+
+
+    
+
 
     // REGISTER 버튼 눌렀을 때 이벤트 추가 -> RegisterActivity(회원등록 이벤트)로 이동
     public void onClick2(View v) {

@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
+
     <ImageView
         android:layout_width="299dp"
         android:layout_height="305dp"

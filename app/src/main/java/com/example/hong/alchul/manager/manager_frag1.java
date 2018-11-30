@@ -101,7 +101,7 @@ public class manager_frag1 extends Fragment {
 
 
 
-        listRequest list_user = new listRequest(storeCode, responseListener);
+        listRequest list_user = new listRequest(storeCode, userId ,responseListener);
 
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(list_user);

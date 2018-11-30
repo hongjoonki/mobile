@@ -32,13 +32,14 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tv_content"
+                android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center"
                 android:text="메세지"
                 android:textColor='#69b9ab'
                 android:textSize="15dp" />
+
 
             <TextView
                 android:id="@+id/tv_time"
@@ -53,29 +54,29 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="68dp"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:textStyle="bold">
 
 
             <TextView
-                android:id="@+id/my_msg"
+                android:id="@+id/my_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center"
-                android:text="메세지"
+                android:text="제목"
                 android:textColor='#69b9ab'
                 android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/my_time"
-                android:layout_width="wrap_content"
+                android:layout_width="32dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center"
                 android:text="시간"
                 android:textColor='#69b9ab'
-                android:textSize="18dp" />
+                android:textSize="10dp" />
 
 
         </LinearLayout>
