@@ -60,11 +60,10 @@ ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(),
         final ChatAdapter adapter = new ChatAdapter(getApplicationContext(), R.layout.chat_item, list, id);
         ((ListView) findViewById(R.id.List_view)).setAdapter(adapter);
 
-<<<<<<< HEAD
+
         final ChatAdapter2 adapter2 = new ChatAdapter2(getApplicationContext(), R.layout.my_message, list, id);
-=======
-        final ChatAdapter adapter2 = new ChatAdapter(getApplicationContext(), R.layout.chat_item, list, id);
->>>>>>> 4190cbcbb4a101e0e24a2c60667f555e637a8bfe
+
+
         ((ListView) findViewById(R.id.List_view)).setAdapter(adapter2);
 
         btn.setOnClickListener(new View.OnClickListener() {
