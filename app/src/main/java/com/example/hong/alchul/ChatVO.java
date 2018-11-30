@@ -6,6 +6,7 @@ public class ChatVO {
     private String id;
     private String content;
     private String time;
+    private String title;
 
     public ChatVO(){}
 
@@ -32,9 +33,12 @@ public class ChatVO {
         return time;
     }
 
-    public ChatVO(String id, String content, String time) {
+    public String getTitle() {
+        return title;
+    }
+    public ChatVO(String id, String content, String title) {
         this.id = id;
         this.content = content;
-        this.time = time;
+        this.title = title;
     }
 }
