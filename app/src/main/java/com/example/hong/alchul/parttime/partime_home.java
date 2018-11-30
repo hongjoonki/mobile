@@ -1,13 +1,18 @@
 package com.example.hong.alchul.parttime;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,12 +20,14 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 //import com.example.hong.alchul.ChattingActivity;
+import com.example.hong.alchul.LoginActivity;
 import com.example.hong.alchul.R;
+import com.example.hong.alchul.RegisterActivity;
 import com.example.hong.alchul.parttime.MyFragment1;
 import com.example.hong.alchul.parttime.MyFragment2;
 import com.example.hong.alchul.parttime.MyFragment3;
 
-public class partime_home extends AppCompatActivity {
+public class partime_home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
     Bundle bundle = new Bundle(7);
     //fragment로 정보넘기기위해 bundle사용
@@ -33,7 +40,11 @@ public class partime_home extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
         View nav_header_view = navigationView.inflateHeaderView(R.layout.nav_header);
+
+
+
         TextView header_id = (TextView) nav_header_view.findViewById(R.id.loginname);
 
 
@@ -41,9 +52,6 @@ public class partime_home extends AppCompatActivity {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-
-
 
 
         Intent intent = getIntent();   //로그인유저의 정보를 받아온다.
@@ -126,13 +134,36 @@ public class partime_home extends AppCompatActivity {
         }
     }
 
+    @SuppressWarnings("statementWithEmptyBody")
     @Override
-    public void onBackPressed(){
-        if(drawer.isDrawerOpen(GravityCompat.START)){
-            drawer.closeDrawer(GravityCompat.START);
-        } else{
-            super.onBackPressed();
+    public boolean onNavigationItemSelected(MenuItem item){
+        Log.i("test", "sfsfsd");
+        int id = item.getItemId();
+
+        if(id==R.id.contact){
+            MyFragment3 fragment3 = new MyFragment3();
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
+
+
+
+        }else if(id==R.id.setting){
+
+        }else if(id==R.id.logout){
+            AlertDialog.Builder builder = new AlertDialog.Builder(partime_home.this);
+            builder.setMessage("로그아웃 하시겠습니까?")
+                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(partime_home.this, LoginActivity.class);
+                            partime_home.this.startActivity(intent);
+                        }
+                    })
+                    .create()
+                    .show();
+
         }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
 }
