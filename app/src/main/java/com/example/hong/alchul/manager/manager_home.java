@@ -27,6 +27,12 @@ public class manager_home extends AppCompatActivity {
         String title = intent.getStringExtra("title");
         String content = intent.getStringExtra("content");
 
+        String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();//intent 받아오기
+
+        LinearLayout button1 = (LinearLayout)findViewById(R.id.button1);
+        LinearLayout button2 = (LinearLayout)findViewById(R.id.button2);
+
         if (title != null || content != null) {
             bundle.putString("UserId", userId);
             bundle.putString("UserName", userName);
@@ -40,11 +46,6 @@ public class manager_home extends AppCompatActivity {
             fragment3.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
         } else {
-            String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();//intent 받아오기
-
-            LinearLayout button1 = (LinearLayout)findViewById(R.id.button1);
-            LinearLayout button2 = (LinearLayout)findViewById(R.id.button2);
 
             bundle.putString("UserId", userId);         //bundle에 정보를 추가한다.
             bundle.putString("UserName", userName);
@@ -56,32 +57,27 @@ public class manager_home extends AppCompatActivity {
             MyFragment3 fragment3 = new MyFragment3();
             fragment3.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
-
-
-
-
-
-            button1.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    manager_frag1 fragment1 = new manager_frag1();
-                    fragment1.setArguments(bundle);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
-
-                }
-            });
-
-            button2.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    MyFragment3 fragment3 = new MyFragment3();
-                    fragment3.setArguments(bundle);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
-
-                }
-            });
         }
+        button1.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                manager_frag1 fragment1 = new manager_frag1();
+                fragment1.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
+
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                MyFragment3 fragment3 = new MyFragment3();
+                fragment3.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
+
+            }
+        });
     }
 }

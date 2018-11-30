@@ -115,36 +115,20 @@ public class MyFragment3 extends Fragment {
         final NoticeAdapter adapter = new NoticeAdapter(context, R.layout.notice_item, listVO, userId, userStat);
         listView.setAdapter(adapter);
 
-        /*
+
         // 롱클릭시 지우기
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long id) {
+                listVO.remove(i);
+                adapter.notifyDataSetChanged();//새로고침
+                //myRef.removeValue();
 
-                final int position = i;
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("삭제하기");
-                builder.setMessage("이 메시지를 삭제할까요?");
-
-                builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-                        listVO.remove(position);
-                        adapter.notifyDataSetChanged();//새로고침
-                    }
-                });
-                //취소
-                builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
                 return true;
             }
         });
-        */
+
 
         // 클릭하면 공지 확인 뷰으로 보내기
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

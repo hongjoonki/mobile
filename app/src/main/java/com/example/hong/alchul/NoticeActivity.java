@@ -73,7 +73,7 @@ public class NoticeActivity extends AppCompatActivity {
         }
         else{
             if (userStat.equals("manager")) {
-                Intent intent = new Intent(NoticeActivity.this, partime_home.class);
+                Intent intent = new Intent(NoticeActivity.this, manager_home.class);
                 intent.putExtra("UserId", userId);
                 intent.putExtra("UserName", userName);
                 intent.putExtra("UserPhoneNum", userPhoneNum);
@@ -84,7 +84,7 @@ public class NoticeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
             else {
-                Intent intent = new Intent(NoticeActivity.this, manager_home.class);
+                Intent intent = new Intent(NoticeActivity.this, partime_home.class);
                 intent.putExtra("UserId", userId);
                 intent.putExtra("UserName", userName);
                 intent.putExtra("UserPhoneNum", userPhoneNum);
