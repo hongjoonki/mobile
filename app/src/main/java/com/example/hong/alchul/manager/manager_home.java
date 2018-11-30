@@ -1,18 +1,27 @@
 package com.example.hong.alchul.manager;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hong.alchul.LoginActivity;
 import com.example.hong.alchul.R;
 import com.example.hong.alchul.parttime.MyFragment3;
+import com.example.hong.alchul.parttime.partime_home;
 
-public class manager_home extends AppCompatActivity {
+public class manager_home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
     Bundle bundle = new Bundle(7);
     @Override
@@ -23,6 +32,15 @@ public class manager_home extends AppCompatActivity {
 
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        View nav_header_view = navigationView.inflateHeaderView(R.layout.nav_header);
+
+
+
+        TextView header_id = (TextView) nav_header_view.findViewById(R.id.loginname);
+
 
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
@@ -37,6 +55,8 @@ public class manager_home extends AppCompatActivity {
         String storeCode = intent.getStringExtra("StoreCode");
         String title = intent.getStringExtra("title");
         String content = intent.getStringExtra("content");
+
+        header_id.setText(userName);
 
         String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();//intent 받아오기
@@ -91,4 +111,32 @@ public class manager_home extends AppCompatActivity {
             }
         });
     }
+    @SuppressWarnings("statementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item){
+        Log.i("test", "sfsfsd");
+        int id = item.getItemId();
+
+        if(id==R.id.contact){
+
+        }else if(id==R.id.setting){
+
+        }else if(id==R.id.logout){
+            AlertDialog.Builder builder = new AlertDialog.Builder(manager_home.this);
+            builder.setMessage("로그아웃 하시겠습니까?")
+                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(manager_home.this, LoginActivity.class);
+                            manager_home.this.startActivity(intent);
+                        }
+                    })
+                    .create()
+                    .show();
+
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
 }
