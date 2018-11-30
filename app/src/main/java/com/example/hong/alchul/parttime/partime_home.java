@@ -23,6 +23,7 @@ import android.widget.Toolbar;
 import com.example.hong.alchul.LoginActivity;
 import com.example.hong.alchul.R;
 import com.example.hong.alchul.RegisterActivity;
+import com.example.hong.alchul.manager.manager_frag1;
 import com.example.hong.alchul.parttime.MyFragment1;
 import com.example.hong.alchul.parttime.MyFragment2;
 import com.example.hong.alchul.parttime.MyFragment3;
@@ -100,6 +101,7 @@ public class partime_home extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
         }
 
+
         button1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 MyFragment1 fragment1= new MyFragment1();
@@ -140,8 +142,8 @@ public class partime_home extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if(id==R.id.contact){
-            MyFragment3 fragment3 = new MyFragment3();
-            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
+            manager_frag1 fragment1 = new manager_frag1();
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
 
 
 
