@@ -93,93 +93,103 @@ public class RegisterActivity extends Activity{
                     .show();
         } else {
 
-            // 모든 항목이 다 값이 있지만 아이디체크가 이루어지지 않았을 때 메세지 호출
-            if (checkId == "") {
+            if (password.length() <= 5) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                builder.setMessage("아이디가 유효한지 체크하세요")
-                        .setPositiveButton("확인", null)
+                builder.setMessage("비밀번호는 6글자 이상이어야 합니다")
+                        .setNegativeButton("다시 시도", null)
                         .create()
                         .show();
-            }else {
-                //Firebase user에 추가
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(id, password)
-                        .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                final String uid = task.getResult().getUser().getUid();
-                                FirebaseStorage.getInstance().getReference().child("userImages").child(uid).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                        @SuppressWarnings("VisibleForTests")
-                                        String imageUrl = task.getResult().getUploadSessionUri().toString();
+            }
+            else {
+                // 모든 항목이 다 값이 있지만 아이디체크가 이루어지지 않았을 때 메세지 호출
+                if (checkId == "") {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                    builder.setMessage("아이디가 유효한지 체크하세요")
+                            .setPositiveButton("확인", null)
+                            .create()
+                            .show();
+                }else {
+                    //Firebase user에 추가
+                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(id, password)
+                            .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    final String uid = task.getResult().getUser().getUid();
+                                    FirebaseStorage.getInstance().getReference().child("userImages").child(uid).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                            @SuppressWarnings("VisibleForTests")
+                                            String imageUrl = task.getResult().getUploadSessionUri().toString();
 
-                                        UserModel userModel = new UserModel();
-                                        userModel.userName = name;
-                                        userModel.userPhoneNum = phoneNum;
-                                        userModel.userStat = job;
-                                        userModel.userPassword = password;
-                                        userModel.userImage = imageUrl;
-                                        FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(userModel);
-                                    }
-                                });
-                            }
-                        });
+                                            UserModel userModel = new UserModel();
+                                            userModel.userName = name;
+                                            userModel.userPhoneNum = phoneNum;
+                                            userModel.userStat = job;
+                                            userModel.userPassword = password;
+                                            userModel.userImage = imageUrl;
+                                            FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(userModel);
+                                        }
+                                    });
+                                }
+                            });
 
 
-                // Response.Listener형식의 객체 생성 (response 결과값을 받아서 실행할 코드)
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    public void onResponse(String response) {
-                        try {
-                            // php파일 실행 결과로 Json형식의 response가 생성된다
-                            // 이 결과를 Json형식으로 받아오기 위해 JSONObject를 만들어 주었다.
-                            JSONObject jsonResponse = new JSONObject(response);
+                    // Response.Listener형식의 객체 생성 (response 결과값을 받아서 실행할 코드)
+                    Response.Listener<String> responseListener = new Response.Listener<String>() {
+                        public void onResponse(String response) {
+                            try {
+                                // php파일 실행 결과로 Json형식의 response가 생성된다
+                                // 이 결과를 Json형식으로 받아오기 위해 JSONObject를 만들어 주었다.
+                                JSONObject jsonResponse = new JSONObject(response);
 
-                            // 결과 json에서 "success"라는 키의 값을 success라는 변수에 boolean 형태로 저장한다.
-                            boolean success = jsonResponse.getBoolean("success");
+                                // 결과 json에서 "success"라는 키의 값을 success라는 변수에 boolean 형태로 저장한다.
+                                boolean success = jsonResponse.getBoolean("success");
 
                             /* success의 값은 2가지 결과로 나온다.
                                  1.  해당 php코드가 문제없이 실행되었으면 sucess = true
                                  2.  해당 php코드에 문제가 생겼으면 sucess = false
                             */
-                            // insert쿼리가 정상적으로 작동하였으므로 회원 등록 성공 메세지 호출
-                            if (success) {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                                builder.setMessage("회원 등록에 성공했습니다.")
-                                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                                RegisterActivity.this.startActivity(intent);
-                                            }
-                                        })
-                                        .create()
-                                        .show();
+                                // insert쿼리가 정상적으로 작동하였으므로 회원 등록 성공 메세지 호출
+                                if (success) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                                    builder.setMessage("회원 등록에 성공했습니다.")
+                                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                                    RegisterActivity.this.startActivity(intent);
+                                                }
+                                            })
+                                            .create()
+                                            .show();
 
+                                }
+                                // insert쿼리가 잘 작동하지 않았으므로 회원등록 실패 메세지 호출
+                                else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                                    builder.setMessage("회원 등록에 실패했습니다.")
+                                            .setNegativeButton("다시 시도", null)
+                                            .create()
+                                            .show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                            // insert쿼리가 잘 작동하지 않았으므로 회원등록 실패 메세지 호출
-                            else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                                builder.setMessage("회원 등록에 실패했습니다.")
-                                        .setNegativeButton("다시 시도", null)
-                                        .create()
-                                        .show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
-                    }
-                };
-                // RegistRequest 객채 생성 (파라미터 값으로 id, password, name, phonNum, job, response.Listener의 객체 전달)
-                RegisterRequest registerRequest = new RegisterRequest(id, password, name, phoneNum, job, responseListener);
+                    };
+                    // RegistRequest 객채 생성 (파라미터 값으로 id, password, name, phonNum, job, response.Listener의 객체 전달)
+                    RegisterRequest registerRequest = new RegisterRequest(id, password, name, phoneNum, job, responseListener);
                 /*
                 RequestQueue 객체 생성 후 request할 클래스를 큐에 넣은후 실행
                 Volley 사용을 위해서 build.gradle에  compile 'com.android.volley:volley:1.0.0'를 추가하여야 한다.
                 또한, manifest파일에 인터넷 사용허가 추가 -> <uses-permission android:name="android.permission.INTERNET" />
                 Request class로 RegisterRequest를 선언하였으므로 RegisterRequest 클래스로 이동하게 된다.
                 */
-                RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
-                queue.add(registerRequest);
+                    RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
+                    queue.add(registerRequest);
+                }
             }
+
         }
 
     }
