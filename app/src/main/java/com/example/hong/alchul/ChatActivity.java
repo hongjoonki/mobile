@@ -60,7 +60,10 @@ ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(),
         final ChatAdapter adapter = new ChatAdapter(getApplicationContext(), R.layout.chat_item, list, id);
         ((ListView) findViewById(R.id.List_view)).setAdapter(adapter);
 
-        final ChatAdapter adapter2 = new ChatAdapter(getApplicationContext(), R.layout.chat_item, list, id);
+
+        final ChatAdapter2 adapter2 = new ChatAdapter2(getApplicationContext(), R.layout.my_message, list, id);
+
+
         ((ListView) findViewById(R.id.List_view)).setAdapter(adapter2);
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -97,11 +100,15 @@ ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(),
                 ChatVO value = dataSnapshot.getValue(ChatVO.class); // 괄호 안 : 꺼낼 자료 형태
                 list.add(value);
                 String userId = value.getId();
+                Log.i("test", userId + id);
+
+
                 if (userId.equals(id)) {
                     adapter2.notifyDataSetChanged();
                 } else {
                     adapter.notifyDataSetChanged();
                 }
+
             }
 
             @Override
