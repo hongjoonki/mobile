@@ -40,7 +40,7 @@ public class ChatActivity extends AppCompatActivity {
 /* 텍스트뷰만 있을때만 쓸수있어
 ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(), R.layout.talklist, list);*/
 
-        lv = findViewById(R.id.listView);
+        lv = findViewById(R.id.List_view);
         edt = findViewById(R.id.send_txt);
         btn = findViewById(R.id.send_btn);
 
@@ -58,10 +58,11 @@ ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(),
 //list.add(new ChatVO(R.drawable.profile3, "찡찡이", "안녕", "오후 4:42"));
 
         final ChatAdapter adapter = new ChatAdapter(getApplicationContext(), R.layout.chat_item, list, id);
-        ((ListView) findViewById(R.id.listView)).setAdapter(adapter);
+        ((ListView) findViewById(R.id.List_view)).setAdapter(adapter);
 
-        final ChatAdapter adapter2 = new ChatAdapter(getApplicationContext(), R.layout.chat_item, list, id);
-        ((ListView) findViewById(R.id.listView)).setAdapter(adapter2);
+
+
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,11 +98,13 @@ ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(),
                 ChatVO value = dataSnapshot.getValue(ChatVO.class); // 괄호 안 : 꺼낼 자료 형태
                 list.add(value);
                 String userId = value.getId();
-                if (userId.equals(id)) {
-                    adapter2.notifyDataSetChanged();
-                } else {
+                Log.i("test", userId + id);
+
+
+
                     adapter.notifyDataSetChanged();
-                }
+
+
             }
 
             @Override

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-public class ChatAdapter extends BaseAdapter {
+public class ChatAdapter2 extends BaseAdapter {
 
     private Context context;
     private int layout;
@@ -20,7 +20,7 @@ public class ChatAdapter extends BaseAdapter {
     private String id;
 
 
-    public ChatAdapter(Context applicationContext, int talklist, ArrayList<ChatVO> list, String id) {
+    public ChatAdapter2(Context applicationContext, int talklist, ArrayList<ChatVO> list, String id) {
         this.context = applicationContext;
         this.layout = talklist;
         this.chatData = list;

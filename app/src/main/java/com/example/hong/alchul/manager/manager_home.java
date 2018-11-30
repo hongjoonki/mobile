@@ -64,7 +64,7 @@ public class manager_home extends AppCompatActivity implements NavigationView.On
         LinearLayout button1 = (LinearLayout)findViewById(R.id.button1);
         LinearLayout button2 = (LinearLayout)findViewById(R.id.button2);
 
-        if (title != null || content != null) {
+        if (title != null && content != null) {
             bundle.putString("UserId", userId);
             bundle.putString("UserName", userName);
             bundle.putString("UserPhoneNum", userPhoneNum);

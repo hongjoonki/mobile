@@ -1,4 +1,4 @@
-package com.example.hong.alchul.manager;
+package com.example.hong.alchul.parttime;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +20,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.hong.alchul.R;
+import com.example.hong.alchul.manager.UserAdapter;
+import com.example.hong.alchul.manager.UserItem;
 import com.example.hong.alchul.parttime.MyFragment2;
 import com.example.hong.alchul.request.eventRequest;
 import com.example.hong.alchul.request.listRequest;
@@ -35,7 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.Executors;
 
-public class manager_frag1 extends Fragment {
+public class phone_list extends Fragment {
     View view;
     private Context context;
 
@@ -85,7 +87,7 @@ public class manager_frag1 extends Fragment {
 
                         data.add(user);
 
-                     }//알바이름이랑 폰번호를 받아와서 어레이리스트에 넣는다. 그 다음 리스트뷰에 넣을 Data에 add한다.
+                    }//알바이름이랑 폰번호를 받아와서 어레이리스트에 넣는다. 그 다음 리스트뷰에 넣을 Data에 add한다.
 
                     UserAdapter adapter = new UserAdapter(context ,R.layout.user_item, data);
                     listView.setAdapter(adapter); //data에 있는 값들을 user-item있는 레이아웃과 매칭한다.
@@ -111,12 +113,13 @@ public class manager_frag1 extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(context, user_calendar.class);
+                /*Intent intent = new Intent(context, user_calendar.class);
                 intent.putExtra("userName", data.get(position).getName());
                 intent.putExtra("userPhoneNum", data.get(position).getPhone());
                 intent.putExtra("storeCode", userStat);
-
-
+                startActivity(intent);*/
+                String tel="tel:"+data.get(position).getPhone();
+                startActivity(new Intent("android.intent.action.DIAL", Uri.parse(tel)));
 
 
             }
