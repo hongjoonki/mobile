@@ -7,12 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <android.support.v4.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        tools:openDrawer="start">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -29,13 +24,13 @@
 
             <FrameLayout
                 android:id="@+id/main_frame"
-                android:layout_above="@+id/mainactivity_bottomnavigationview"
+                android:layout_above="@+id/main_frame"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
             </FrameLayout>
-
+e
 
 
             <android.support.design.widget.BottomNavigationView
@@ -52,15 +47,6 @@
 
 
         </LinearLayout>
-
-        <android.support.design.widget.NavigationView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:id="@+id/nav_view"
-            app:menu="@menu/drawer_menu"/>
-
-    </android.support.v4.widget.DrawerLayout>
 
 
 

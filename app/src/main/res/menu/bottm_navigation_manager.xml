@@ -5,13 +5,13 @@
         android:icon="@drawable/people"
         android:title="People"/>
 
-    <item android:id="@+id/notie"
+    <item android:id="@+id/notice"
         android:icon="@drawable/notice"
         android:title="Notice"/>
 
-    <item android:id="@+id/chat"
-        android:icon="@drawable/chatting"
-        android:title="Chatting" />
+    <item android:id="@+id/logout"
+        android:icon="@drawable/logout"
+        android:title="Logout" />
 
 
 </menu>

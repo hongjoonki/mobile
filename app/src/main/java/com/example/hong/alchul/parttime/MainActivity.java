@@ -110,17 +110,17 @@ public class MainActivity extends AppCompatActivity {
                                     userModel.userName = userName;
                                     userModel.userPhoneNum = userPhoneNum;
                                     userModel.userStat = userStat;
-                                    userModel.userPassword = userPassword;
                                     userModel.userImage = imageUrl;
                                     userModel.pushToken = token;
 
-                                    FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).child(userId).setValue(userModel);
+                                    FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).child(userName).setValue(userModel);
                                 }
                             });
 
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                             builder.setMessage("정상적으로 실행하였습니다.")
+
                                     .setNegativeButton("확인", null)
                                     .create()
                                     .show();

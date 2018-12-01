@@ -67,7 +67,6 @@ public class partime_home extends AppCompatActivity implements NavigationView.On
 
 
         String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();        //intent 받아오기
 
         header_id.setText(userName);
 
