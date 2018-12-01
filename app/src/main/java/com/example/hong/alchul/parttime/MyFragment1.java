@@ -238,8 +238,7 @@ public class MyFragment1 extends Fragment {
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf8"), gson.toJson(alramWorkstart));
 
-        Request request = new Request.Builder()
-                .header()
+        
     }
 
 }
