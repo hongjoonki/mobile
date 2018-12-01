@@ -4,16 +4,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -46,6 +50,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MyFragment3 extends Fragment {
     View view;
@@ -99,13 +105,17 @@ public class MyFragment3 extends Fragment {
             }
         });
 
-        /*chat.setOnClickListener(new View.OnClickListener() {
+        chat.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(context, ChatActivity.class);
-                intent.putExtra("destinationUid", destinationUsers.get(position));
+                intent.putExtra("UserId", userId);
+                intent.putExtra("UserName", userName);
+                intent.putExtra("UserPhoneNum", userPhoneNum);
+                intent.putExtra("UserStat", userStat);
+                intent.putExtra("StoreCode", storeCode);
                 startActivity(intent);
             }
-        });*/
+        });
 
         // 공지 (파이어베이스 및 뷰에 글 올리는 기능)
         final NoticeAdapter adapter = new NoticeAdapter(context, R.layout.notice_item, listVO, userName, userStat);
@@ -195,5 +205,11 @@ public class MyFragment3 extends Fragment {
 
         return view;
     }
+
+
+
+
+
+
 
 }

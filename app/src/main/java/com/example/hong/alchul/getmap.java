@@ -70,6 +70,25 @@ public class getmap extends Service implements LocationListener {
             } else {
                 this.isGetLocation = true;
                 //네트워크정보로부터 위치값 가져오기
+
+
+                if( isGPSEnabled){
+                    if(location ==null){
+                        locationManager.requestLocationUpdates(
+                                LocationManager.GPS_PROVIDER,
+                                MIN_TIME_BW_UPDATES,
+                                MIN_DISTANCE_CHANGE_FOR_UPDATE, this);
+                        if(locationManager!=null){
+                            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                            if(location!=null){
+                                lat = location.getLatitude();
+                                lon = location.getLongitude();
+                            }
+                        }
+                    }
+                }
+
+
                 if(isNetworkEnabled){
                     locationManager.requestLocationUpdates(
                             LocationManager.NETWORK_PROVIDER,
@@ -87,21 +106,8 @@ public class getmap extends Service implements LocationListener {
 
                 }
 
-                if( isGPSEnabled){
-                    if(location ==null){
-                        locationManager.requestLocationUpdates(
-                                LocationManager.GPS_PROVIDER,
-                                MIN_TIME_BW_UPDATES,
-                                MIN_DISTANCE_CHANGE_FOR_UPDATE, this);
-                        if(locationManager!=null){
-                            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                            if(location!=null){
-                                lat = location.getLatitude();
-                                lon = location.getLongitude();
-                            }
-                        }
-                    }
-                }
+
+
             }
         }catch (Exception e){
             e.printStackTrace();
