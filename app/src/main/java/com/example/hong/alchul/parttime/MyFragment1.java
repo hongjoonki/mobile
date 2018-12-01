@@ -5,6 +5,7 @@ import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.UserManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -27,7 +28,11 @@ import com.example.hong.alchul.model.UserModel;
 import com.example.hong.alchul.request.GpsRequest;
 import com.example.hong.alchul.request.MyFragment1_request;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
@@ -38,8 +43,10 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.Call;
@@ -182,8 +189,10 @@ public class MyFragment1 extends Fragment {
                             .show();
                 }else{
 
-                    sendWorktime();
-
+                    //sendWorktime();
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    String aa = database.getReference().child("users").child(storeCode).child("manager").toString();
+                    Toast.makeText(context, aa, Toast.LENGTH_LONG).show();
 
                     mNow=System.currentTimeMillis();
                     mDate=new Date(mNow);
@@ -244,7 +253,27 @@ public class MyFragment1 extends Fragment {
         Gson gson = new Gson();
 
         AlramWorkstart alramWorkstart = new AlramWorkstart();
-        alramWorkstart.to = FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child("manager").child("pushToken").toString();
+
+        final List<UserModel> userModels;
+        userModels = new ArrayList<>();
+        FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child("manager").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userModels.clear();
+                for (DataSnapshot snapshot:dataSnapshot.getChildren()) {
+                    UserModel userModel = snapshot.getValue(UserModel.class);
+
+                    userModels.add(userModel);
+                }
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
+        alramWorkstart.to ="";
         alramWorkstart.workStart.title = userName;
         alramWorkstart.workStart.text = userName+"님이 출근하셨습니다.";
 
