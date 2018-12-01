@@ -33,7 +33,6 @@
         <activity android:name=".ChatActivity" />
         <activity android:name=".NoticeActivity" />
         <activity android:name=".NoticeRoom" />
-        <activity android:name=".getmap" />
         <activity android:name=".googlemap"></activity>
     </application>
 

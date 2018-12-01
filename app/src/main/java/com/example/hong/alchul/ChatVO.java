@@ -2,16 +2,16 @@ package com.example.hong.alchul;
 
 public class ChatVO {
 
-    private int imageID ;
-    private String id;
-    private String content;
-    private String time;
+    public int imageID ;
+    public String name;
+    public String content;
+    public String time;
 
     public ChatVO(){}
 
-    public ChatVO(int imageID, String id, String content, String time) {
+    public ChatVO(int imageID, String name, String content, String time) {
         this.imageID = imageID;
-        this.id = id;
+        this.name = name;
         this.content = content;
         this.time = time;
     }
@@ -21,7 +21,7 @@ public class ChatVO {
     }
 
     public String getId() {
-        return id;
+        return name;
     }
 
     public String getContent() {

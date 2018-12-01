@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bluebg"
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
@@ -62,7 +61,7 @@
         android:layout_marginStart="99dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        android:background="#547ed4"
+        android:background="#000000"
         android:onClick="onClick1"
         android:text="Login"
         android:textColor="#ffff"
@@ -82,8 +81,8 @@
         android:layout_marginBottom="16dp"
         android:onClick="onClick2"
         android:text="register"
-        android:background="#dbecf3"
-        android:textColor="#547ed3"
+        android:background="#ffffff"
+        android:textColor="#000000"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

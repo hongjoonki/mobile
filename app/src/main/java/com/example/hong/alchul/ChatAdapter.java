@@ -1,6 +1,8 @@
 package com.example.hong.alchul;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,32 +12,50 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-
-public class ChatAdapter extends BaseAdapter {
-
-    private Context context;
-    private int layout;
-    private ArrayList<ChatVO> chatData;
-    private LayoutInflater inflater;
-    private String id;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
-    public ChatAdapter(Context applicationContext, int talklist, ArrayList<ChatVO> list, String id) {
-        this.context = applicationContext;
-        this.layout = talklist;
-        this.chatData = list;
-        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.id= id;
+public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
+        ImageView profile;
+        TextView username, realtime, usermessage;
+
+        public MyViewHolder(@NonNull View view) {
+            super(view);
+            profile = view.findViewById(R.id.photoImageView);
+            username = view.findViewById(R.id.nameTextView);
+            realtime = view.findViewById(R.id.realtime);
+            usermessage = view.findViewById(R.id.messageTextView);
+        }
+    }
+
+    private ArrayList<ChatVO> chatInfoList;
+    ChatAdapter(ArrayList<ChatVO> chatInfoList){
+        this.chatInfoList = chatInfoList;
+    }
+
+
+
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_item, parent, false);
+
+        return new MyViewHolder(v);
     }
 
     @Override
-    public int getCount() { // 전체 데이터 개수
-        return chatData.size();
-    }
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        MyViewHolder myViewHolder = (MyViewHolder) holder;
+        myViewHolder.profile.setImageResource(chatInfoList.get(position).imageID);
+        myViewHolder.username.setText(chatInfoList.get(position).name);
+        myViewHolder.usermessage.setText(chatInfoList.get(position).content);
+        myViewHolder.realtime.setText(chatInfoList.get(position).time);
 
-    @Override
-    public Object getItem(int position) { // position번째 아이템
-        return chatData.get(position);
+
+
     }
 
     @Override
@@ -43,6 +63,12 @@ public class ChatAdapter extends BaseAdapter {
         return position;
     }
 
+    @Override
+    public int getItemCount() {
+        return chatInfoList.size();
+    }
+}
+/*
     @Override
     public View getView(int position, View convertView, ViewGroup parent) { //항목의 index, 전에 inflate 되어있는 view, listView
 
@@ -106,3 +132,4 @@ public class ChatAdapter extends BaseAdapter {
     }
 
 }
+*/
