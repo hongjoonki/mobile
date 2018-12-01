@@ -66,7 +66,7 @@ public class ChatActivity extends AppCompatActivity {
 
 //list.add(new ChatVO(R.drawable.profile3, "찡찡이", "안녕", "오후 4:42"));
 
-        final ChatAdapter adapter = new ChatAdapter(chatInfoList);
+        final ChatAdapter adapter = new ChatAdapter(chatInfoList,id);
         mRecyclerView.setAdapter(adapter);
 
 
@@ -85,7 +85,7 @@ public class ChatActivity extends AppCompatActivity {
 
                     StringBuffer sb = new StringBuffer(edt.getText().toString());
                     if (sb.length() >= 15) {
-                        for (int i = 1; i <= sb.length() / 15; i++) {
+                        for (int i = 1; i <= sb.length() / 25; i++) {
                             sb.insert(15 * i, "\n");
                         }
                     }

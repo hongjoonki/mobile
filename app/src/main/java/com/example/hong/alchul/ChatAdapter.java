@@ -16,10 +16,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    String id;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         ImageView profile;
-        TextView username, realtime, usermessage;
+        TextView username, realtime, usermessage, mymessage, mytime;
 
         public MyViewHolder(@NonNull View view) {
             super(view);
@@ -27,12 +28,16 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             username = view.findViewById(R.id.nameTextView);
             realtime = view.findViewById(R.id.realtime);
             usermessage = view.findViewById(R.id.messageTextView);
+            mymessage = view.findViewById(R.id.mymsg);
+            mytime = view.findViewById(R.id.mytime);
+
         }
     }
 
     private ArrayList<ChatVO> chatInfoList;
-    ChatAdapter(ArrayList<ChatVO> chatInfoList){
+    ChatAdapter(ArrayList<ChatVO> chatInfoList, String id){
         this.chatInfoList = chatInfoList;
+        this.id = id;
     }
 
 
@@ -49,11 +54,25 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         MyViewHolder myViewHolder = (MyViewHolder) holder;
-        myViewHolder.profile.setImageResource(chatInfoList.get(position).imageID);
-        myViewHolder.username.setText(chatInfoList.get(position).name);
-        myViewHolder.usermessage.setText(chatInfoList.get(position).content);
-        myViewHolder.realtime.setText(chatInfoList.get(position).time);
 
+        if(chatInfoList.get(position).getId().equals(id)){
+
+            myViewHolder.profile.setVisibility(View.GONE);
+            myViewHolder.username.setVisibility(View.GONE);
+            myViewHolder.usermessage.setVisibility(View.GONE);
+            myViewHolder.realtime.setVisibility(View.GONE);
+
+            myViewHolder.mymessage.setText(chatInfoList.get(position).content);
+            myViewHolder.mytime.setText(chatInfoList.get(position).time);
+        }else {
+            myViewHolder.profile.setImageResource(chatInfoList.get(position).imageID);
+            myViewHolder.username.setText(chatInfoList.get(position).name);
+            myViewHolder.usermessage.setText(chatInfoList.get(position).content);
+            myViewHolder.realtime.setText(chatInfoList.get(position).time);
+
+            myViewHolder.mytime.setVisibility(View.GONE);
+            myViewHolder.mymessage.setVisibility(View.GONE);
+        }
 
 
     }
