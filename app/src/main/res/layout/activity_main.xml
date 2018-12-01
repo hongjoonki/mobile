@@ -35,15 +35,18 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text=""
+        android:textSize="23dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        >
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <EditText
             android:id="@+id/findText"
@@ -66,25 +69,25 @@
             android:orientation="horizontal">
 
 
-        <Button
-            android:id="@+id/findButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:onClick="clickfind"
-            android:text="Find Store"
-            android:textColor="#ffff"
-            android:background="@drawable/color_button3"/>
+            <Button
+                android:id="@+id/findButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/color_button3"
+                android:onClick="clickfind"
+                android:text="Find Store"
+                android:textColor="#ffff" />
 
-        <Button
-            android:id="@+id/enterBt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="clickenter"
-            android:layout_marginLeft="20dp"
-            android:text="enter"
-            android:textColor="#ffff"
-            android:background="@drawable/color_button3"/>
+            <Button
+                android:id="@+id/enterBt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/color_button3"
+                android:onClick="clickenter"
+                android:text="enter"
+                android:textColor="#ffff" />
 
         </LinearLayout>
     </LinearLayout>
@@ -93,8 +96,8 @@
         android:id="@+id/logoutBt"
         android:layout_width="79dp"
         android:layout_height="41dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="20dp"
         android:text="logout"
         android:textColor="#ffff"
         android:background="#547ed3"
