@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "911795622888-ej456rfdek5ln4k9e7cppeu771g9c5r3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hong.alchul",
+            "certificate_hash": "6412d6cb39e11ecb0d10ecdd8ce162ab0c2611c3"
+          }
+        },
+        {
           "client_id": "911795622888-emg15j7euuv59a3tfpcg2r04818o5s8t.apps.googleusercontent.com",
           "client_type": 3
         }

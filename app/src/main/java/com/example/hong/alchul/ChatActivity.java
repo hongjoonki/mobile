@@ -1,13 +1,17 @@
 package com.example.hong.alchul;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,8 +27,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class ChatActivity extends AppCompatActivity {
+import de.hdodenhof.circleimageview.CircleImageView;
 
+public class ChatActivity extends AppCompatActivity {
     ArrayList<ChatVO> list = new ArrayList<>();
     ListView lv;
     Button btn;
@@ -49,7 +54,7 @@ ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(),
 
 // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = database.getReference("message"+code);
+        final DatabaseReference myRef = database.getReference("chatting"+code);
 
 
 //로그인한 아이디
@@ -101,7 +106,7 @@ ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(),
 
 
 
-                    adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
 
 
             }
@@ -128,4 +133,6 @@ ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(),
         });
 
     }
+
 }
+

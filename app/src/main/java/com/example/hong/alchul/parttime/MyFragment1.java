@@ -108,6 +108,7 @@ public class MyFragment1 extends Fragment {
                 if(gps.isGetLocation()){
                     latitude = gps.getLatitude();
                     longitude = gps.getLongitude();
+                    Log.i("test", String.valueOf(longitude));
 
                     Toast.makeText(context, "당신의 위치 - \n위도: " + latitude + "\n경도: " + longitude, Toast.LENGTH_LONG).show();
 
@@ -192,7 +193,7 @@ public class MyFragment1 extends Fragment {
                     btn_start.setEnabled(false);
                     Toast.makeText(context, startwork+"에"+"출근하였습니다.", Toast.LENGTH_SHORT).show();
 
-            } }          //출근 버튼눌렀을 때.
+                } }          //출근 버튼눌렀을 때.
         });
 
         btn_end.setOnClickListener(new View.OnClickListener() {
