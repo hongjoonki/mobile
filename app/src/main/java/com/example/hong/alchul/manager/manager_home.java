@@ -2,6 +2,7 @@ package com.example.hong.alchul.manager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,10 +19,11 @@ import android.widget.Toast;
 
 import com.example.hong.alchul.LoginActivity;
 import com.example.hong.alchul.R;
+import com.example.hong.alchul.parttime.MyFragment1;
 import com.example.hong.alchul.parttime.MyFragment3;
 import com.example.hong.alchul.parttime.partime_home;
 
-public class manager_home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class manager_home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
     Bundle bundle = new Bundle(7);
     @Override
@@ -36,6 +38,9 @@ public class manager_home extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View nav_header_view = navigationView.inflateHeaderView(R.layout.nav_header);
+
+        BottomNavigationView bottom = (BottomNavigationView)findViewById(R.id.mainactivity_bottomnavigationview);
+        bottom.setOnNavigationItemSelectedListener(this);
 
 
 
@@ -61,8 +66,8 @@ public class manager_home extends AppCompatActivity implements NavigationView.On
         String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();//intent 받아오기
 
-        LinearLayout button1 = (LinearLayout)findViewById(R.id.button1);
-        LinearLayout button2 = (LinearLayout)findViewById(R.id.button2);
+        //LinearLayout button1 = (LinearLayout)findViewById(R.id.button1);
+        //LinearLayout button2 = (LinearLayout)findViewById(R.id.button2);
 
         if (title != null && content != null) {
             bundle.putString("UserId", userId);
@@ -89,27 +94,10 @@ public class manager_home extends AppCompatActivity implements NavigationView.On
             fragment3.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
         }
-        button1.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                manager_frag1 fragment1 = new manager_frag1();
-                fragment1.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
 
-            }
-        });
 
-        button2.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                MyFragment3 fragment3 = new MyFragment3();
-                fragment3.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
-
-            }
-        });
     }
     @SuppressWarnings("statementWithEmptyBody")
     @Override
@@ -133,6 +121,21 @@ public class manager_home extends AppCompatActivity implements NavigationView.On
                     })
                     .create()
                     .show();
+
+        }
+        else if(id==R.id.people){
+            manager_frag1 fragment1 = new manager_frag1();
+            fragment1.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
+
+        }
+        else if(id==R.id.notice){
+        MyFragment3 fragment3 = new MyFragment3();
+        fragment3.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
+        }
+
+        else if(id==R.id.chat){
 
         }
         drawer.closeDrawer(GravityCompat.START);
