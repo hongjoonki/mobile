@@ -35,22 +35,13 @@ public class manager_home extends AppCompatActivity implements NavigationView.On
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        View nav_header_view = navigationView.inflateHeaderView(R.layout.nav_header);
 
         BottomNavigationView bottom = (BottomNavigationView)findViewById(R.id.mainactivity_bottomnavigationview);
         bottom.setOnNavigationItemSelectedListener(this);
 
 
 
-        TextView header_id = (TextView) nav_header_view.findViewById(R.id.loginname);
 
-
-        drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
 
         Intent intent = getIntent();   //로그인유저의 정보를 받아온다.
         final String userId = intent.getStringExtra("UserId");
@@ -61,10 +52,9 @@ public class manager_home extends AppCompatActivity implements NavigationView.On
         String title = intent.getStringExtra("title");
         String content = intent.getStringExtra("content");
 
-        header_id.setText(userName);
 
         String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();//intent 받아오기
+
 
         //LinearLayout button1 = (LinearLayout)findViewById(R.id.button1);
         //LinearLayout button2 = (LinearLayout)findViewById(R.id.button2);
@@ -105,13 +95,7 @@ public class manager_home extends AppCompatActivity implements NavigationView.On
         Log.i("test", "sfsfsd");
         int id = item.getItemId();
 
-        if(id==R.id.contact){
-            return true;
-
-        }else if(id==R.id.setting){
-            return true;
-
-        }else if(id==R.id.logout){
+        if(id==R.id.logout){
             AlertDialog.Builder builder = new AlertDialog.Builder(manager_home.this);
             builder.setMessage("로그아웃 하시겠습니까?")
                     .setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -139,10 +123,6 @@ public class manager_home extends AppCompatActivity implements NavigationView.On
             return true;
         }
 
-        else if(id==R.id.chat){
-
-        }
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 

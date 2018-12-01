@@ -120,7 +120,6 @@ public class MainActivity_manager extends AppCompatActivity {
                                     userModel.userName = userName;
                                     userModel.userPhoneNum = userPhoneNum;
                                     userModel.userStat = userStat;
-                                    userModel.userPassword = userPassword;
                                     userModel.userImage = imageUrl;
                                     userModel.pushToken = token;
                                     FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).setValue(userModel);

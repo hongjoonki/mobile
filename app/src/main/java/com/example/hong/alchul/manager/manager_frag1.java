@@ -1,10 +1,12 @@
 package com.example.hong.alchul.manager;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -110,13 +112,30 @@ public class manager_frag1 extends Fragment {
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(context, user_calendar.class);
-                intent.putExtra("userName", data.get(position).getName());
-                intent.putExtra("userPhoneNum", data.get(position).getPhone());
-                intent.putExtra("storeCode", userStat);
-                startActivity(intent);
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("직원: "+data.get(position).getName())
+                        .setPositiveButton("전화걸기", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String tel="tel:"+data.get(position).getPhone();
+                        startActivity(new Intent("android.intent.action.DIAL", Uri.parse(tel)));
+                    }
+                }).setNegativeButton("근무기록", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(context, user_calendar.class);
+                        intent.putExtra("userName", data.get(position).getName());
+                        intent.putExtra("userPhoneNum", data.get(position).getPhone());
+                        intent.putExtra("storeCode", userStat);
+                        startActivity(intent);
+                    }
+                })
+                        .create()
+                        .show();
             }
         });
 

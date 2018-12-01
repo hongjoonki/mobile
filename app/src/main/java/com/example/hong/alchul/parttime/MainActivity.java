@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                             FirebaseStorage.getInstance().getReference().child("userImages").child(uid).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Uri> task) {
-                                    @SuppressWarnings("VisibleForTests")
+
                                     String imageUrl = task.getResult().toString();
                                     String token = FirebaseInstanceId.getInstance().getToken();
 
@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
                                     userModel.userName = userName;
                                     userModel.userPhoneNum = userPhoneNum;
                                     userModel.userStat = userStat;
-                                    userModel.userPassword = userPassword;
                                     userModel.userImage = imageUrl;
                                     userModel.pushToken = token;
 
@@ -121,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                             builder.setMessage("정상적으로 실행하였습니다.")
+
                                     .setNegativeButton("확인", null)
                                     .create()
                                     .show();
