@@ -152,8 +152,8 @@ public class MyFragment2 extends Fragment {
                             JSONObject jsonResponse = new JSONObject(response);
                             JSONArray success = jsonResponse.getJSONArray("response");
                             if(success.length()==0){
-                                frag2.setText("근무기록: 휴무입니다");
-                                frag3.setText("일당:   0원");
+                                frag2.setText("근무기록 : 휴무입니다");
+                                frag3.setText("일당 :   0원");
                             }
                             else{
 
@@ -170,7 +170,7 @@ public class MyFragment2 extends Fragment {
                                     double diff = Math.round((to2.getTime()-to1.getTime())*pay_hour/3600000.0);
                                     int payday = (int)diff;
                                     Log.i("test", "dfd"+diff);
-                                    frag2.setText("근무기록: "+workstart+" ~ "+workend);
+                                    frag2.setText("근무기록 :  "+workstart+" ~ "+workend);
                                     frag3.setText("일당: "+ payday+"원");
                                 }
 

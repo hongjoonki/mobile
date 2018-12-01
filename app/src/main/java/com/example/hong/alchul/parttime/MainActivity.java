@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                     if (success.equals("SORRY")) {
                         find = "OK";
                         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                        builder.setMessage("OK")
+                        builder.setMessage("코드를 찾았습니다")
                                 .setPositiveButton("확인", null)
                                 .create()
                                 .show();

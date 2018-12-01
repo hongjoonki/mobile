@@ -141,7 +141,7 @@ public class MyFragment3 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(context, NoticeRoom.class);
-                intent.putExtra("UserId", userId);
+                intent.putExtra("UserId", listVO.get(position).getTitle());
                 intent.putExtra("UserName", userName);
                 intent.putExtra("UserPhoneNum", userPhoneNum);
                 intent.putExtra("UserStat", userStat);

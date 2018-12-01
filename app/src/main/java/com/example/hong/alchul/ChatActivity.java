@@ -3,6 +3,7 @@ package com.example.hong.alchul;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -27,14 +28,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChatActivity extends AppCompatActivity {
-    ArrayList<ChatVO> list = new ArrayList<>();
+    ArrayList<ChatVO> chatInfoList = new ArrayList<>();
     ListView lv;
     Button btn;
     EditText edt;
-    int[] imageID = {R.drawable.profile1, R.drawable.profile2, R.drawable.profile3};
+
+
+    RecyclerView mRecyclerView;
+    RecyclerView.LayoutManager mLayoutManager;
 
     String id = "";
 
@@ -43,12 +46,12 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatting);
 
-/* 텍스트뷰만 있을때만 쓸수있어
-ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(), R.layout.talklist, list);*/
-
-        lv = findViewById(R.id.List_view);
-        edt = findViewById(R.id.send_txt);
-        btn = findViewById(R.id.send_btn);
+        mRecyclerView = findViewById(R.id.recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        btn = (Button)findViewById(R.id.send_btn);
+        edt = (EditText)findViewById(R.id.send_txt);
 
         String code = getIntent().getStringExtra("StoreCode");
 
@@ -63,8 +66,10 @@ ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(),
 
 //list.add(new ChatVO(R.drawable.profile3, "찡찡이", "안녕", "오후 4:42"));
 
-        final ChatAdapter adapter = new ChatAdapter(getApplicationContext(), R.layout.chat_item, list, id);
-        ((ListView) findViewById(R.id.List_view)).setAdapter(adapter);
+        final ChatAdapter adapter = new ChatAdapter(chatInfoList);
+        mRecyclerView.setAdapter(adapter);
+
+
 
 
 
@@ -100,7 +105,7 @@ ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(),
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                 ChatVO value = dataSnapshot.getValue(ChatVO.class); // 괄호 안 : 꺼낼 자료 형태
-                list.add(value);
+                chatInfoList.add(value);
                 String userId = value.getId();
                 Log.i("test", userId + id);
 

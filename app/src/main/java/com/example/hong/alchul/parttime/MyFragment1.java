@@ -189,7 +189,7 @@ public class MyFragment1 extends Fragment {
                             .show();
                 }else{
 
-                    //sendWorktime();
+                    sendWorktime();
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     String aa = database.getReference().child("users").child(storeCode).child("manager").toString();
                     Toast.makeText(context, aa, Toast.LENGTH_LONG).show();
