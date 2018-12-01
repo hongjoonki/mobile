@@ -6,4 +6,5 @@ public class UserModel {
     public String userStat;
     public String userPassword;
     public String userImage;
+    public String pushToken;
 }

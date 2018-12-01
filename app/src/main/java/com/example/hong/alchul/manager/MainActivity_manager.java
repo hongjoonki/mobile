@@ -2,6 +2,8 @@ package com.example.hong.alchul.manager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,12 +18,25 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.hong.alchul.LoginActivity;
 import com.example.hong.alchul.R;
+import com.example.hong.alchul.RegisterActivity;
 import com.example.hong.alchul.googlemap;
+import com.example.hong.alchul.model.UserModel;
 import com.example.hong.alchul.request.RegisterRequest;
 import com.example.hong.alchul.request.storeRequest;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.UploadTask;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity_manager extends AppCompatActivity {
 
@@ -81,6 +96,7 @@ public class MainActivity_manager extends AppCompatActivity {
 
         Intent enterIntent = new Intent(MainActivity_manager.this, manager_home.class);
 
+
         // find변수를 이용하여 storeCode 확인이 끝난 후에 생성을 할 수 있도록 해주었다
 
         if (find.equals("OK")) {
@@ -91,6 +107,26 @@ public class MainActivity_manager extends AppCompatActivity {
                         JSONObject jsonResponse = new JSONObject(response);
                         boolean success = jsonResponse.getBoolean("success");
                         if (success) {
+
+                            final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            FirebaseStorage.getInstance().getReference().child("userImages").child(uid).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Uri> task) {
+                                    @SuppressWarnings("VisibleForTests")
+                                    String imageUrl = task.getResult().toString();
+
+                                    UserModel userModel = new UserModel();
+                                    userModel.userName = userName;
+                                    userModel.userPhoneNum = userPhoneNum;
+                                    userModel.userStat = userStat;
+                                    userModel.userPassword = userPassword;
+                                    userModel.userImage = imageUrl;
+                                    FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).child(uid).setValue(userModel);
+                                }
+                            });
+
+                            passPushTokenToServer();
+
                             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity_manager.this);
                             builder.setMessage("가게 등록 성공")
                                     .setPositiveButton("확인", null)
@@ -214,5 +250,15 @@ public class MainActivity_manager extends AppCompatActivity {
         startActivity(enterIntent);
 
 
+    }
+
+
+    void passPushTokenToServer() {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String token = FirebaseInstanceId.getInstance().getToken();
+        Map<String, Object> map = new HashMap<>();
+        map.put("pushToken", token);
+
+        FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).child(uid).updateChildren(map);
     }
 }
