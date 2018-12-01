@@ -4,6 +4,7 @@ package com.example.hong.alchul.parttime;
 import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.UserManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.textclassifier.TextLinks;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,10 +20,16 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.hong.alchul.AlramWorkstart;
 import com.example.hong.alchul.R;
 import com.example.hong.alchul.getmap;
+import com.example.hong.alchul.model.UserModel;
 import com.example.hong.alchul.request.GpsRequest;
 import com.example.hong.alchul.request.MyFragment1_request;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +37,12 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 
 public class MyFragment1 extends Fragment {
     View view;
@@ -151,12 +165,6 @@ public class MyFragment1 extends Fragment {
             }
         });
 
-
-
-
-
-
-
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,13 +175,14 @@ public class MyFragment1 extends Fragment {
                             .create()
                             .show();
                 }else{
-                mNow=System.currentTimeMillis();
-                mDate=new Date(mNow);
-                startwork = mFormat.format(mDate);         //시간까지 있는 형식
-                startday  = mFormat1.format(mDate);     //날짜만 있는 형식
-                btn_end.setEnabled(true);               //처음상태는 출근버튼이 활성화되있고 퇴근버튼 비활성화. 출근버튼누르면 출근버튼 비활성화. 퇴근버튼 활성화
-                btn_start.setEnabled(false);
-                Toast.makeText(context, startwork+"에"+"출근하였습니다.", Toast.LENGTH_SHORT).show();
+
+                    mNow=System.currentTimeMillis();
+                    mDate=new Date(mNow);
+                    startwork = mFormat.format(mDate);         //시간까지 있는 형식
+                    startday  = mFormat1.format(mDate);     //날짜만 있는 형식
+                    btn_end.setEnabled(true);               //처음상태는 출근버튼이 활성화되있고 퇴근버튼 비활성화. 출근버튼누르면 출근버튼 비활성화. 퇴근버튼 활성화
+                    btn_start.setEnabled(false);
+                    Toast.makeText(context, startwork+"에"+"출근하였습니다.", Toast.LENGTH_SHORT).show();
 
             } }          //출근 버튼눌렀을 때.
         });
@@ -219,15 +228,18 @@ public class MyFragment1 extends Fragment {
 
             }
         });
-
-
-
-
-
-
-
         return view;
-
-
     }
+
+    void sendWorktime() {
+        Gson gson = new Gson();
+
+        AlramWorkstart alramWorkstart = new AlramWorkstart();
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf8"), gson.toJson(alramWorkstart));
+
+        Request request = new Request.Builder()
+                .header()
+    }
+
 }
