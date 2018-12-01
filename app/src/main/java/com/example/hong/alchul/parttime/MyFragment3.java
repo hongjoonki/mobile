@@ -99,17 +99,13 @@ public class MyFragment3 extends Fragment {
             }
         });
 
-        chat.setOnClickListener(new View.OnClickListener() {
+        /*chat.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(context, ChatActivity.class);
-                intent.putExtra("UserId", userId);
-                intent.putExtra("UserName", userName);
-                intent.putExtra("UserPhoneNum", userPhoneNum);
-                intent.putExtra("UserStat", userStat);
-                intent.putExtra("StoreCode", storeCode);
+                intent.putExtra("destinationUid", destinationUsers.get(position));
                 startActivity(intent);
             }
-        });
+        });*/
 
         // 공지 (파이어베이스 및 뷰에 글 올리는 기능)
         final NoticeAdapter adapter = new NoticeAdapter(context, R.layout.notice_item, listVO, userName, userStat);

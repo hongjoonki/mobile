@@ -106,8 +106,10 @@ public class manager_home extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if(id==R.id.contact){
+            return true;
 
         }else if(id==R.id.setting){
+            return true;
 
         }else if(id==R.id.logout){
             AlertDialog.Builder builder = new AlertDialog.Builder(manager_home.this);
@@ -121,18 +123,20 @@ public class manager_home extends AppCompatActivity implements NavigationView.On
                     })
                     .create()
                     .show();
+            return true;
 
         }
         else if(id==R.id.people){
             manager_frag1 fragment1 = new manager_frag1();
             fragment1.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
-
+            return true;
         }
         else if(id==R.id.notice){
         MyFragment3 fragment3 = new MyFragment3();
         fragment3.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
+            return true;
         }
 
         else if(id==R.id.chat){
