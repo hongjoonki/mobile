@@ -5,8 +5,8 @@
     <!-- 평상시 -->
     <item android:state_focused="false" android:state_pressed="false">
         <shape>
-            <solid android:color="#547ed3" />
-            <stroke android:color="#d6e4fe" android:width="3dp" />
+            <solid android:color="#000000" />
+            <stroke android:color="#ffff" android:width="3dp" />
             <padding android:bottom="20dp" android:left="10dp"
                 android:right="10dp" android:top="20dp" />
         </shape>
