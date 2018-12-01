@@ -159,7 +159,7 @@ public class MyFragment3 extends Fragment {
                 Toast.makeText(context, "내용을 입력하세요.", Toast.LENGTH_LONG).show();
             } else {
                 Date today = new Date();
-                SimpleDateFormat timeNow = new SimpleDateFormat("yysㄴssyyy-MM-dd HH:mm");
+                SimpleDateFormat timeNow = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
                 StringBuffer sb = new StringBuffer(content);
                 if (sb.length() >= 15) {

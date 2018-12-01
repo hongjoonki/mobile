@@ -93,7 +93,7 @@ public class ChatActivity extends AppCompatActivity {
                     //list.add(new ChatVO(R.drawable.profile1, id, sb.toString(), timeNow.format(today)));
                     //adapter.notifyDataSetChanged();
 
-                    myRef.push().setValue(new ChatVO(R.drawable.profile1, id, sb.toString(), timeNow.format(today)));
+                    myRef.push().setValue(new ChatVO(R.drawable.user, id, sb.toString(), timeNow.format(today)));
                     edt.setText("");
 
                 }
