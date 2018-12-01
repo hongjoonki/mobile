@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                                     userModel.userName = userName;
                                     userModel.userPhoneNum = userPhoneNum;
                                     userModel.userStat = userStat;
+
                                     userModel.userImage = imageUrl;
                                     userModel.pushToken = token;
 

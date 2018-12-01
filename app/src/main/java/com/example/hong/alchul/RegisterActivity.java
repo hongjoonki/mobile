@@ -73,6 +73,7 @@ public class RegisterActivity extends Activity{
         final String id = idText.getText().toString();
         final String password = passwordText.getText().toString();
         final String name = nameText.getText().toString();
+
         final String phoneNum = phoneText.getText().toString();
 
 
