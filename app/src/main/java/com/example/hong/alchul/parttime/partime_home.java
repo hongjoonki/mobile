@@ -110,10 +110,11 @@ public class partime_home extends AppCompatActivity implements NavigationView.On
             phone_list list_phone = new phone_list();
             list_phone.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, list_phone).commit();
-
+            return true;
 
 
         }else if(id==R.id.setting){
+            return true;
 
         }else if(id==R.id.logout){
             AlertDialog.Builder builder = new AlertDialog.Builder(partime_home.this);
@@ -127,23 +128,26 @@ public class partime_home extends AppCompatActivity implements NavigationView.On
                     }).setNegativeButton("취소",null)
                     .create()
                     .show();
+            return true;
 
         }else if(id==R.id.home){
 
             MyFragment1 fragment1= new MyFragment1();
             fragment1.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
+            return true;
         }
         else if(id==R.id.mycalendar){
             MyFragment2 fragment2 = new MyFragment2();
             fragment2.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment2).commit();
+            return true;
         }
         else if(id==R.id.notice){
             MyFragment3 fragment3 = new MyFragment3();
             fragment3.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
-
+            return true;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

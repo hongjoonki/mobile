@@ -24,9 +24,13 @@ import com.example.hong.alchul.request.LoginRequest;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends Activity {
 
@@ -64,7 +68,7 @@ public class LoginActivity extends Activity {
     // LOGIN 버튼 눌렀을 때 이벤트 추가
     public void onClick1(View v) {
         String id = idText.getText().toString();
-        String password = passwordText.getText().toString();
+        final String password = passwordText.getText().toString();
 
         // Response.Listener형식의 객체 생성 (response 결과값을 받아서 실행할 코드)
         Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -106,6 +110,7 @@ public class LoginActivity extends Activity {
                                 intent1.putExtra("UserId", userId);
                                 intent1.putExtra("UserName", userName);
                                 intent1.putExtra("UserPhoneNum", userPhoneNum);
+                                intent1.putExtra("UserPassword", password);
                                 intent1.putExtra("UserStat", userStat);
                                 LoginActivity.this.startActivity(intent1);
                             } else{
@@ -127,6 +132,7 @@ public class LoginActivity extends Activity {
                                 intent.putExtra("UserId", userId);
                                 intent.putExtra("UserName", userName);
                                 intent.putExtra("UserPhoneNum", userPhoneNum);
+                                intent.putExtra("UserPassword", password);
                                 intent.putExtra("UserStat", userStat);
                                 LoginActivity.this.startActivity(intent);
                             } else{
@@ -163,6 +169,4 @@ public class LoginActivity extends Activity {
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
         queue.add(loginRequest);
     }
-
-
 }

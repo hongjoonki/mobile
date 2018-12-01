@@ -2,6 +2,8 @@ package com.example.hong.alchul.parttime;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,12 +19,22 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.hong.alchul.LoginActivity;
 import com.example.hong.alchul.R;
+import com.example.hong.alchul.model.UserModel;
 import com.example.hong.alchul.request.ConnectStoreRequest;
 import com.example.hong.alchul.request.RegisterRequest;
 import com.example.hong.alchul.request.storeRequest;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.storage.FirebaseStorage;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     String userName;
     String userPhoneNum;
     String userStat;
+    String userPassword;
 
     EditText findText;
     String storeCode;
@@ -50,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         userId = intent.getStringExtra("UserId");
         userName = intent.getStringExtra("UserName");
         userPhoneNum = intent.getStringExtra("UserPhoneNum");
+        userPassword = intent.getStringExtra("UserPassword");
         userStat = intent.getStringExtra("UserStat");
 
         findText = (EditText) findViewById(R.id.findText);
@@ -84,6 +98,27 @@ public class MainActivity extends AppCompatActivity {
                         boolean success = jsonResponse.getBoolean("success");
 
                         if (success) {
+                            final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            FirebaseStorage.getInstance().getReference().child("userImages").child(uid).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Uri> task) {
+                                    @SuppressWarnings("VisibleForTests")
+                                    String imageUrl = task.getResult().toString();
+                                    String token = FirebaseInstanceId.getInstance().getToken();
+
+                                    UserModel userModel = new UserModel();
+                                    userModel.userName = userName;
+                                    userModel.userPhoneNum = userPhoneNum;
+                                    userModel.userStat = userStat;
+                                    userModel.userPassword = userPassword;
+                                    userModel.userImage = imageUrl;
+                                    userModel.pushToken = token;
+
+                                    FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).child(userId).setValue(userModel);
+                                }
+                            });
+
+
                             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                             builder.setMessage("정상적으로 실행하였습니다.")
                                     .setNegativeButton("확인", null)
@@ -180,5 +215,14 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .show();
     }
+    /*
+    void passPushTokenToServer() {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String token = FirebaseInstanceId.getInstance().getToken();
+        Map<String, Object> map = new HashMap<>();
+        map.put("pushToken", token);
 
+        FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).child(uid).updateChildren(map);
+    }
+    */
 }
