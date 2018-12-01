@@ -114,6 +114,7 @@ public class MainActivity_manager extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Uri> task) {
                                     @SuppressWarnings("VisibleForTests")
                                     String imageUrl = task.getResult().toString();
+                                    String token = FirebaseInstanceId.getInstance().getToken();
 
                                     UserModel userModel = new UserModel();
                                     userModel.userName = userName;
@@ -121,11 +122,11 @@ public class MainActivity_manager extends AppCompatActivity {
                                     userModel.userStat = userStat;
                                     userModel.userPassword = userPassword;
                                     userModel.userImage = imageUrl;
-                                    FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).child(uid).setValue(userModel);
+                                    userModel.pushToken = token;
+                                    FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).setValue(userModel);
                                 }
                             });
 
-                            passPushTokenToServer();
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity_manager.this);
                             builder.setMessage("가게 등록 성공")
@@ -252,7 +253,7 @@ public class MainActivity_manager extends AppCompatActivity {
 
     }
 
-
+    /*
     void passPushTokenToServer() {
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String token = FirebaseInstanceId.getInstance().getToken();
@@ -261,4 +262,5 @@ public class MainActivity_manager extends AppCompatActivity {
 
         FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).child(uid).updateChildren(map);
     }
+    */
 }

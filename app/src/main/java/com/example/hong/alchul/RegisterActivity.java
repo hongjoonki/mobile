@@ -118,8 +118,7 @@ public class RegisterActivity extends Activity{
                                     FirebaseStorage.getInstance().getReference().child("userImages").child(uid).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                         @Override
                                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                            @SuppressWarnings("VisibleForTests")
-                                            String imageUrl = task.getResult().getUploadSessionUri().toString();
+
                                         }
                                     });
                                 }

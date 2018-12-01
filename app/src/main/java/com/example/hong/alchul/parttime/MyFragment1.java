@@ -240,21 +240,10 @@ public class MyFragment1 extends Fragment {
     }
 
     void sendWorktime() {
-
-        String aa = FirebaseDatabase
-                .getInstance()
-                .getReference()
-                .child("users")
-                .child(storeCode)
-                .child("manager")
-                .toString();
-
-
-
         Gson gson = new Gson();
 
         AlramWorkstart alramWorkstart = new AlramWorkstart();
-        alramWorkstart.to = FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child("manager").child(aa).child("pushToken").toString();
+        alramWorkstart.to = FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child("manager").child("pushToken").toString();
         alramWorkstart.workStart.title = userName;
         alramWorkstart.workStart.text = userName+"님이 출근하셨습니다.";
 

@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Uri> task) {
                                     @SuppressWarnings("VisibleForTests")
                                     String imageUrl = task.getResult().toString();
+                                    String token = FirebaseInstanceId.getInstance().getToken();
 
                                     UserModel userModel = new UserModel();
                                     userModel.userName = userName;
@@ -111,11 +112,12 @@ public class MainActivity extends AppCompatActivity {
                                     userModel.userStat = userStat;
                                     userModel.userPassword = userPassword;
                                     userModel.userImage = imageUrl;
-                                    FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).child(uid).setValue(userModel);
+                                    userModel.pushToken = token;
+
+                                    FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).child(userId).setValue(userModel);
                                 }
                             });
 
-                            passPushTokenToServer();
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                             builder.setMessage("정상적으로 실행하였습니다.")
@@ -213,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .show();
     }
-
+    /*
     void passPushTokenToServer() {
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String token = FirebaseInstanceId.getInstance().getToken();
@@ -222,5 +224,5 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).child(uid).updateChildren(map);
     }
-
+    */
 }
