@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                                     userModel.userImage = imageUrl;
                                     userModel.pushToken = token;
 
-                                    FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).child(userId).setValue(userModel);
+                                    FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).child(userName).setValue(userModel);
                                 }
                             });
 
