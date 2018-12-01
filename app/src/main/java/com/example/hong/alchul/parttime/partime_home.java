@@ -2,6 +2,7 @@ package com.example.hong.alchul.parttime;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -29,7 +30,7 @@ import com.example.hong.alchul.parttime.MyFragment1;
 import com.example.hong.alchul.parttime.MyFragment2;
 import com.example.hong.alchul.parttime.MyFragment3;
 
-public class partime_home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class partime_home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
     Bundle bundle = new Bundle(7);
     //fragment로 정보넘기기위해 bundle사용
@@ -44,11 +45,10 @@ public class partime_home extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View nav_header_view = navigationView.inflateHeaderView(R.layout.nav_header);
-
-
-
         TextView header_id = (TextView) nav_header_view.findViewById(R.id.loginname);
 
+        BottomNavigationView bottom = (BottomNavigationView)findViewById(R.id.mainactivity_bottomnavigationview) ;
+        bottom.setOnNavigationItemSelectedListener(this);
 
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
@@ -68,10 +68,6 @@ public class partime_home extends AppCompatActivity implements NavigationView.On
 
         String message = "회원정보: " + userStat + "\n안녕하십니까 " + userId + "님";
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();        //intent 받아오기
-
-        LinearLayout button1 = (LinearLayout)findViewById(R.id.button1);
-        LinearLayout button2 = (LinearLayout)findViewById(R.id.button2);
-        LinearLayout button3 = (LinearLayout)findViewById(R.id.button3);           //버튼 인식
 
         header_id.setText(userName);
 
@@ -102,58 +98,6 @@ public class partime_home extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        button1.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                MyFragment1 fragment1= new MyFragment1();
-                fragment1.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
-
-            }
-        });         //fragment1로 넘어가는 이벤트리스터
-
-        button2.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                MyFragment2 fragment2 = new MyFragment2();
-                fragment2.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment2).commit();
-
-            }
-        });          //fragment2로 넘어가는 이벤트리스터
-
-        button3.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                MyFragment3 fragment3 = new MyFragment3();
-                fragment3.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
-
-            }
-        });      //fragment3로 넘어가는 이벤트리스터
-
     }
 
     @SuppressWarnings("statementWithEmptyBody")
@@ -183,6 +127,22 @@ public class partime_home extends AppCompatActivity implements NavigationView.On
                     }).setNegativeButton("취소",null)
                     .create()
                     .show();
+
+        }else if(id==R.id.home){
+
+            MyFragment1 fragment1= new MyFragment1();
+            fragment1.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment1).commit();
+        }
+        else if(id==R.id.mycalendar){
+            MyFragment2 fragment2 = new MyFragment2();
+            fragment2.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment2).commit();
+        }
+        else if(id==R.id.notice){
+            MyFragment3 fragment3 = new MyFragment3();
+            fragment3.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, fragment3).commit();
 
         }
         drawer.closeDrawer(GravityCompat.START);
