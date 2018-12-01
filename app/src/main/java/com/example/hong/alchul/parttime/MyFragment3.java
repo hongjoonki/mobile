@@ -64,6 +64,8 @@ public class MyFragment3 extends Fragment {
     String userStat;
     String storeCode;
     ListView listView;
+    String newTitle;
+    String newContent;
 
     String title = null;
     String content = null;
@@ -140,12 +142,13 @@ public class MyFragment3 extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Intent intent = new Intent(context, NoticeRoom.class);
-                intent.putExtra("UserId", listVO.get(position).getTitle());
-                intent.putExtra("UserName", userName);
-                intent.putExtra("UserPhoneNum", userPhoneNum);
-                intent.putExtra("UserStat", userStat);
-                intent.putExtra("StoreCode", storeCode);
+                intent.putExtra("UserName", listVO.get(position).getId());
+                intent.putExtra("Time", listVO.get(position).getTime());
+
+                intent.putExtra("Content", listVO.get(position).getContent());
+                intent.putExtra("Title", listVO.get(position).getTitle());
                 startActivity(intent);
             }
         });
