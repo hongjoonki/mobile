@@ -121,7 +121,7 @@ public class MainActivity_manager extends AppCompatActivity {
                                     userModel.userStat = userStat;
                                     userModel.userPassword = userPassword;
                                     userModel.userImage = imageUrl;
-                                    FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(uid).setValue(userModel);
+                                    FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).child(uid).setValue(userModel);
                                 }
                             });
 
@@ -259,6 +259,6 @@ public class MainActivity_manager extends AppCompatActivity {
         Map<String, Object> map = new HashMap<>();
         map.put("pushToken", token);
 
-        FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(uid).updateChildren(map);
+        FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).child(uid).updateChildren(map);
     }
 }

@@ -29,18 +29,23 @@ import com.example.hong.alchul.request.MyFragment1_request;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
@@ -176,6 +181,9 @@ public class MyFragment1 extends Fragment {
                             .show();
                 }else{
 
+                    sendWorktime();
+
+
                     mNow=System.currentTimeMillis();
                     mDate=new Date(mNow);
                     startwork = mFormat.format(mDate);         //시간까지 있는 형식
@@ -232,13 +240,45 @@ public class MyFragment1 extends Fragment {
     }
 
     void sendWorktime() {
+
+        String aa = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child("users")
+                .child(storeCode)
+                .child("manager")
+                .toString();
+
+
+
         Gson gson = new Gson();
 
         AlramWorkstart alramWorkstart = new AlramWorkstart();
+        alramWorkstart.to = FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child("manager").child(aa).child("pushToken").toString();
+        alramWorkstart.workStart.title = userName;
+        alramWorkstart.workStart.text = userName+"님이 출근하셨습니다.";
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf8"), gson.toJson(alramWorkstart));
 
-        
+        Request request = new Request.Builder()
+                .header("Content-Type", "application/json")
+                .addHeader("Authorization", "key=AIzaSyCE3QX5ZOjT8pNZoxou5iSCB3EYm141PUI")
+                .url("https://gcm-http.googleapis.com/gcm/send")
+                .post(requestBody)
+                .build();
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, okhttp3.Response response) throws IOException {
+
+            }
+        });
+
     }
 
 }

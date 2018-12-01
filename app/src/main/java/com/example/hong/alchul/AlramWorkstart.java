@@ -4,10 +4,11 @@ public class AlramWorkstart {
 
     public String to;
 
-    public WorkStart workStart;
+    public WorkStart workStart = new WorkStart();
 
-    public static class WorkStart {
-        public static String title;
+    public class WorkStart {
+        public String title;
         public String text;
+
     }
 }
