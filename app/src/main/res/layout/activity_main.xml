@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".parttime.MainActivity"
-    android:background="#e3eeff">
+    >
 
 
     <android.support.design.widget.AppBarLayout
@@ -18,7 +18,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="#000000"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme" />
 
@@ -36,6 +36,7 @@
         android:layout_marginEnd="16dp"
         android:text=""
         android:textSize="23dp"
+        android:textColor="#ffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +101,7 @@
         android:layout_marginBottom="20dp"
         android:text="logout"
         android:textColor="#ffff"
-        android:background="#547ed3"
+        android:background="#000000"
         android:onClick="btn_logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

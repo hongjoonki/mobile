@@ -5,22 +5,21 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".RegisterActivity"
-android:background="#e3eeff">
+>
 
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:layout_weight="1"
-    android:background="#547ed3"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="#ffff">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:background="#547ed3"
         android:text="Register"
-        android:textColor="#ffffff"
+        android:textColor="#ff000000"
         android:textSize="30dp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="143dp"
@@ -85,7 +84,7 @@ android:background="#e3eeff">
     android:onClick="registerBt"
     android:text="Register"
     android:textColor="#ffff"
-    android:background="#547ed3"
+    android:background="#000000"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -140,10 +139,10 @@ android:background="#e3eeff">
         android:layout_marginTop="85dp"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="16dp"
-        android:background="#e3eeff"
+        android:background="#ffff"
         android:onClick="checkButton"
         android:text="check email"
-        android:textColor="#547ed3"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/idText"
