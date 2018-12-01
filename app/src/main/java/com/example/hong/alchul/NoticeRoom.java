@@ -18,19 +18,24 @@ import com.example.hong.alchul.R;
 import com.example.hong.alchul.request.ConnectStoreRequest;
 import com.example.hong.alchul.request.RegisterRequest;
 import com.example.hong.alchul.request.storeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class NoticeRoom extends AppCompatActivity {
 
-    String userId;
+    String title;
     String userName;
-    String userPhoneNum;
-    String userStat;
+    String time;
+    String content;
 
-    String storeCode;
-
+    TextView nameView;
+    TextView titleView;
+    TextView contentView;
+    TextView timeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +43,20 @@ public class NoticeRoom extends AppCompatActivity {
         setContentView(R.layout.notice_room);
 
         Intent intent = getIntent();
-        userId = intent.getStringExtra("UserId");
         userName = intent.getStringExtra("UserName");
-        userPhoneNum = intent.getStringExtra("UserPhoneNum");
-        userStat = intent.getStringExtra("UserStat");
-        storeCode = intent.getStringExtra("StoreCode");
+        time = intent.getStringExtra("Time");
+        content = intent.getStringExtra("Content");
+        title = intent.getStringExtra("Title");
 
+        nameView = (TextView) findViewById(R.id.nameView);
+        titleView = (TextView) findViewById(R.id.titleView);
+        contentView = (TextView) findViewById(R.id.contentView);
+        timeView = (TextView) findViewById(R.id.timeView);
 
+        nameView.setText(userName);
+        titleView.setText(title);
+        contentView.setText(content);
+        timeView.setText(time);
 
     }
 

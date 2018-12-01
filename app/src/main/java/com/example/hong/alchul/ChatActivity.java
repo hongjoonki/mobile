@@ -31,7 +31,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChatActivity extends AppCompatActivity {
     ArrayList<ChatVO> list = new ArrayList<>();
-    ListView lv;
+    RecyclerView rv;
     Button btn;
     EditText edt;
     int[] imageID = {R.drawable.profile1, R.drawable.profile2, R.drawable.profile3};
@@ -46,7 +46,7 @@ public class ChatActivity extends AppCompatActivity {
 /* 텍스트뷰만 있을때만 쓸수있어
 ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(), R.layout.talklist, list);*/
 
-        lv = findViewById(R.id.List_view);
+        rv = findViewById(R.id.message_recycler_view);
         edt = findViewById(R.id.send_txt);
         btn = findViewById(R.id.send_btn);
 
@@ -64,7 +64,7 @@ ArrayAdapter<ChatVO> adapter = new ArrayAdapter<ChatVO>(getApplicationContext(),
 //list.add(new ChatVO(R.drawable.profile3, "찡찡이", "안녕", "오후 4:42"));
 
         final ChatAdapter adapter = new ChatAdapter(getApplicationContext(), R.layout.chat_item, list, id);
-        ((ListView) findViewById(R.id.List_view)).setAdapter(adapter);
+        //((RecyclerView) findViewById(R.id.message_recycler_view)).setAdapter(adapter);
 
 
 

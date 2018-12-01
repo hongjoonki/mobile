@@ -34,6 +34,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.FirebaseInstanceIdService;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 
@@ -55,6 +56,8 @@ import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+
+import static com.android.volley.VolleyLog.TAG;
 
 public class MyFragment1 extends Fragment {
     View view;
@@ -189,10 +192,7 @@ public class MyFragment1 extends Fragment {
                             .show();
                 }else{
 
-                    //sendWorktime();
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    String aa = database.getReference().child("users").child(storeCode).child("manager").toString();
-                    Toast.makeText(context, aa, Toast.LENGTH_LONG).show();
+                    sendWorktime();
 
                     mNow=System.currentTimeMillis();
                     mDate=new Date(mNow);
@@ -250,30 +250,12 @@ public class MyFragment1 extends Fragment {
     }
 
     void sendWorktime() {
+
         Gson gson = new Gson();
 
         AlramWorkstart alramWorkstart = new AlramWorkstart();
 
-        final List<UserModel> userModels;
-        userModels = new ArrayList<>();
-        FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child("manager").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                userModels.clear();
-                for (DataSnapshot snapshot:dataSnapshot.getChildren()) {
-                    UserModel userModel = snapshot.getValue(UserModel.class);
-
-                    userModels.add(userModel);
-                }
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-
-        alramWorkstart.to ="";
+        alramWorkstart.to = "fYzziuURl-I:APA91bFkPIvLhy_4trbxr_yhJYRKe1Y6Ur89NB27JHp_ir0Wg57TGB8cOinLZuTORZ1adqzp4tRPEUhn7rXYgY4KN7SgskQfyIKtnAmjA0bdjWlb7Jp4XwxHZQY8ZrNnbQcFRgiku-Ck";
         alramWorkstart.workStart.title = userName;
         alramWorkstart.workStart.text = userName+"님이 출근하셨습니다.";
 
