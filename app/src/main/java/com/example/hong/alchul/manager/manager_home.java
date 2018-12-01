@@ -104,7 +104,7 @@ public class manager_home extends AppCompatActivity implements NavigationView.On
                             Intent intent = new Intent(manager_home.this, LoginActivity.class);
                             manager_home.this.startActivity(intent);
                         }
-                    })
+                    }).setNegativeButton("취소",null)
                     .create()
                     .show();
             return true;
