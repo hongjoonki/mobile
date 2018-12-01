@@ -112,7 +112,7 @@ public class MainActivity_manager extends AppCompatActivity {
                             FirebaseStorage.getInstance().getReference().child("userImages").child(uid).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Uri> task) {
-                                    @SuppressWarnings("VisibleForTests")
+
                                     String imageUrl = task.getResult().toString();
                                     String token = FirebaseInstanceId.getInstance().getToken();
 
