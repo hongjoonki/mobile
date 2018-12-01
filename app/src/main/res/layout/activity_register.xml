@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".RegisterActivity"
-android:background="#d7e5ff">
+android:background="#e3eeff">
 
 
 <LinearLayout
@@ -140,7 +140,7 @@ android:background="#d7e5ff">
         android:layout_marginTop="85dp"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="16dp"
-        android:background="#d6e4fe"
+        android:background="#e3eeff"
         android:onClick="checkButton"
         android:text="check email"
         android:textColor="#547ed3"

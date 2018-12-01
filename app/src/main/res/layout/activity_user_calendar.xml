@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#d7e5ff"
+        android:background="#e3eeff"
         >
 
 
@@ -30,10 +30,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_marginTop="8dp"
             android:text="이름"
             android:textSize="15dp"
             android:textStyle="bold"
-            android:background="#d7e5ff"
+
             />
 
         <TextView
@@ -41,10 +42,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_marginTop="8dp"
             android:text="근무기록"
             android:textSize="15dp"
             android:textStyle="bold"
-            android:background="#d7e5ff"
+
             />
 
         <TextView
@@ -52,10 +54,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_marginTop="8dp"
             android:text="일당"
             android:textSize="15dp"
             android:textStyle="bold"
-            android:background="#d7e5ff"
+
             />
 
     </LinearLayout>
