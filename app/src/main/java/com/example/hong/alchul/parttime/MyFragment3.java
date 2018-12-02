@@ -162,9 +162,9 @@ public class MyFragment3 extends Fragment {
                 SimpleDateFormat timeNow = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
                 StringBuffer sb = new StringBuffer(content);
-                if (sb.length() >= 15) {
+                if (sb.length() >= 20) {
                     for (int i = 1; i <= sb.length() / 20; i++) {
-                        sb.insert(15 * i, "\n");
+                        sb.insert(20 * i, "\n");
                     }
                 }
 
