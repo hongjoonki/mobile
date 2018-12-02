@@ -2,6 +2,7 @@ package com.example.hong.alchul.parttime;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.UserManager;
@@ -57,6 +58,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
+import static android.graphics.Color.parseColor;
 import static com.android.volley.VolleyLog.TAG;
 
 public class MyFragment1 extends Fragment {
@@ -95,10 +97,14 @@ public class MyFragment1 extends Fragment {
         storeCode = getArguments().getString("StoreCode");
 
 
+
         TextView textView1, textView2, textView3, textView4;
-
-
-
+        textView1 = (TextView)view.findViewById(R.id.textView1);
+        textView2 = (TextView)view.findViewById(R.id.textView2);
+        textView3 = (TextView)view.findViewById(R.id.textView3);
+        textView1.setText("ID  :  "+userId);
+        textView2.setText("이름  :  "+userName);
+        textView3.setText("전화번호  :  "+userPhoneNum);
 
 
 
@@ -113,7 +119,9 @@ public class MyFragment1 extends Fragment {
                 if(gps.isGetLocation()){
                     latitude = gps.getLatitude();
                     longitude = gps.getLongitude();
-                    Log.i("test", String.valueOf(longitude));
+                    Log.i("gps long", String.valueOf(longitude));
+                    Log.i("gps lat", String.valueOf(latitude));
+
 
                     Toast.makeText(context, "당신의 위치 - \n위도: " + latitude + "\n경도: " + longitude, Toast.LENGTH_LONG).show();
 
@@ -136,6 +144,9 @@ public class MyFragment1 extends Fragment {
                                 end.setLongitude(lon);
 
                                 double distance = start.distanceTo(end);
+
+                                Log.i("gps위도", String.valueOf(lat));
+                                Log.i("gps경도", String.valueOf(lon));
 
                                 Log.i("거리", "distance"+distance);
                                 if(distance<50){
@@ -193,7 +204,7 @@ public class MyFragment1 extends Fragment {
                     mDate=new Date(mNow);
                     startwork = mFormat.format(mDate);         //시간까지 있는 형식
                     startday  = mFormat1.format(mDate);     //날짜만 있는 형식
-                    btn_end.setEnabled(true);               //처음상태는 출근버튼이 활성화되있고 퇴근버튼 비활성화. 출근버튼누르면 출근버튼 비활성화. 퇴근버튼 활성화
+                    btn_end.setEnabled(true);//처음상태는 출근버튼이 활성화되있고 퇴근버튼 비활성화. 출근버튼누르면 출근버튼 비활성화. 퇴근버튼 활성화
                     btn_start.setEnabled(false);
                     Toast.makeText(context, startwork+"에"+"출근하였습니다.", Toast.LENGTH_SHORT).show();
 

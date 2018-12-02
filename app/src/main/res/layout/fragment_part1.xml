@@ -46,7 +46,7 @@
                 android:layout_height="140dp"
                 android:background="@drawable/a_gray_button"
                 android:text="출근"
-                android:textColor="#ffff"
+                android:textColor="#ffffff"
                 android:textSize="50dp" />
         </LinearLayout>
 
