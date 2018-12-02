@@ -113,7 +113,7 @@ public class MainActivity_manager extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Uri> task) {
 
-                                    String imageUrl = task.getResult().toString();
+                                  //  String imageUrl = task.getResult().toString();
                                     String token = FirebaseInstanceId.getInstance().getToken();
 
                                     UserModel userModel = new UserModel();
@@ -121,7 +121,7 @@ public class MainActivity_manager extends AppCompatActivity {
                                     userModel.userPhoneNum = userPhoneNum;
                                     userModel.userStat = userStat;
 
-                                    userModel.userImage = imageUrl;
+                                    //userModel.userImage = imageUrl;
                                     userModel.pushToken = token;
 
                                     FirebaseDatabase.getInstance().getReference().child("users").child(storeCode).child(userStat).setValue(userModel);

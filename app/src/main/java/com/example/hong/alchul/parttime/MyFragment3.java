@@ -163,7 +163,7 @@ public class MyFragment3 extends Fragment {
 
                 StringBuffer sb = new StringBuffer(content);
                 if (sb.length() >= 15) {
-                    for (int i = 1; i <= sb.length() / 15; i++) {
+                    for (int i = 1; i <= sb.length() / 20; i++) {
                         sb.insert(15 * i, "\n");
                     }
                 }

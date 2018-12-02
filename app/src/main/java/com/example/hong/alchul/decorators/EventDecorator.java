@@ -18,12 +18,11 @@ import java.util.HashSet;
  */
 public class EventDecorator implements DayViewDecorator {
 
-    private final Drawable drawable;
+    //
     private int color;
     private HashSet<CalendarDay> dates;
 
     public EventDecorator(int color, Collection<CalendarDay> dates, Context context) {
-        drawable = context.getDrawable(R.drawable.more);
         this.color = color;
         this.dates = new HashSet<>(dates);
     }
