@@ -97,14 +97,9 @@ public class MyFragment1 extends Fragment {
 
         TextView textView1, textView2, textView3, textView4;
 
-        textView1 = (TextView)view.findViewById(R.id.textView1);
-        textView2 = (TextView)view.findViewById(R.id.textView2);
-        textView3 = (TextView)view.findViewById(R.id.textView3);
 
 
-        textView1.setText("이름:   "+ userName);
-        textView2.setText("직종:   "+ userStat);
-        textView3.setText("전화번호:   "+ userPhoneNum);
+
 
 
         mapbutton = (Button)view.findViewById(R.id.map);

@@ -44,7 +44,7 @@
                 android:id="@+id/start"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
-                android:background="@drawable/black_button"
+                android:background="@drawable/a_gray_button"
                 android:text="출근"
                 android:textColor="#ffff"
                 android:textSize="50dp" />
@@ -60,7 +60,7 @@
                 android:id="@+id/end"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
-                android:background="@drawable/black_button"
+                android:background="@drawable/a_black_button"
                 android:enabled="false"
                 android:text="퇴근"
                 android:textColor="#ffff"
@@ -166,6 +166,7 @@
 
 
 </LinearLayout>
+
 
 
 
