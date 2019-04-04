@@ -1,6 +1,1 @@
-first table name -> user
-user -> userId, userPassword, userName, userPhoneNum, userStat      전부다 notnull, userId primairy key
-
-db name -> alchul
-
-
+Applications that provide two-way communication for store managers and temporary employees and create automatic job log.
